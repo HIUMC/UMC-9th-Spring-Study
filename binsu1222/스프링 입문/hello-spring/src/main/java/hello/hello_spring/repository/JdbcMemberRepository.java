@@ -132,30 +132,30 @@ public class JdbcMemberRepository implements MemberRepository {
     }
 
     private void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
-try {
-        if (rs != null) {
-            rs.close();
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (pstmt != null) {
+                pstmt.close();
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (conn != null) {
+                close(conn);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-try {
-    if (pstmt != null) {
-        pstmt.close();
-    }
-    }
- catch (SQLException e) {
-        e.printStackTrace();
-    }
-try {
-    if (conn != null) {
-        close(conn);
-    }
-    }
- catch (SQLException e) {
-        e.printStackTrace();
-    }
-}
 
 private void close(Connection conn) throws SQLException {
     DataSourceUtils.releaseConnection(conn, dataSource);
