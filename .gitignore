@@ -1,0 +1,7 @@
+﻿# ignore everything at repo root
+/*
+
+# allow only these at the root
+!/.gitignore
+!/README.md
+!/스프링 입문/
