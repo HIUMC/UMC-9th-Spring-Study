@@ -8,13 +8,11 @@ import java.util.Optional;
 
 public class JpaMemberRepository implements MemberRepository {
 
-
     private final EntityManager em; //jap 주입받으려ㅁ면 사용해야해
 
     public JpaMemberRepository(EntityManager em) {
         this.em = em;
     }
-
 
     @Override
     public Member save(Member member) {
