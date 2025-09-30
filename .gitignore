@@ -1,7 +1,7 @@
-.gradle
-.idea
-gradle
-src
+.gradle/
+.idea/
+gradle/
+src/
 .gitattributes
 build.gradle
 gradlew
