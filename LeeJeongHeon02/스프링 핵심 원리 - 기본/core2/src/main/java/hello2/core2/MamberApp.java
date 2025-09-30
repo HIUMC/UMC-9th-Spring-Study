@@ -1,12 +1,15 @@
 package hello2.core2;
 
 import hello2.core2.member.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MamberApp {
 
     public static void main(String[] args) {
 
-        MemberService memberService = new MemberServiceImpl();
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        MemberService memberService = ac.getBean(MemberService.class);
         Member member = new Member(10L, "이정헌", 24, Grade.GOLD);
         memberService.join(member);
 
