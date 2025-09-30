@@ -1,13 +1,7 @@
 .gradle/
 .idea/
-gradle/
-src/
 .gitattributes
-build.gradle
-gradlew
-gradlew.bat
 HELP.md
-settings.gradle
 
 
 .gradle
