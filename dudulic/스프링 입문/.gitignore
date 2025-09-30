@@ -1,6 +1,4 @@
-.gradle/
-.idea/
-.gitattributes
+.gradle
 HELP.md
 build/
 

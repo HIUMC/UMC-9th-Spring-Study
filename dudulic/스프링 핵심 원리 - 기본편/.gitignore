@@ -1,12 +1,7 @@
-.gradle/
-.idea/
-.gitattributes
+.gradle
 HELP.md
 build/
 
-.gradle
-.idea
-build
 out
 
 
