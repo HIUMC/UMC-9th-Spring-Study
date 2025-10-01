@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hello.hello_spring.service.MemberServiceIntegrationTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-09-24T14:00:41.870Z" hostname="DESKTOP-THHIF6C" time="0.524">
+  <properties/>
+  <testcase name="중복_회원_예외()" classname="hello.hello_spring.service.MemberServiceIntegrationTest" time="0.503"/>
+  <testcase name="회원가입()" classname="hello.hello_spring.service.MemberServiceIntegrationTest" time="0.02"/>
+  <system-out><![CDATA[2025-09-24T23:00:41.852+09:00  INFO 21964 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [hello.hello_spring.service.MemberServiceIntegrationTest]: MemberServiceIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-09-24T23:00:41.866+09:00  INFO 21964 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration hello.hello_spring.HelloSpringApplication for test class hello.hello_spring.service.MemberServiceIntegrationTest
+Hibernate: select m1_0.id,m1_0.name from member m1_0 where m1_0.name=?
+Hibernate: insert into member (name,id) values (?,default)
+Hibernate: select m1_0.id,m1_0.name from member m1_0 where m1_0.name=?
+Hibernate: select m1_0.id,m1_0.name from member m1_0 where m1_0.name=?
+Hibernate: insert into member (name,id) values (?,default)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
