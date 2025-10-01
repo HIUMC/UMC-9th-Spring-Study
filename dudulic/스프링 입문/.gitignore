@@ -1,29 +1,13 @@
-# 디폴트 무시된 파일
-/shelf/
-/.idea/workspace.xml
-# 에디터 기반 HTTP 클라이언트 요청
-/httpRequests/
-# Datasource local storage ignored files
-/dataSources/
-/dataSources.local.xml
-# IntelliJ IDEA
-.idea/
-*.iml
-
-# Mac OS
-.DS_Store
-
-# Build & Logs
-/build/
-/out/
-/target/
-
-# Gradle
-.gradle/
-
 .gradle
-HELP.md
 build/
+gradle
+.gitattributes
+build.gradle
+gradlew
+gradlew.bat
+README.md
+settings.gradle
+
 
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
