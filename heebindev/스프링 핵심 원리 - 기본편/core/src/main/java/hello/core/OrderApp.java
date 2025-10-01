@@ -16,7 +16,7 @@ public class OrderApp {
         Member member = new Member(memberId, "memberA", Grade.VIP);//member만들고
         memberService.join(member);//그 member를 회원가입시키기.
 
-        Order order = orderService.createOrder(memberId,"itemA",10000);
+        Order order = orderService.createOrder(memberId,"itemA",20000);
         //order생성하기
 
         System.out.println("order = " + order);//인자 order는 order.toString()으로 호출
