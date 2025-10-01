@@ -1,8 +1,6 @@
 .gradle
-HELP.md
 build/
 gradle
-src
 .gitattributes
 build.gradle
 gradlew
