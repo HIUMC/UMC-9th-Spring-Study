@@ -6,7 +6,10 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component //("memberService2") 이름 부여도 가능
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;
@@ -15,6 +18,7 @@ public class OrderServiceImpl implements OrderService {
     // 할인 정책을 변경하려면 클라이언트를 고쳐야 함
     private final DiscountPolicy discountPolicy; //이렇게만 하면 얘가 null이기만 함 그래서 구현채를 생성하고 주입해야함
 
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
@@ -28,4 +32,10 @@ public class OrderServiceImpl implements OrderService {
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
+
+    //테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
+
 }
