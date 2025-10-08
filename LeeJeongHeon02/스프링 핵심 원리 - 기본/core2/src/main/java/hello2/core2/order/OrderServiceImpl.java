@@ -5,7 +5,9 @@ import hello2.core2.discount.FixDiscountPolicy;
 import hello2.core2.member.Member;
 import hello2.core2.member.MemberRepository;
 import hello2.core2.member.MemoryMemberRepository;
+import lombok.Getter;
 
+@Getter // 테스트용 임시
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;

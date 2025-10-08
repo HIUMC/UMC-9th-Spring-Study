@@ -1,5 +1,8 @@
 package hello2.core2.member;
 
+import lombok.Getter;
+
+@Getter // 테스트용 임시
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
