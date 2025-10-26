@@ -1,5 +1,6 @@
 package com.example.umc9th.domain.store.entity;
 
+import com.example.umc9th.domain.member.enums.Address;
 import jakarta.persistence.*;
 import lombok.*;
 
