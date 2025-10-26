@@ -10,12 +10,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class OrderServiceTest {
-
+    //given
     MemberService memberService;
     OrderService orderService;
 
     @BeforeEach
-    public void beforeEach(){
+    void beforeEach(){
         AppConfig appConfig = new AppConfig();
         memberService = appConfig.memberService();
         orderService = appConfig.orderService();
@@ -23,11 +23,13 @@ public class OrderServiceTest {
 
     @Test
     void createOrder(){
+        //when
         Long memberId = 1L;
-        Member member = new Member(memberId,"memberA", Grade.VIP);
+        Member member = new Member(memberId,"a", Grade.VIP);
         memberService.join(member);
 
         Order order = orderService.createOrder(memberId,"itemA",10000);
+        //then
         Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
     }
 }

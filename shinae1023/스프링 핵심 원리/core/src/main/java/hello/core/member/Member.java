@@ -1,23 +1,19 @@
 package hello.core.member;
 
-public class Member {
-
-    private Long id;
-    private String name;
-    private Grade grade;
+public class Member { //회원 정보 아이디 이름 등급
 
     public Member(Long id, String name, Grade grade) {
-        this.id = id;
+        this.Id = id;
         this.name = name;
         this.grade = grade;
     }
 
     public Long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        Id = id;
     }
 
     public String getName() {
@@ -35,4 +31,8 @@ public class Member {
     public void setGrade(Grade grade) {
         this.grade = grade;
     }
+
+    private Long Id;
+    private String name;
+    private Grade grade;
 }

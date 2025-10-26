@@ -9,18 +9,21 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class MemberApp {
     public static void main(String[] args) {
-//        AppConfig appConfig = new AppConfig();
-//        MemberService memberService = appConfig.memberService();
+        //AppConfig appConfig = new AppConfig();
+        //MemberService memberService = appConfig.memberService();
+        //MemberService memberService = new MemberServiceImpl();
 
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-        //이제부터 스프링 컨테이너에서 서비스 클래스 찾아옴
+        //@기반 Config 해줌
         MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
-
-        Member member = new Member(1L,"memberA", Grade.VIP);
-        memberService.join(member);
+        //memberService라는 객체를 찾을 것임, 타입은 MemberService
+        
+        Member member1 = new Member(1L,"a", Grade.VIP);
+        memberService.join(member1);
 
         Member findMember = memberService.findMember(1L);
-        System.out.println("new member = " + member.getName());
-        System.out.println("findMember = " + findMember.getName());
+        System.out.println("new member = " + member1.getName());
+        System.out.println("findMember = "+ findMember.getName());
+
     }
 }
