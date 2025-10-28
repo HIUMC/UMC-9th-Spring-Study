@@ -3,15 +3,36 @@ package hello.core.member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
-public class MemberServiceImpl implements MemberService {
 
-    private final MemberRepository memberRepository;
+@Component
+    public class OrderServiceImpl implements OrderService {
 
     @Autowired
-    public MemberServiceImpl(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
+    private MemberRepository memberRepository;
+    @Autowired
+    private DiscountPolicy discountPolicy;
     }
+//    @Autowired
+//    public void setMemberRepository(MemberRepository memberRepository) {
+//        this.memberRepository = memberRepository;
+//    }
+//    @Autowired
+//    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+//        this.discountPolicy = discountPolicy;
+//    }
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy
+            discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
+//    @Autowired
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy
+//            discountPolicy) {
+//            this.memberRepository = memberRepository;
+//            this.discountPolicy = discountPolicy;
+//    }
 
     @Override
     public void join(Member member) {
