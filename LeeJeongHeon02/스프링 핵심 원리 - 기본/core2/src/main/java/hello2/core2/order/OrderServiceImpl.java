@@ -6,10 +6,12 @@ import hello2.core2.member.Member;
 import hello2.core2.member.MemberRepository;
 import hello2.core2.member.MemoryMemberRepository;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Getter // 테스트용 임시
+@Getter
 @Component
 public class OrderServiceImpl implements OrderService {
 
@@ -17,9 +19,10 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy;
 
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(@Qualifier("mainMemberRepository") MemberRepository memberRepository,
+                            DiscountPolicy rateDiscountPolicy) {
         this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
+        this.discountPolicy = rateDiscountPolicy;
     }
 
     @Override
