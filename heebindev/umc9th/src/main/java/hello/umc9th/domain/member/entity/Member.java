@@ -47,6 +47,9 @@ public class Member extends BaseEntity {
     @Column(name="address", nullable = false)
     private String address;
 
+    @Column(name="point", nullable = false)
+    private Integer point;
+
     //약관동의 여부
     @Column(name="agree", nullable = false)
     @Builder.Default
