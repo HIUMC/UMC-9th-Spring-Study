@@ -5,10 +5,10 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+@Getter
 @RequiredArgsConstructor
 public class Order {
 
-    @Getter
     private Long memberId;
     private String itemName;
     private int itemPrice;
