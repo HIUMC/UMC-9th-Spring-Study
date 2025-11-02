@@ -19,7 +19,7 @@ public interface UserMissionRepository extends JpaRepository<UserMission, Long> 
             "FROM UserMission um JOIN um.mission m JOIN m.store s " +
             "WHERE um.member.id = :memberId AND um.isComplete = 'IN_PROGRESS' " +
             "ORDER BY m.createdAt DESC")
-    Page<InprogressMissionDto> findInProgressMissions(@Param("userId") Long memberId, Pageable pageable);
+    Page<InprogressMissionDto> findInProgressMissions(@Param("memberId") Long memberId, Pageable pageable);
 
-    long countByMember_IdAndMission_Store_RegionAndIsComplete(Long userId, Region region, MissionStatus isComplete);
+    long countByMember_IdAndMission_Store_RegionAndIsComplete(Long memberId, Region region, MissionStatus isComplete);
 }

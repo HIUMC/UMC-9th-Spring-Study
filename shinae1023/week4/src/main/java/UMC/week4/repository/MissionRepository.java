@@ -14,14 +14,14 @@ import org.springframework.stereotype.Repository;
 public interface MissionRepository extends JpaRepository<Mission, Long> {
     long countByStore_Region(Region region);
 
-    @Query("SELECT UMC.week4.dto.AvailableMissionDto(m.title, s.title, m.content, m.point, " +
+    @Query("SELECT new UMC.week4.dto.AvailableMissionDto (m.title, s.title, m.content, m.point, " +
             "  CASE " +
             "    WHEN um.isComplete = 'IN_PROGRESS' THEN '진행 중' " +
             "    WHEN um.isComplete = 'COMPLETED' THEN '진행 완료' " +
             "    ELSE '미션 도전' " +
             "  END) " +
             "FROM Mission m JOIN m.store s " +
-            "LEFT JOIN UserMission um ON um.mission = m AND um.user.id = :userId " +
+            "LEFT JOIN UserMission um ON um.mission = m AND um.member.id = :memberId " +
             "WHERE s.region = :region")
-    Page<AvailableMissionDto> findAvailableMissions(@Param("userId") Long userId, @Param("region") Region region, Pageable pageable);
+    Page<AvailableMissionDto> findAvailableMissions(@Param("memberId") Long memberId, @Param("region") Region region, Pageable pageable);
 }
