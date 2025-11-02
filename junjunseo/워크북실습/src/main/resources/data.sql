@@ -29,12 +29,14 @@ INSERT INTO store (
     name,
     manager_number,
     detail_address,
-    location_id
+    region,
+    created_at,
+    updated_at
 )
 VALUES
-    (1, '반이학생마라탕마라반', 1, '서울 마포구 서교동 123', NULL),
-    (2, '홍익돈까스', 2, '서울 마포구 와우산로 20', NULL),
-    (3, '커피플레이스', 3, '서울 마포구 연남동 45', NULL);
+    (1, '반이학생마라탕마라반', 1, '서울 마포구 서교동 123', 'MAPO', NOW(), NOW()),
+    (2, '홍익돈까스', 2, '서울 마포구 와우산로 20', 'MAPO',NOW(), NOW()),
+    (3, '커피플레이스', 3, '서울 마포구 연남동 45', 'MAPO',NOW(), NOW());
 
 -- ===========================
 -- REVIEW (리뷰 본문)

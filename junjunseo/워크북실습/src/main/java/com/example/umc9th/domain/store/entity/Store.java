@@ -1,5 +1,7 @@
 package com.example.umc9th.domain.store.entity;
 
+import com.example.umc9th.domain.store.enums.Region;
+import com.example.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,7 +11,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Store {
+public class Store extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,8 +25,7 @@ public class Store {
     @Column(name = "detail_address", nullable = false)
     private String detailAddress;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "location_id")
-    private Location location;
-
+    @Column(name = "region", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Region region;
 }

@@ -22,8 +22,7 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
                m.deadline    as deadline
           from Mission m
           join m.store s
-          join s.location l
-          where l.name = :name
+         where s.region = :region
            and m.deadline >= :today
            and not exists (
                 select 1 from MemberMission mm
