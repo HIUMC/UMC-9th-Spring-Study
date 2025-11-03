@@ -2,6 +2,7 @@ package UMC.week4.domain;
 
 import UMC.week4.domain.enums.Gender;
 import UMC.week4.domain.enums.MemberStatus;
+import UMC.week4.domain.enums.Region;
 import UMC.week4.domain.enums.SocialType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -51,6 +52,9 @@ public class Member extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private SocialType socialType;
+
+    @Enumerated(EnumType.STRING)
+    private Region region;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberFood> memberFoods = new ArrayList<>();

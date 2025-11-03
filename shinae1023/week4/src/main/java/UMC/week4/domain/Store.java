@@ -1,5 +1,6 @@
 package UMC.week4.domain;
 
+import UMC.week4.domain.enums.Region;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,7 +23,6 @@ public class Store {
 
     private String storeNum;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "region_id")
+    @Enumerated(EnumType.STRING)
     private Region region;
 }
