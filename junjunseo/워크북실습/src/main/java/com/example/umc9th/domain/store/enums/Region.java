@@ -1,6 +1,6 @@
-package com.example.umc9th.domain.member.enums;
+package com.example.umc9th.domain.store.enums;
 
-public enum Address {
+public enum Region {
     GANGSEO, YANGCHEON, GURO, YEONGDEUNGPO, GEUMCHEON, GWANAK, DONGJAK, SEOCHO, GANGNAM, SONGPA, GANGDONG,
     GWANGJIN, JUNGNANG, NOWON, DOBONG, GANGBUK, SEONGBUK, DONGDAEMUN, SEONGDONG, JUNG,
     JONGNO, YONGSAN, MAPO, SEODAEMUN, EUNPYEONG
