@@ -1,6 +1,13 @@
 .gradle
-HELP.md
 build/
+gradle
+.gitattributes
+build.gradle
+gradlew
+gradlew.bat
+README.md
+settings.gradle
+
 
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
@@ -36,7 +43,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-.idea
-UMC-9th-Spring-Study.iml
-.DS_Store
