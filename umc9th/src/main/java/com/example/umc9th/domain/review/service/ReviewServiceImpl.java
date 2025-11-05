@@ -36,4 +36,9 @@ public class ReviewServiceImpl implements ReviewService {
 
         return reviewRepository.save(newReview);
     }
+
+    @Override
+    public Review createReview(ReviewRequestDTO.CreateReviewDTO request) {
+        return null;
+    }
 }

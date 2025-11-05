@@ -26,8 +26,10 @@ public class Store extends BaseEntity {
     private String address;
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<Mission> missionList = new ArrayList<>();
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<Review> reviewList = new ArrayList<>();
 }
