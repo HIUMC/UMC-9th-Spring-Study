@@ -10,4 +10,8 @@ public interface ReviewQueryDsl {
     List<Review> searchReview(
             Predicate predicate
     );
+
+    List<Review> findMyReviews(
+            Long memberId, String storeName, Double minStar ,Double maxStar
+    );
 }

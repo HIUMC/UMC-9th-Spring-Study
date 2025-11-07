@@ -23,4 +23,8 @@ public class Store extends BaseEntity {
     //주소
     @Column(name = "address",nullable = false)
     private String address;
+
+    //평균 별점
+    @Column(name = "average_score")
+    private Double averageScore;
 }

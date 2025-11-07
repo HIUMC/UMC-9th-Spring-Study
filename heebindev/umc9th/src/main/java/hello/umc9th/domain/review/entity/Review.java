@@ -21,7 +21,7 @@ public class Review extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
-    private Store restaurant;
+    private Store store;
 
     @Id //pk는 id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
