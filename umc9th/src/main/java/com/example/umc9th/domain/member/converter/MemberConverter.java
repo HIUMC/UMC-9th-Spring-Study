@@ -3,7 +3,7 @@ package com.example.umc9th.domain.member.converter;
 import com.example.umc9th.domain.member.dto.MemberRequestDTO;
 import com.example.umc9th.domain.member.dto.MemberResponseDTO;
 import com.example.umc9th.domain.member.entity.Member;
-import com.example.umc9th.domain.member.entity.enums.Gender;
+import com.example.umc9th.domain.member.enums.Gender;
 
 public class MemberConverter {
     public static Member toMember(MemberRequestDTO.SignUpDTO request) {

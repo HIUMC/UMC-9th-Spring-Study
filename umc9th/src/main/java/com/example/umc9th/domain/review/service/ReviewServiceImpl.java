@@ -31,7 +31,7 @@ public class ReviewServiceImpl implements ReviewService {
         Store store = storeRepository.findById(storeId)
                 .orElseThrow(() -> new RuntimeException("해당 ID의 가게를 찾을 수 없습니다."));
 
-        newReview.setMember(member);
+        newReview.setUser(member);
         newReview.setStore(store);
 
         return reviewRepository.save(newReview);
