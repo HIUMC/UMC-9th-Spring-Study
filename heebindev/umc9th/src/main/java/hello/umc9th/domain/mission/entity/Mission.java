@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class Mission {
     @Id //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long missionId;
 
     //미션 이름
     @Column(name = "name",nullable = false)
@@ -38,6 +38,6 @@ public class Mission {
 
     //연관 관계
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_name", nullable = false)
+    @JoinColumn(name = "store_id", nullable = false)
     private Store store;
 }

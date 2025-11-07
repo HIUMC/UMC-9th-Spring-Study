@@ -25,7 +25,7 @@ public class Review extends BaseEntity {
 
     @Id //pk는 id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long reviewId;
 
     //리뷰 내용
     @Column(name = "review_content",length = 150)
@@ -36,5 +36,4 @@ public class Review extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Builder.Default
     private Score score =  Score.ONE;
-
 }

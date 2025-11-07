@@ -18,7 +18,7 @@ import java.util.List;
 public class Food {
     @Id //PK는 id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long FoodId;
 
     //음식이름
     @Column(name = "name")

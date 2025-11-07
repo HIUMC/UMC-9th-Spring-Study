@@ -15,7 +15,7 @@ import lombok.*;
 public class MemberMission extends BaseEntity {
     @Id //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long memberMissionId;
 
     // 수행 회원
     @ManyToOne(fetch = FetchType.LAZY)

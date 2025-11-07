@@ -22,7 +22,7 @@ import java.util.List;
 public class Member extends BaseEntity {
     @Id //PK는 id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long memberId;
 
     //이름
     @Column(name = "name", length = 5, nullable = false)

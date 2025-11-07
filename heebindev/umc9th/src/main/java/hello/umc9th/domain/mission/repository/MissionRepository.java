@@ -10,16 +10,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MissionRepository extends JpaRepository<Mission, Long> {
     //    상태가 ACTIVE이고 기간이 유효한 미션만 조회 (페이징)
-    Page<Mission> findByStoreRegionIdAndStatusAndDurationAfterOrderByDurationAsc(
-            Long regionId,
-            Status status,
+    Page<Mission> findByStoreStoreIdAndDurationAfterOrderByDurationAsc(
+            Long storeId,
             java.time.LocalDateTime now,
             Pageable pageable
     );
-
-    // SELECT m FROM Mission m
-    // WHERE m.store.region.id = :regionId
-    //   AND m.status = :status
-    //   AND m.duration > :now
-    // ORDER BY m.duration ASC
 }

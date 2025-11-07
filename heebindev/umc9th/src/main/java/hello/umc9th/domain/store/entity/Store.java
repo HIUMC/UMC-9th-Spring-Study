@@ -14,7 +14,7 @@ import lombok.*;
 public class Store extends BaseEntity {
     @Id //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long storeId;
 
     //가게 이름
     @Column(name = "name", nullable = false)

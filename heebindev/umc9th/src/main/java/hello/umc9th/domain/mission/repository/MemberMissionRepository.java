@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MemberMissionRepository extends JpaRepository<MemberMission, Long> {
 
-    Page<MemberMission> findByMemberIdAndStatusInOrderByUpdatedAtDesc(
+    Page<MemberMission> findByMemberMemberIdAndStatusInOrderByUpdatedAtDesc(
             Long memberId,
             java.util.List<Status> statuses,
             Pageable pageable

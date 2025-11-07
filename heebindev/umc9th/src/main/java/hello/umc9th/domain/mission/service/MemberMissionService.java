@@ -23,7 +23,7 @@ public class MemberMissionService {
         List<Status> statuses = Arrays.asList(Status.IN_PROGRESS, Status.COMPLETED);
         PageRequest pageRequest = PageRequest.of(page, size);
 
-        return memberMissionRepository.findByMemberIdAndStatusInOrderByUpdatedAtDesc(
+        return memberMissionRepository.findByMemberMemberIdAndStatusInOrderByUpdatedAtDesc(
                 memberId, statuses, pageRequest
         );
     }

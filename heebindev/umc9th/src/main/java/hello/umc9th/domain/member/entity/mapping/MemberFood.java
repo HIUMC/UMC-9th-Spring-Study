@@ -14,7 +14,7 @@ import lombok.*;
 public class MemberFood {
     @Id //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long memberFoodId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id") //fk의 주인

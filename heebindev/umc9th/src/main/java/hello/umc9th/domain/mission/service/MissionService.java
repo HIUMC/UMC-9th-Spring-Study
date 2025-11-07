@@ -18,13 +18,12 @@ public class MissionService {
 
     private final MissionRepository missionRepository;
 
-    public Page<Mission> getAvailableMissionsByRegion(Long regionId, int page, int size) {
+    public Page<Mission> getAvailableMissionsByStore(Long storeId, int page, int size) {
         LocalDateTime now = LocalDateTime.now();
         PageRequest pageRequest = PageRequest.of(page, size);
 
-        return missionRepository.findByStoreRegionIdAndStatusAndDurationAfterOrderByDurationAsc(
-                regionId,
-                Status.IN_PROGRESS,  // or Status.ACTIVE, depending on your enum
+        return missionRepository.findByStoreStoreIdAndDurationAfterOrderByDurationAsc(
+                storeId,
                 now,
                 pageRequest
         );
