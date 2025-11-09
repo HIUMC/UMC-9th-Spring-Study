@@ -46,6 +46,11 @@ public class TestController {
                 TestConverter.toExceptionDTO("This is Test!")
         );
     }
+
+    @GetMapping("/test/error")
+    public String throwError() {
+        throw new RuntimeException("🔥 테스트용 500 에러 발생!");
+    }
 //        return ApiResponse.onSuccess(
 //                code,
 //                TestConverter.toTestingDTO("This is Test!")
