@@ -1,11 +1,14 @@
 package com.example.umc9th.domain.mission.entity;
 
+import com.example.umc9th.domain.mission.entity.mapping.UserMission;
 import com.example.umc9th.domain.store.entity.Store;
 import com.example.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -13,15 +16,6 @@ import java.util.Date;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Mission extends BaseEntity {
-    //    CREATE TABLE `Mission` (
-//            `mission_id`	BIGINT	NOT NULL,
-//            `deadline`	DATE	NULL,
-//	`conditional`	VARCHAR	NULL,
-//	`title`	VARCHAR(100)	NULL,
-//	`point`	INT	NULL,
-//	`created_at`	DATE	NULL,
-//	`store_id`	BIGINT	NOT NULL
-//);
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long missionId;
@@ -39,12 +33,20 @@ public class Mission extends BaseEntity {
     @Column(nullable = false)
     private int point;
 
-    @Column(nullable = false)
-    private Long storeId;
-
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;
+
+    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<UserMission> userMissionList = new ArrayList<>();
+
+    // --- 편의 메서드 ---
+    public void setStore(Store store) {
+        if (this.store != null) {
+            this.store.getMissions().remove(this);
+        }
+        this.store = store;
+        store.getMissions().add(this);
+    }
 }

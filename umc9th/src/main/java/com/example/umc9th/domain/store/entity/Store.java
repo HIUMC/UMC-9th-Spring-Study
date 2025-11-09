@@ -1,5 +1,6 @@
 package com.example.umc9th.domain.store.entity;
 
+import com.example.umc9th.domain.mission.entity.Mission;
 import com.example.umc9th.domain.review.entity.Review;
 import jakarta.persistence.*;
 import lombok.*;
@@ -48,6 +49,12 @@ public class Store {
      * - cascade = CascadeType.ALL: 가게가 삭제될 때 이 가게에 달린 리뷰들도 함께 삭제 (영속성 전이)
      */
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
-    private List<Review> reviews = new ArrayList<>(); // 초기화를 해주는 것이 NullPointerException 방지에 좋음
+    private List<Review> reviewList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Mission> missionList = new ArrayList<>();
+
+    public List<Mission> getMissions() {
+        return missionList;
+    }
 }

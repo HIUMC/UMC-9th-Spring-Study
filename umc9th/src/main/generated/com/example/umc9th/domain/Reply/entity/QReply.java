@@ -26,6 +26,8 @@ public class QReply extends EntityPathBase<Reply> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final com.example.umc9th.domain.member.entity.QMember member;
+
     public final com.example.umc9th.domain.review.entity.QReview review;
 
     public QReply(String variable) {
@@ -46,6 +48,7 @@ public class QReply extends EntityPathBase<Reply> {
 
     public QReply(Class<? extends Reply> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.member = inits.isInitialized("member") ? new com.example.umc9th.domain.member.entity.QMember(forProperty("member")) : null;
         this.review = inits.isInitialized("review") ? new com.example.umc9th.domain.review.entity.QReview(forProperty("review"), inits.get("review")) : null;
     }
 

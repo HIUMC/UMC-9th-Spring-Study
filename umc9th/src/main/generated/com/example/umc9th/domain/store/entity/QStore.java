@@ -26,7 +26,9 @@ public class QStore extends EntityPathBase<Store> {
 
     public final NumberPath<Long> managerNumber = createNumber("managerNumber", Long.class);
 
-    public final ListPath<com.example.umc9th.domain.review.entity.Review, com.example.umc9th.domain.review.entity.QReview> reviews = this.<com.example.umc9th.domain.review.entity.Review, com.example.umc9th.domain.review.entity.QReview>createList("reviews", com.example.umc9th.domain.review.entity.Review.class, com.example.umc9th.domain.review.entity.QReview.class, PathInits.DIRECT2);
+    public final ListPath<com.example.umc9th.domain.mission.entity.Mission, com.example.umc9th.domain.mission.entity.QMission> missionList = this.<com.example.umc9th.domain.mission.entity.Mission, com.example.umc9th.domain.mission.entity.QMission>createList("missionList", com.example.umc9th.domain.mission.entity.Mission.class, com.example.umc9th.domain.mission.entity.QMission.class, PathInits.DIRECT2);
+
+    public final ListPath<com.example.umc9th.domain.review.entity.Review, com.example.umc9th.domain.review.entity.QReview> reviewList = this.<com.example.umc9th.domain.review.entity.Review, com.example.umc9th.domain.review.entity.QReview>createList("reviewList", com.example.umc9th.domain.review.entity.Review.class, com.example.umc9th.domain.review.entity.QReview.class, PathInits.DIRECT2);
 
     public final StringPath storeName = createString("storeName");
 

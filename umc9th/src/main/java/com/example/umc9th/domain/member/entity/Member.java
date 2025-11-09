@@ -3,6 +3,8 @@ package com.example.umc9th.domain.member.entity;
 import com.example.umc9th.domain.member.enums.Gender;
 import com.example.umc9th.domain.member.enums.LoginType;
 import com.example.umc9th.domain.member.entity.mapping.MemberFood;
+import com.example.umc9th.domain.mission.entity.mapping.UserMission;
+import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -57,4 +59,14 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @Builder.Default
     private List<MemberFood> memberFoodList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<Review> reviewList = new ArrayList<>();
+
+    @Getter
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<UserMission> userMissionList = new ArrayList<>();
+
 }

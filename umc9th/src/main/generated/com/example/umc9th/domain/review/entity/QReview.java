@@ -26,9 +26,12 @@ public class QReview extends EntityPathBase<Review> {
 
     public final StringPath content = createString("content");
 
-    public final DateTimePath<java.time.LocalDateTime> createdAt = createDateTime("createdAt", java.time.LocalDateTime.class);
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
+
+    public final com.example.umc9th.domain.member.entity.QMember member;
 
     public final ListPath<com.example.umc9th.domain.Reply.entity.Reply, com.example.umc9th.domain.Reply.entity.QReply> replies = this.<com.example.umc9th.domain.Reply.entity.Reply, com.example.umc9th.domain.Reply.entity.QReply>createList("replies", com.example.umc9th.domain.Reply.entity.Reply.class, com.example.umc9th.domain.Reply.entity.QReply.class, PathInits.DIRECT2);
 
@@ -40,8 +43,6 @@ public class QReview extends EntityPathBase<Review> {
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
-
-    public final com.example.umc9th.domain.member.entity.QMember user;
 
     public QReview(String variable) {
         this(Review.class, forVariable(variable), INITS);
@@ -61,8 +62,8 @@ public class QReview extends EntityPathBase<Review> {
 
     public QReview(Class<? extends Review> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.member = inits.isInitialized("member") ? new com.example.umc9th.domain.member.entity.QMember(forProperty("member")) : null;
         this.store = inits.isInitialized("store") ? new com.example.umc9th.domain.store.entity.QStore(forProperty("store")) : null;
-        this.user = inits.isInitialized("user") ? new com.example.umc9th.domain.member.entity.QMember(forProperty("user")) : null;
     }
 
 }

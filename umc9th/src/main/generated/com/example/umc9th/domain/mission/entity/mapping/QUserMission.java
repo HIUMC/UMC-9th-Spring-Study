@@ -22,13 +22,21 @@ public class QUserMission extends EntityPathBase<UserMission> {
 
     public static final QUserMission userMission = new QUserMission("userMission");
 
-    public final BooleanPath completed = createBoolean("completed");
+    public final com.example.umc9th.global.entity.QBaseEntity _super = new com.example.umc9th.global.entity.QBaseEntity(this);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final com.example.umc9th.domain.member.entity.QMember member;
 
     public final com.example.umc9th.domain.mission.entity.QMission mission;
+
+    public final EnumPath<com.example.umc9th.domain.mission.enums.MissionStatus> status = createEnum("status", com.example.umc9th.domain.mission.enums.MissionStatus.class);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
     public QUserMission(String variable) {
         this(UserMission.class, forVariable(variable), INITS);

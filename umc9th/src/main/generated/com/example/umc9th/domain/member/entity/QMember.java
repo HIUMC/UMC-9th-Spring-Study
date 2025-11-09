@@ -47,10 +47,14 @@ public class QMember extends EntityPathBase<Member> {
 
     public final NumberPath<Long> point = createNumber("point", Long.class);
 
+    public final ListPath<com.example.umc9th.domain.review.entity.Review, com.example.umc9th.domain.review.entity.QReview> reviewList = this.<com.example.umc9th.domain.review.entity.Review, com.example.umc9th.domain.review.entity.QReview>createList("reviewList", com.example.umc9th.domain.review.entity.Review.class, com.example.umc9th.domain.review.entity.QReview.class, PathInits.DIRECT2);
+
     public final StringPath socialUid = createString("socialUid");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
+
+    public final ListPath<com.example.umc9th.domain.mission.entity.mapping.UserMission, com.example.umc9th.domain.mission.entity.mapping.QUserMission> userMissionList = this.<com.example.umc9th.domain.mission.entity.mapping.UserMission, com.example.umc9th.domain.mission.entity.mapping.QUserMission>createList("userMissionList", com.example.umc9th.domain.mission.entity.mapping.UserMission.class, com.example.umc9th.domain.mission.entity.mapping.QUserMission.class, PathInits.DIRECT2);
 
     public QMember(String variable) {
         super(Member.class, forVariable(variable));
