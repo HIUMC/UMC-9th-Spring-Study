@@ -3,6 +3,8 @@ package com.example.umc9th.domain.store.controller;
 import com.example.umc9th.domain.store.dto.StoreResponseDto;
 import com.example.umc9th.domain.store.enums.Region;
 import com.example.umc9th.domain.store.service.StoreService;
+import com.example.umc9th.global.apiPayload.ApiResponse;
+import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +27,7 @@ public class StoreController {
     private final StoreService storeService;
 
     @GetMapping
-    public Page<StoreResponseDto> getStores(
+    public ApiResponse<Page<StoreResponseDto>> getStores(
             @RequestParam(required = false) List<String> region, // 문자열로 받아서 변환
             @RequestParam(required = false) String keyword,
             @RequestParam(defaultValue = "latest") String sort,
@@ -39,6 +41,11 @@ public class StoreController {
                     .toList();
         }
 
-        return storeService.searchStores(regionEnums, keyword, sort, page, size);
+        Page<StoreResponseDto> stores = storeService.searchStores(regionEnums, keyword, sort, page, size);
+
+        return ApiResponse.onSuccess(
+                GeneralSuccessCode.OK,
+                stores
+        );
     }
 }

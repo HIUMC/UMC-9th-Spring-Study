@@ -3,6 +3,8 @@ package com.example.umc9th.domain.review.controller;
 import com.example.umc9th.domain.review.dto.ReviewResponseDto;
 import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.domain.review.service.ReviewQueryService;
+import com.example.umc9th.global.apiPayload.ApiResponse;
+import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,11 +34,15 @@ public class ReviewController {
  */
 
     @GetMapping("/my")
-    public List<ReviewResponseDto> findMyReviews(
+    public ApiResponse<List<ReviewResponseDto>> findMyReviews(
             @RequestParam String type,
             @RequestParam(required = false) String query,
             @RequestParam(required = false) Float star
     ) {
-        return reviewQueryService.findMyReviews(type, query, star);
+        List<ReviewResponseDto> reviews = reviewQueryService.findMyReviews(type, query, star);
+        return ApiResponse.onSuccess(
+                GeneralSuccessCode.OK,
+                reviews
+        );
     }
 }
