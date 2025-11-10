@@ -35,10 +35,15 @@ public class ReviewController {
 
 
     @GetMapping("/review/my")
-    public List<ReviewResponseDTO> myReview(
+    public ApiResponse<List<ReviewResponseDTO>> myReview(
             @RequestParam String query,
             @RequestParam String type
-    ) {
-        return reviewService.myReview(query, type);
+    ) throws Exception {
+        GeneralSuccessCode code = GeneralSuccessCode.OK;
+
+        return ApiResponse.onSuccess(
+                code,
+                reviewService.myReview(query, type)
+        );
     }
 }
