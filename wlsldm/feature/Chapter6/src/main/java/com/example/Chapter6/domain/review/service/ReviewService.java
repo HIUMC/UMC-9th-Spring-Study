@@ -1,5 +1,6 @@
 package com.example.Chapter6.domain.review.service;
 
+import com.example.Chapter6.domain.review.dto.response.ReviewResponseDTO;
 import com.example.Chapter6.domain.review.entity.QReview;
 import com.example.Chapter6.domain.review.entity.Review;
 import com.example.Chapter6.domain.review.repository.ReviewRepository;
@@ -15,10 +16,7 @@ import java.util.List;
 public class ReviewService {
     private final ReviewRepository reviewRepository;
 
-    public List<Review> searchReview(
-            @RequestParam String query,
-            @RequestParam String type
-    ){
+    public List<ReviewResponseDTO> searchReview(String query, String type){
         //Q클래스 정의
         QReview review = QReview.review;
 
@@ -43,14 +41,13 @@ public class ReviewService {
             builder.and(review.stars.goe(Float.parseFloat(secondQuery)));
         }
 
-// Repository 사용 & 결과 매핑
-        List<Review> reviewList = reviewRepository.searchReview(builder);
-
-// 리턴
-        return reviewList;
+        return reviewRepository.searchReview(builder)
+                .stream()
+                .map(ReviewResponseDTO::from)
+                .toList();
     }
 
-    public List<Review> myReview(
+    public List<ReviewResponseDTO> myReview(
             @RequestParam String query,
             @RequestParam String type
     ){
@@ -68,10 +65,9 @@ public class ReviewService {
             builder.and(review.stars.goe(Float.parseFloat(query)))
                     .and(review.stars.lt(Float.parseFloat(query+1)));
         }
-        // Repository 사용 & 결과 매핑
-        List<Review> reviewList = reviewRepository.searchReview(builder);
-
-// 리턴
-        return reviewList;
+        return reviewRepository.searchReview(builder)
+                .stream()
+                .map(ReviewResponseDTO::from)
+                .toList();
     }
 }
