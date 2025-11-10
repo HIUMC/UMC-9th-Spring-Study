@@ -13,13 +13,12 @@ import lombok.RequiredArgsConstructor;
 public class ReviewQueryDslImpl implements ReviewQueryDsl {
 
     private final EntityManager em;
+    private final JPAQueryFactory queryFactory;
 
     @Override
     public List<ReviewDto> searchReview(
             Predicate predicate
     ){
-
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
 
         QReview review = QReview.review;
 
