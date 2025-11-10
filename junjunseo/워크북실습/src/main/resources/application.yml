@@ -1,6 +1,8 @@
 spring:
   application:
     name: "umc9th" # "umc9th"
+  profiles:
+    active: dev
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver # MySQL JDBC ???? ??? ??
@@ -21,3 +23,7 @@ spring:
   sql:
     init:
       mode: always
+
+# discord 에러 메시지 전송
+discord:
+  webhook-url: ${DISCORD_WEBHOOK_URL} # discord webhook url
