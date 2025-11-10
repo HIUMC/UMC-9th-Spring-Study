@@ -27,9 +27,6 @@ public class ReviewService {
         // 리포지토리에 구현된 커스텀 메소드 호출
         return reviewRepository.findMyReviews(memberId, storeName, starRating, pageable);
 
-        // DTO 변환 예시:
-        // Page<Review> reviewPage = reviewRepository.findMyReviews(memberId, storeName, starRating, pageable);
-        // return reviewPage.map(review -> new ReviewResponseDto(review));
     }
 
     public Long createReview(){
@@ -42,7 +39,7 @@ public class ReviewService {
                 .content("정말 맛있어서 또 오고 싶네요")
                 .star(5)
                 .build();
-        storeRepository.save(store);
+        reviewRepository.save(newReview);
 
         return newReview.getId();
     }
