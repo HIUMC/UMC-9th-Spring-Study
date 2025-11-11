@@ -1,4 +1,4 @@
-package com.example.umcworkbook.service;
+package com.example.umcworkbook.service.query;
 
 import com.example.umcworkbook.dto.res.ReviewDto;
 import com.example.umcworkbook.entity.QReview;

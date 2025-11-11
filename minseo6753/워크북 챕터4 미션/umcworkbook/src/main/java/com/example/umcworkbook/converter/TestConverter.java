@@ -5,9 +5,18 @@ import com.example.umcworkbook.dto.res.TestResDto;
 public class TestConverter {
 
     public static TestResDto.Testing toTestingDto(
-            String testing
+            String testString
     ){
         return TestResDto.Testing.builder()
-                .testing(testing).build();
+                .testString(testString)
+                .build();
+    }
+
+    public static TestResDto.Exception toExceptionDto(
+            String testString
+    ){
+        return TestResDto.Exception.builder()
+                .testString(testString)
+                .build();
     }
 }

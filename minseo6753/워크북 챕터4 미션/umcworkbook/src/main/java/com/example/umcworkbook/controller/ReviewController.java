@@ -3,7 +3,7 @@ package com.example.umcworkbook.controller;
 import com.example.umcworkbook.apiPayload.ApiResponse;
 import com.example.umcworkbook.apiPayload.code.GeneralSuccessCode;
 import com.example.umcworkbook.dto.res.ReviewDto;
-import com.example.umcworkbook.service.ReviewQueryService;
+import com.example.umcworkbook.service.query.ReviewQueryService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
