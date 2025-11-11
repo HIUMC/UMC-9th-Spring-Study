@@ -1,6 +1,6 @@
 package com.example.umcworkbook.service;
 
-import com.example.umcworkbook.dto.ReviewDto;
+import com.example.umcworkbook.dto.res.ReviewDto;
 import com.example.umcworkbook.entity.QReview;
 import com.example.umcworkbook.repository.ReviewRepository;
 import com.querydsl.core.BooleanBuilder;

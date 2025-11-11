@@ -2,8 +2,14 @@ package com.example.umcworkbook.entity;
 
 import com.example.umcworkbook.entity.base.BaseTime;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "review")
 public class Review extends BaseTime {
 
