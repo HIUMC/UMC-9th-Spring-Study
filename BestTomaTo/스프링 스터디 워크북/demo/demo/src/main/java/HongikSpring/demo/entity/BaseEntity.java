@@ -1,4 +1,4 @@
-package HongikSpring.demo.global.entity;
+package HongikSpring.demo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

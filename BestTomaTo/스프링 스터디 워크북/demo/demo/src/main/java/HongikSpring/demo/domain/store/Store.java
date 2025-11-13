@@ -1,4 +1,4 @@
-package HongikSpring.demo.review;
+package HongikSpring.demo.domain.store;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,15 +8,12 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE) // Lombok
 @Getter
-@Table(name = "review")
-public class Review {
+@Table(name = "store")
+public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long review_id;
+    private Long store_id;
 
-    @Column(name = "title")
-    private String title;
-
-    @Column(name = "body")
-    private String body;
+    @Column(name = "region", nullable = false)
+    private String region;
 }

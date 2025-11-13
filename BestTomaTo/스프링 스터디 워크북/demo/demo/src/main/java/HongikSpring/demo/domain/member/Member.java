@@ -1,20 +1,15 @@
-package HongikSpring.demo.member;
+package HongikSpring.demo.domain.member;
 
-import HongikSpring.demo.global.entity.BaseEntity;
+import HongikSpring.demo.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE) // Lombok
 @Getter
-@Table(name = "user")
+@Table(name = "member")
 public class Member extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

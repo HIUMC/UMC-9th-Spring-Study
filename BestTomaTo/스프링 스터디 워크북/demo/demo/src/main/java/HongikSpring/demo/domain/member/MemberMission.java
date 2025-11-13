@@ -1,7 +1,6 @@
-package HongikSpring.demo.member.membermission;
+package HongikSpring.demo.domain.member;
 
-import HongikSpring.demo.member.Member;
-import HongikSpring.demo.mission.Mission;
+import HongikSpring.demo.domain.mission.Mission;
 import jakarta.persistence.*;
 import lombok.*;
 

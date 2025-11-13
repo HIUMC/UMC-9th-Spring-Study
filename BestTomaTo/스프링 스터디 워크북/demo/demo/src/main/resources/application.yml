@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    # H2 인메모리 데이터베이스를 사용하며, 'testdb'라는 이름을 가집니다.
+    url: jdbc:h2:mem:testdb
+    # H2 데이터베이스 드라이버 클래스
+    driver-class-name: org.h2.Driver
+    # 기본 사용자 이름 (sa)
+    username: aa
+    # 비밀번호 (비밀번호 없음)
+    password:
