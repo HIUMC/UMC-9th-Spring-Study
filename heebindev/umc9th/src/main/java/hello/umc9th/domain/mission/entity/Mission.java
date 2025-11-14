@@ -1,7 +1,7 @@
 package hello.umc9th.domain.mission.entity;
 
-import hello.umc9th.domain.mission.enums.MissionScore;
 import hello.umc9th.domain.store.entity.Store;
+import hello.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,32 +12,30 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Table(name = "mission")
-public class Mission {
-    @Id //pk
+@Table(name = "mission") //mission 테이블
+public class Mission extends BaseEntity {
+    //pk
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long missionId;
+    private Long id;
 
-    //미션 이름
-    @Column(name = "name",nullable = false)
-    private String name;
+    //미션 기한
+    @Column(name="missionDeadline")
+    private LocalDateTime missionDeadline;
 
     //미션 내용
-    @Column(name = "mission_content", nullable = false, length = 150)
+    @Column(name="missionContent",nullable = false)
     private String missionContent;
 
-    //미션 스코어
-    @Column(name = "mission_score", nullable = false)
-    @Enumerated(EnumType.STRING)
+    //미션 점수
+    @Column(name="point",nullable = false)
     @Builder.Default
-    private MissionScore missionScore =  MissionScore.ONE;
+    private int point=0;
 
-    //미션 기간
-    @Column(name = "duration", nullable = false)
-    private LocalDateTime duration;
+    //생성, 수정, 삭제 일자는 상속.
 
-    //연관 관계
+    //==연관관계==//
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id", nullable = false)
-    private Store store;
+    @JoinColumn(name="storeId")
+    private Store store; //Store 테이블
 }

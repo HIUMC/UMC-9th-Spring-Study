@@ -1,6 +1,5 @@
 package hello.umc9th.domain.review.repository;
 
-import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import hello.umc9th.domain.review.entity.QReview;
@@ -13,47 +12,29 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class ReviewQueryDslImpl implements ReviewQueryDsl {
+public class ReviewQueryDslImpl implements ReviewQueryDsl{
+    //ReviewQueryDsl의 구현체
 
+    //의존성 주입! (생성자 주입 by @RequiredArgsConstructor)
     private final EntityManager em;
 
-    //나의 리뷰 찾기 (필터링)
+    //검색 api
     @Override
-    public List<Review> findMyReviews(Long memberId, String storeName, Double minStar,Double maxStar) {
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em); //JPA 세팅
-        QReview review = QReview.review; //Q클래스 선언
+    public List<Review> searchReview(Predicate predicate){
 
-        BooleanBuilder builder = new BooleanBuilder();
-
-        if (memberId != null) {
-            builder.and(review.member.memberId.eq(memberId));
-        }
-        if ((storeName != null)){
-            builder.and(review.store.name.eq(storeName));
-        }
-        if (maxStar != null && minStar != null) {
-            builder.and(review.store.averageScore.between(minStar,maxStar));
-        }
-
-        return queryFactory.selectFrom(review).where(builder).fetch();
-    }
-
-    // 검색 API
-    @Override
-    public List<Review> searchReview(Predicate predicate) {
-
-        // JPA 세팅
+        //JPA 세팅
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
 
-        // Q클래스 선언
+        //Q클래스 선언
         QReview review = QReview.review;
 
         return queryFactory
                 .selectFrom(review)
-                .where(predicate)
+                .where(predicate) //동적 쿼리를 위한 객체 predicate (builder)
                 .fetch();
     }
 
+    //내가 작성한 리뷰 보기 api
+   // @Override
+    //public List<Review>
 }
-
-

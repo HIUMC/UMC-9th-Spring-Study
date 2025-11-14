@@ -1,6 +1,7 @@
 package hello.umc9th.domain.member.enums;
 
 public enum FoodName {
+    NONE,
     DESSERT,         // 디저트
     CAFE,            // 카페/커피
     FASTFOOD,        // 패스트푸드

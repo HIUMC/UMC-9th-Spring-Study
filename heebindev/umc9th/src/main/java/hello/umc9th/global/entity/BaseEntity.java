@@ -10,8 +10,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
-@MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
+@MappedSuperclass //상속받는 자식엔티티에는 컬럼만 전달하고, 부모는 테이블 생성x
+@EntityListeners(AuditingEntityListener.class)//엔티티의 생성/변경 시간을 자동으로 기록
 @Getter
 public class BaseEntity { //공통적인 칼럼을 만드는 엔터티
     //생성일자

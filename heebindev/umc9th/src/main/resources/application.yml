@@ -9,7 +9,7 @@ spring:
     password: ${DB_PW} # MySQL 비밀번호
 
   jpa:
-    database: mysql
+    database: mysql #사용할 데이터베이스 유형 지정
     database-platform: org.hibernate.dialect.MySQLDialect #Hibernate에서 사용할 MySQL 방언(dialect) 설정
     show-sql: true #실행된 SQL 쿼리를 콘솔에 출력할지 여부 설정
     hibernate:

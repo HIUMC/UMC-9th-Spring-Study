@@ -11,25 +11,26 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Table(name = "member_mission")
+@Table(name = "memberMission")
 public class MemberMission extends BaseEntity {
-    @Id //pk
+    //pk
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long memberMissionId;
+    private Long id;
 
-    // 수행 회원
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id", nullable = false)
-    private Member member;
-
-    // 수행 중인 미션
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mission_id", nullable = false)
-    private Mission mission;
-
-    //미션 진행 여부
-    @Column(name="status",nullable = false)
+    //진행 상황
+    @Column(name="missionStatus",nullable = false)
     @Enumerated(EnumType.STRING)
     @Builder.Default
-    private Status status = Status.IN_PROGRESS;
+    private Status missionStatus= Status.IN_PROGRESS;
+
+    //==연관관계==//
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="memberId",nullable=false)
+    private Member member; //member 테이블
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "missionId",nullable = false)
+    private Mission mission; //mission 테이블
 }
+

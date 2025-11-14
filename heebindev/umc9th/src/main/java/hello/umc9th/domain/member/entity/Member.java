@@ -1,62 +1,48 @@
 package hello.umc9th.domain.member.entity;
 
 
-import hello.umc9th.domain.member.entity.mapping.MemberFood;
 import hello.umc9th.domain.member.enums.Gender;
 import hello.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
-@Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder //빌더
+@NoArgsConstructor(access = AccessLevel.PROTECTED)//기본 생성자 생성
+@AllArgsConstructor(access = AccessLevel.PRIVATE)//기본 생성자 생성
 @Getter
-@Table(name = "member")
+@Table(name = "member") //member 테이블.
 @EntityListeners(AuditingEntityListener.class)
-public class Member extends BaseEntity {
-    @Id //PK는 id
+public class Member extends BaseEntity {//생성수정삭제는 상속받기.
+    //Pk
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long memberId;
+    private Long id;
 
-    //이름
-    @Column(name = "name", length = 5, nullable = false)
+    //멤버 이름
+    @Column(name="name", nullable = false)
     private String name;
 
     //성별
-    @Column(name = "gender",nullable = false)
-    @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private Gender gender = Gender.NONE;
-
-    //생년월일
-    @Column(name="birth", nullable = false)
-    private LocalDate birth;
-
-    //폰 번호
-    @Column(name="phone_number", nullable = true, length = 11)
-    private String phoneNumber;
-    //int로 하면 010하면 앞의 0이 날라가서 10으로 저장됨.
+    @Column(name="gender", nullable = false)
+    @Enumerated(EnumType.STRING)//enum은 이렇게 해야지 문자열로 나옴.
+    @Builder.Default //디폴트값 NONE
+    private Gender gender= Gender.NONE;
 
     //주소
     @Column(name="address", nullable = false)
     private String address;
 
-    @Column(name="point", nullable = false)
-    private Integer point;
+    //포인트
+    @Column(name="point",nullable = false)
+    @Builder.Default //디폴트값 0
+    private int point = 0;
 
-    //약관동의 여부
-    @Column(name="agree", nullable = false)
-    @Builder.Default
-    private boolean agree = false;
-    //디폴트로 false로 해두고는 사용자가 명시적으로 동의(true)를 눌러야 의미가 있을듯
+    //전화번호
+    @Column(name="phoneNumber",length = 11)//길이 제한
+    private String phoneNumber;
 
-    //연관관계
-    @OneToMany(mappedBy = "member")
-    private List<MemberFood> memberFoods = new ArrayList<>();
+    //생성, 수정, 삭제 일자는 상속받음.
+
 }
