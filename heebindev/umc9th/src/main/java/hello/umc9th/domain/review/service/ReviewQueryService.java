@@ -48,6 +48,23 @@ public class ReviewQueryService {
         return reviewList;
     }
 
+    public List<Review> searchMyReview(String type, String query) {
+        QReview review = QReview.review;
+
+        BooleanBuilder builder = new BooleanBuilder();
+
+        //가게 필터링
+        if(type.equals("store")) {
+            long storeId = Long.parseLong(query);
+            builder.and(review.store.id.eq(storeId));
+        }
+        //점수 필터링~
+        if(type.equals("score")) {
+            builder.and(review.reviewScore.eq(Score.valueOf(query)));
+        }
+        return reviewRepository.findMyReview(builder);
+    }
+
 
 
 }

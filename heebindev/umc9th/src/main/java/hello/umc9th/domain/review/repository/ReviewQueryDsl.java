@@ -8,4 +8,7 @@ import java.util.List;
 public interface ReviewQueryDsl {
     //검색 api
     List<Review> searchReview(Predicate predicate);
+
+    //내 리뷰 보기 api
+    List<Review> findMyReview(Predicate predicate);
 }

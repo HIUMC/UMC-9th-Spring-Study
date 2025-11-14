@@ -34,7 +34,18 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl{
                 .fetch();
     }
 
-    //내가 작성한 리뷰 보기 api
-   // @Override
-    //public List<Review>
+    //내 리뷰보기 api
+    @Override
+    public List<Review> findMyReview(Predicate predicate) {
+        //JPA 세팅
+        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+
+        //Q클래스 선언
+        QReview review = QReview.review;
+
+        return queryFactory
+                .selectFrom(review)
+                .where(predicate)
+                .fetch();
+    }
 }
