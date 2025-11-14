@@ -10,7 +10,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @JsonPropertyOrder({"isSuccess","code","message","result" })
-public class ApiResponse<T> {
+public class ApiResponse<T> { //API 응답 통일을 위한 클래스
     @JsonProperty("isSuccess")
     private boolean isSuccess;
 
@@ -20,6 +20,7 @@ public class ApiResponse<T> {
     @JsonProperty("message")
     private String message;
 
+    //필요한 추가 정보 전달용
     @JsonProperty("result")
     private T result;
 

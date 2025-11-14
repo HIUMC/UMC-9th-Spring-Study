@@ -20,4 +20,6 @@ public enum GeneralSuccessCode implements BaseSuccessCode {
     private final HttpStatus httpStatus;
     private final String code;
     private final String message;
+    //이렇게 선언만 해둬도 lombok에 의해 getter 자동생성
+    //->인터페이스에 의해서 구현되어야하는 메서드 구현됨.
 }
