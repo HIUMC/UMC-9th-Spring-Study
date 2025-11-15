@@ -6,10 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
 @DiscriminatorValue("M")
-public class Movie extends Item {
-    private String director;
+@Getter @Setter
+public class Movie extends Item{
     private String actor;
+    private String director;
 }

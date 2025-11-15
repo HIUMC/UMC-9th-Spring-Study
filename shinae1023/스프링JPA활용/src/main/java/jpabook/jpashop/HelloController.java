@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HelloController {
 
     @GetMapping("hello")
-    public String hello(Model model) {
-        model.addAttribute("data", "hello!!!");
-        return "hello"; //화면 이름 resources/templates/hello.html
+    public String hello(Model model){
+        model.addAttribute("data","hello!!");
+        return "hello"; //화면 이름(html 파일의 hello로 넘어감)
     }
 }
