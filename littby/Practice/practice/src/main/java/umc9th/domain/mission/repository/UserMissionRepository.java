@@ -1,5 +1,10 @@
 package umc9th.domain.mission.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import umc9th.domain.mission.entity.UserMission;
+
 public interface UserMissionRepository extends JpaRepository<UserMission, Long> {
 
     @Query("""
