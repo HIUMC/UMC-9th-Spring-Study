@@ -19,7 +19,7 @@ public class MemberController {
 
     @PostMapping("/sign-up")
     public ApiResponse<MemberResDto.JoinDto> signUp(
-            @RequestBody MemberReqDto.JoinDto dto
+            @RequestBody @Valid MemberReqDto.JoinDto dto
     ){
         return ApiResponse.onSuccess(MemberSuccessCode.FOUND, memberCommandService.signup(dto));
     }

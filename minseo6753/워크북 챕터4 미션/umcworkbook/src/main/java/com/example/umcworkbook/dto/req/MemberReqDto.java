@@ -12,6 +12,7 @@ public class MemberReqDto {
             Gender gender,
             LocalDate birth,
             String address,
+            @ExistCategories
             List<Long> categories
     ){}
 }
