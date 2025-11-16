@@ -1,5 +1,6 @@
 package com.example.umc9th.domain.store.service;
 
+import com.example.umc9th.domain.store.dto.StoreCreateRequestDto;
 import com.example.umc9th.domain.store.dto.StoreResponseDto;
 import com.example.umc9th.domain.store.entity.Store;
 import com.example.umc9th.domain.store.enums.Region;
@@ -35,5 +36,19 @@ public class StoreService {
         );
 
         return result.map(StoreResponseDto::from);
+    }
+
+    public StoreResponseDto createStore(StoreCreateRequestDto req) {
+
+        Store store = Store.builder()
+                .name(req.getName())
+                .managerNumber(req.getManagerNumber())
+                .detailAddress(req.getDetailAddress())
+                .region(req.getRegion())
+                .build();
+
+        Store saved = storeRepository.save(store);
+
+        return StoreResponseDto.from(saved);
     }
 }

@@ -1,16 +1,15 @@
 package com.example.umc9th.domain.review.controller;
 
+import com.example.umc9th.domain.review.dto.ReviewCreateRequestDto;
 import com.example.umc9th.domain.review.dto.ReviewResponseDto;
 import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.domain.review.service.ReviewQueryService;
+import com.example.umc9th.domain.review.service.ReviewService;
 import com.example.umc9th.global.apiPayload.ApiResponse;
 import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +19,12 @@ import java.util.List;
 public class ReviewController {
 
     private final ReviewQueryService reviewQueryService;
+    private final ReviewService reviewService;
+
+    @PostMapping
+    public ApiResponse<ReviewResponseDto> createReview(@RequestBody ReviewCreateRequestDto request) {
+        return ApiResponse.onSuccess(GeneralSuccessCode.CREATED, reviewService.createReview(request));
+    }
 /*
     @GetMapping("/search")
     public List<Review> searchReview(

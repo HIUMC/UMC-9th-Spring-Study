@@ -1,5 +1,6 @@
 package com.example.umc9th.domain.store.controller;
 
+import com.example.umc9th.domain.store.dto.StoreCreateRequestDto;
 import com.example.umc9th.domain.store.dto.StoreResponseDto;
 import com.example.umc9th.domain.store.enums.Region;
 import com.example.umc9th.domain.store.service.StoreService;
@@ -7,10 +8,7 @@ import com.example.umc9th.global.apiPayload.ApiResponse;
 import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,5 +45,10 @@ public class StoreController {
                 GeneralSuccessCode.OK,
                 stores
         );
+    }
+
+    @PostMapping
+    public ApiResponse<StoreResponseDto> createStore(@RequestBody StoreCreateRequestDto request) {
+        return ApiResponse.onSuccess(GeneralSuccessCode.CREATED, storeService.createStore(request));
     }
 }
