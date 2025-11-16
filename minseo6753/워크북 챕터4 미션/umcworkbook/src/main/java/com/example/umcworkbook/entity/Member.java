@@ -3,14 +3,20 @@ package com.example.umcworkbook.entity;
 import com.example.umcworkbook.entity.base.BaseTime;
 import com.example.umcworkbook.entity.enums.Gender;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "member")
 @Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member extends BaseTime {
 
     @Id
