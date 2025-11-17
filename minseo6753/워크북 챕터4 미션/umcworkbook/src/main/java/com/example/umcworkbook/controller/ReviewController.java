@@ -4,8 +4,6 @@ import com.example.umcworkbook.apiPayload.ApiResponse;
 import com.example.umcworkbook.apiPayload.code.success.GeneralSuccessCode;
 import com.example.umcworkbook.dto.req.ReviewReqDto;
 import com.example.umcworkbook.dto.res.ReviewResDto;
-import com.example.umcworkbook.repository.MemberRepository;
-import com.example.umcworkbook.repository.RestaurantRepository;
 import com.example.umcworkbook.service.command.ReviewCommandService;
 import com.example.umcworkbook.service.query.ReviewQueryService;
 import java.util.List;
@@ -23,8 +21,6 @@ public class ReviewController {
 
     private final ReviewQueryService reviewQueryService;
     private final ReviewCommandService reviewCommandService;
-    private final MemberRepository memberRepository;
-    private final RestaurantRepository restaurantRepository;
 
     @GetMapping("/reviews/search")
     public ApiResponse<List<ReviewResDto.SearchDto>> searchReview(

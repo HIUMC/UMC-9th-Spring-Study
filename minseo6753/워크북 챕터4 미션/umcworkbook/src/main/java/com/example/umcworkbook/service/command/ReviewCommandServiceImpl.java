@@ -1,5 +1,9 @@
 package com.example.umcworkbook.service.command;
 
+import com.example.umcworkbook.apiPayload.code.error.MemberErrorCode;
+import com.example.umcworkbook.apiPayload.code.error.RestaurantErrorCode;
+import com.example.umcworkbook.apiPayload.exception.MemberException;
+import com.example.umcworkbook.apiPayload.exception.RestaurantException;
 import com.example.umcworkbook.converter.ReviewConverter;
 import com.example.umcworkbook.dto.req.ReviewReqDto;
 import com.example.umcworkbook.dto.res.ReviewResDto;
@@ -25,8 +29,11 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
     @Transactional
     public ReviewResDto.SearchDto createReview(Long memberId, Long restaurantId, ReviewReqDto.CreateDto dto) {
 
-        Member member = memberRepository.getReferenceById(memberId);
-        Restaurant restaurant = restaurantRepository.getReferenceById(restaurantId);
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new MemberException(MemberErrorCode.NOT_FOUND));
+        Restaurant restaurant = restaurantRepository.findById(restaurantId)
+                .orElseThrow(()->new RestaurantException(RestaurantErrorCode.NOT_FOUND));
+
         Review review = Review.builder()
                 .member(member)
                 .restaurant(restaurant)
