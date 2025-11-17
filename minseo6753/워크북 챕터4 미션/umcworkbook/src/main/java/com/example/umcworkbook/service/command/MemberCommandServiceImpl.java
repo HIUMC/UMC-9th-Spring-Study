@@ -1,10 +1,9 @@
 package com.example.umcworkbook.service.command;
 
-import com.example.umcworkbook.apiPayload.code.CategoryErrorCode;
-import com.example.umcworkbook.apiPayload.exception.CategoryException;
 import com.example.umcworkbook.converter.MemberConverter;
 import com.example.umcworkbook.dto.req.MemberReqDto;
 import com.example.umcworkbook.dto.res.MemberResDto;
+import com.example.umcworkbook.entity.Category;
 import com.example.umcworkbook.entity.Member;
 import com.example.umcworkbook.entity.Preference;
 import com.example.umcworkbook.repository.CategoryRepository;
@@ -33,11 +32,14 @@ public class MemberCommandServiceImpl implements MemberCommandService {
         memberRepository.save(member);
 
         if (dto.categories().size() > 1) {
-            List<Preference> preferences = dto.categories().stream()
-                    .map(id -> Preference.builder()
+
+            //categories가 이미 @Valid로 검증됨
+            List<Category> categories = categoryRepository.findAllById(dto.categories());
+
+            List<Preference> preferences = categories.stream()
+                    .map(category -> Preference.builder()
                             .member(member)
-                            .category(categoryRepository.findById(id)
-                                    .orElseThrow(() -> new CategoryException(CategoryErrorCode.NOT_FOUND)))
+                            .category(category)
                             .build()
                     )
                     .collect(Collectors.toList());
