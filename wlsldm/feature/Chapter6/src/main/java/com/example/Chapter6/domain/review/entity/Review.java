@@ -4,10 +4,7 @@ import com.example.Chapter6.domain.store.entity.Store;
 import com.example.Chapter6.domain.user.entity.Member;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Builder

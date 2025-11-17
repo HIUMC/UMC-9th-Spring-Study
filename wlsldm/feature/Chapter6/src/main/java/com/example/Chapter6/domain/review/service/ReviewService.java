@@ -16,6 +16,7 @@ import java.util.List;
 public class ReviewService {
     private final ReviewRepository reviewRepository;
 
+
     public List<ReviewResponseDTO> searchReview(String query, String type){
         //Q클래스 정의
         QReview review = QReview.review;

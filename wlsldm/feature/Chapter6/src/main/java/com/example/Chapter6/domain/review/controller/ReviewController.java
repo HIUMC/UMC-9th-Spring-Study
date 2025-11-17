@@ -1,16 +1,17 @@
 package com.example.Chapter6.domain.review.controller;
 
+import com.example.Chapter6.domain.review.dto.request.ReviewRequestDTO;
 import com.example.Chapter6.domain.review.dto.response.ReviewResponseDTO;
 import com.example.Chapter6.domain.review.entity.Review;
+import com.example.Chapter6.domain.review.exception.code.ReviewSucessCode;
 import com.example.Chapter6.domain.review.service.ReviewService;
+import com.example.Chapter6.domain.review.service.command.ReviewCommandService;
 import com.example.Chapter6.domain.test.converter.TestConverter;
 import com.example.Chapter6.domain.test.dto.response.TestResDTO;
 import com.example.Chapter6.global.apiPayload.ApiResponse;
 import com.example.Chapter6.global.apiPayload.code.GeneralSuccessCode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewController {
     private final ReviewService reviewService;
+    private final ReviewCommandService reviewCommandService;
 
     @GetMapping("/review/search")
     public ApiResponse<List<ReviewResponseDTO>> search(
@@ -45,5 +47,13 @@ public class ReviewController {
                 code,
                 reviewService.myReview(query, type)
         );
+    }
+
+    @PostMapping("/reviews")
+    public ApiResponse<ReviewResponseDTO> review(
+            @RequestBody ReviewRequestDTO.reviewDTO dto
+            ) {
+        return ApiResponse.onSuccess(ReviewSucessCode.FOUND,
+                reviewCommandService.review(dto));
     }
 }

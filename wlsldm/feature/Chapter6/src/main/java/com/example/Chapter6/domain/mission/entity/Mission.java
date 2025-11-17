@@ -2,17 +2,14 @@ package com.example.Chapter6.domain.mission.entity;
 
 import com.example.Chapter6.domain.store.entity.Store;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.naming.Name;
 import java.util.Date;
 
 
-
+@Getter
 @Builder
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -37,7 +34,7 @@ public class Mission {
     @Column(name = "point", nullable = false)
     private Integer point;
 
-    @Column(name = "owner_num", length = 6,nullable = false)
+    @Column(name = "owner_num", length = 6)
     private String ownerNum;
 
     @ManyToOne(fetch = FetchType.LAZY)

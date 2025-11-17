@@ -1,14 +1,16 @@
 package com.example.Chapter6.domain.mission.repository;
 
 import com.example.Chapter6.domain.mission.entity.Mission;
+import com.example.Chapter6.domain.user.dto.request.MemberReqDTO;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface MissionRepository extends JpaRepository<Mission, Long> {
     //미션 페이지 쿼리
     @Query("SELECT s.name, m.content, m.point " +
