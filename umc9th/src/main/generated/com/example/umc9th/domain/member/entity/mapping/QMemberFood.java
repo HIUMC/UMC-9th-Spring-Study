@@ -27,6 +27,8 @@ public class QMemberFood extends EntityPathBase<MemberFood> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
+    public final com.example.umc9th.domain.Food.entity.QFood food;
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final com.example.umc9th.domain.member.entity.QMember member;
@@ -52,6 +54,7 @@ public class QMemberFood extends EntityPathBase<MemberFood> {
 
     public QMemberFood(Class<? extends MemberFood> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.food = inits.isInitialized("food") ? new com.example.umc9th.domain.Food.entity.QFood(forProperty("food")) : null;
         this.member = inits.isInitialized("member") ? new com.example.umc9th.domain.member.entity.QMember(forProperty("member")) : null;
     }
 

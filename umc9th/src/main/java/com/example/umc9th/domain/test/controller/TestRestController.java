@@ -82,4 +82,5 @@ public class TestRestController {
         // ApiResponse.of를 사용하여 201 Created 응답을 생성
         return ApiResponse.of(SuccessStatus._CREATED, responseDTO);
     }
+
 }

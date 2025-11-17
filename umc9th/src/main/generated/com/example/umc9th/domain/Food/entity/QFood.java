@@ -24,7 +24,7 @@ public class QFood extends EntityPathBase<Food> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final ListPath<com.example.umc9th.domain.member.entity.mapping.UserFoodPreference, com.example.umc9th.domain.member.entity.mapping.QUserFoodPreference> userFoodPreferences = this.<com.example.umc9th.domain.member.entity.mapping.UserFoodPreference, com.example.umc9th.domain.member.entity.mapping.QUserFoodPreference>createList("userFoodPreferences", com.example.umc9th.domain.member.entity.mapping.UserFoodPreference.class, com.example.umc9th.domain.member.entity.mapping.QUserFoodPreference.class, PathInits.DIRECT2);
+    public final ListPath<com.example.umc9th.domain.member.entity.mapping.MemberFood, com.example.umc9th.domain.member.entity.mapping.QMemberFood> memberFoodList = this.<com.example.umc9th.domain.member.entity.mapping.MemberFood, com.example.umc9th.domain.member.entity.mapping.QMemberFood>createList("memberFoodList", com.example.umc9th.domain.member.entity.mapping.MemberFood.class, com.example.umc9th.domain.member.entity.mapping.QMemberFood.class, PathInits.DIRECT2);
 
     public QFood(String variable) {
         super(Food.class, forVariable(variable));

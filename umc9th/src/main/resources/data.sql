@@ -1,0 +1,12 @@
+INSERT INTO foods (food_name) VALUES ('KOREAN');
+INSERT INTO foods (food_name) VALUES ('JAPANESE');
+INSERT INTO foods (food_name) VALUES ('CHINESE');
+INSERT INTO foods (food_name) VALUES ('WERTERNCUISINE');
+INSERT INTO foods (food_name) VALUES ('CHICKEN');
+INSERT INTO foods (food_name) VALUES ('KOREANSNACKS');
+INSERT INTO foods (food_name) VALUES ('GRILLEDMEAT');
+INSERT INTO foods (food_name) VALUES ('LUNCHBOX');
+INSERT INTO foods (food_name) VALUES ('LATENIGHTFOOD');
+INSERT INTO foods (food_name) VALUES ('FASTFOOD');
+INSERT INTO foods (food_name) VALUES ('DESSERT');
+INSERT INTO foods (food_name) VALUES ('ASIANCUISINE');
