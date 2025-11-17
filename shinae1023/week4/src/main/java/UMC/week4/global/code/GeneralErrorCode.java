@@ -22,7 +22,15 @@ public enum GeneralErrorCode implements BaseErrorCode {
             "요청한 리소스를 찾을 수 없습니다."),
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR,
             "COMMON500_1",
-            "예기치 않은 서버 에러가 발생했습니다.")
+            "예기치 않은 서버 에러가 발생했습니다."),
+    // Member
+    MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "MEMBER4001", "존재하지 않는 회원입니다."),
+
+    // Store
+    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE4001", "존재하지 않는 가게입니다."),
+
+    // Mission
+    MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MISSION4001", "존재하지 않는 미션입니다.");
     ;
 
 
