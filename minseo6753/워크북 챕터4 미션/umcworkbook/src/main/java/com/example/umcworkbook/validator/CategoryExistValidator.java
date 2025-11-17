@@ -1,7 +1,7 @@
 package com.example.umcworkbook.validator;
 
 import com.example.umcworkbook.annotation.ExistCategories;
-import com.example.umcworkbook.apiPayload.code.CategoryErrorCode;
+import com.example.umcworkbook.apiPayload.code.error.CategoryErrorCode;
 import com.example.umcworkbook.repository.CategoryRepository;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

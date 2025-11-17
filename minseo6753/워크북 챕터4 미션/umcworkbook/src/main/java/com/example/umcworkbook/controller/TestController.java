@@ -1,7 +1,7 @@
 package com.example.umcworkbook.controller;
 
 import com.example.umcworkbook.apiPayload.ApiResponse;
-import com.example.umcworkbook.apiPayload.code.GeneralSuccessCode;
+import com.example.umcworkbook.apiPayload.code.success.GeneralSuccessCode;
 import com.example.umcworkbook.converter.TestConverter;
 import com.example.umcworkbook.dto.res.TestResDto;
 import com.example.umcworkbook.service.query.TestQueryService;

@@ -1,4 +1,4 @@
-package com.example.umcworkbook.apiPayload.code;
+package com.example.umcworkbook.apiPayload.code.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

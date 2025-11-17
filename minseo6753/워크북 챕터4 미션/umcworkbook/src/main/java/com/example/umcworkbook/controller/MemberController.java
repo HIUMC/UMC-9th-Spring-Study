@@ -1,7 +1,7 @@
 package com.example.umcworkbook.controller;
 
 import com.example.umcworkbook.apiPayload.ApiResponse;
-import com.example.umcworkbook.apiPayload.code.MemberSuccessCode;
+import com.example.umcworkbook.apiPayload.code.success.MemberSuccessCode;
 import com.example.umcworkbook.dto.req.MemberReqDto;
 import com.example.umcworkbook.dto.res.MemberResDto;
 import com.example.umcworkbook.service.command.MemberCommandService;

@@ -1,4 +1,4 @@
-package com.example.umcworkbook.apiPayload.code;
+package com.example.umcworkbook.apiPayload.code.success;
 
 import org.springframework.http.HttpStatus;
 

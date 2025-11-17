@@ -1,7 +1,7 @@
 package com.example.umcworkbook.apiPayload;
 
-import com.example.umcworkbook.apiPayload.code.BaseErrorCode;
-import com.example.umcworkbook.apiPayload.code.BaseSuccessCode;
+import com.example.umcworkbook.apiPayload.code.error.BaseErrorCode;
+import com.example.umcworkbook.apiPayload.code.success.BaseSuccessCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
