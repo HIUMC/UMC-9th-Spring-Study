@@ -6,7 +6,7 @@ import com.example.umcworkbook.apiPayload.exception.MemberException;
 import com.example.umcworkbook.apiPayload.exception.RestaurantException;
 import com.example.umcworkbook.converter.ReviewConverter;
 import com.example.umcworkbook.dto.req.ReviewReqDto;
-import com.example.umcworkbook.dto.res.ReviewResDto;
+import com.example.umcworkbook.dto.res.ReviewResDto.MyReviewDto;
 import com.example.umcworkbook.entity.Member;
 import com.example.umcworkbook.entity.Restaurant;
 import com.example.umcworkbook.entity.Review;
@@ -27,7 +27,7 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
 
     @Override
     @Transactional
-    public ReviewResDto.SearchDto createReview(Long memberId, Long restaurantId, ReviewReqDto.CreateDto dto) {
+    public MyReviewDto createReview(Long memberId, Long restaurantId, ReviewReqDto.CreateDto dto) {
 
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new MemberException(MemberErrorCode.NOT_FOUND));
@@ -43,6 +43,6 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
 
         reviewRepository.save(review);
 
-        return ReviewConverter.toSearchDto(review);
+        return ReviewConverter.toMyReviewDto(review);
     }
 }

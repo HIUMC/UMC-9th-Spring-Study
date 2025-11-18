@@ -4,6 +4,7 @@ import com.example.umcworkbook.apiPayload.ApiResponse;
 import com.example.umcworkbook.apiPayload.code.success.GeneralSuccessCode;
 import com.example.umcworkbook.dto.req.ReviewReqDto;
 import com.example.umcworkbook.dto.res.ReviewResDto;
+import com.example.umcworkbook.dto.res.ReviewResDto.MyReviewDto;
 import com.example.umcworkbook.service.command.ReviewCommandService;
 import com.example.umcworkbook.service.query.ReviewQueryService;
 import java.util.List;
@@ -17,17 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class ReviewController {
+public class ReviewController implements ReviewControllerDocs{
 
     private final ReviewQueryService reviewQueryService;
     private final ReviewCommandService reviewCommandService;
 
     @GetMapping("/reviews/search")
-    public ApiResponse<List<ReviewResDto.SearchDto>> searchReview(
+    public ApiResponse<List<MyReviewDto>> searchReview(
             @RequestParam String query,
             @RequestParam String type
     ) {
-        List<ReviewResDto.SearchDto> result = reviewQueryService.searchReview(query, type);
+        List<MyReviewDto> result = reviewQueryService.searchReview(query, type);
         GeneralSuccessCode code = GeneralSuccessCode.OK;
         return ApiResponse.onSuccess(
                 code,
@@ -35,8 +36,20 @@ public class ReviewController {
         );
     }
 
+    @GetMapping("/reviews")
+    @Override
+    public ApiResponse<ReviewResDto.PreviewListDto> getReviews(
+            @RequestParam String restaurantName,
+            @RequestParam(defaultValue = "1") Integer page
+    ){
+        return ApiResponse.onSuccess(
+                GeneralSuccessCode.OK,
+                reviewQueryService.findReview(restaurantName,page)
+        );
+    }
+
     @PostMapping("/users/{userId}/restaurants/{restaurantId}/reviews")
-    public ApiResponse<ReviewResDto.SearchDto> createReview(
+    public ApiResponse<MyReviewDto> createReview(
             @PathVariable Long userId,
             @PathVariable Long restaurantId,
             @RequestBody ReviewReqDto.CreateDto dto
@@ -46,4 +59,6 @@ public class ReviewController {
                 reviewCommandService.createReview(userId,restaurantId,dto)
         );
     }
+
+
 }

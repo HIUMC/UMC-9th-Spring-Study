@@ -1,6 +1,6 @@
 package com.example.umcworkbook.repository;
 
-import com.example.umcworkbook.dto.res.ReviewResDto;
+import com.example.umcworkbook.dto.res.ReviewResDto.MyReviewDto;
 import com.example.umcworkbook.entity.QReview;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
@@ -16,7 +16,7 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<ReviewResDto.SearchDto> searchReview(
+    public List<MyReviewDto> searchReview(
             Predicate predicate
     ){
 
@@ -25,7 +25,7 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
         return queryFactory
                 .select(
                         Projections.constructor(
-                                ReviewResDto.SearchDto.class,
+                                MyReviewDto.class,
                                 review.id,
                                 review.content,
                                 review.star
