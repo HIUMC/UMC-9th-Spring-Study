@@ -6,8 +6,8 @@ import com.example.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,7 +21,7 @@ public class Mission extends BaseEntity {
     private Long missionId;
 
     @Column
-    private Date deadline;
+    private LocalDate deadline;
 
     // 미션 조건
     @Column(nullable = false)

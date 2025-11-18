@@ -29,7 +29,7 @@ public class QMission extends EntityPathBase<Mission> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
-    public final DateTimePath<java.util.Date> deadline = createDateTime("deadline", java.util.Date.class);
+    public final DatePath<java.time.LocalDate> deadline = createDate("deadline", java.time.LocalDate.class);
 
     public final NumberPath<Long> missionId = createNumber("missionId", Long.class);
 

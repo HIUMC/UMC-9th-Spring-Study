@@ -56,5 +56,13 @@ public class Review extends BaseEntity {
         member.getReviewList().add(this);
     }
 
+    public void setStore(Store store) {
+        if (this.store != null) {
+            this.store.getReviewList().remove(this);
+        }
+        this.store = store;
+        store.getReviewList().add(this);
+    }
+
 
 }

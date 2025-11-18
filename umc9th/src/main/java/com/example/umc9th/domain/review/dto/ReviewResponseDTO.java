@@ -33,4 +33,13 @@ public class ReviewResponseDTO {
         private Boolean isFirst;
         private Boolean isLast;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class AddReviewResultDTO {
+        private Long reviewId;
+        private LocalDateTime createdAt;
+    }
 }

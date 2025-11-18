@@ -14,8 +14,14 @@ spring:
     show-sql: true # 실행된 SQL 쿼리를 콘솔에 출력할지 여부 설정
     hibernate:
       ddl-auto: update # 애플리케이션 실행 시 데이터베이스 스키마의 상태를 설정
+    # JPA 스키마 생성(ddl-auto)이 완료된 후에 data.sql을 실행하도록 순서를 보장합니다.
+    defer-datasource-initialization: true
     properties:
       hibernate:
         format_sql: true # 출력되는 SQL 쿼리를 보기 좋게 포맷팅
+
+  sql:
+    init:
+      mode: always # data.sql 스크립트를 항상 실행하도록 설정합니다.
 server:
   port: 8081

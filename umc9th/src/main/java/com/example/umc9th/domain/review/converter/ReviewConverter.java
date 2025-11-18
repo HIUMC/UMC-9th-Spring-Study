@@ -1,11 +1,13 @@
 package com.example.umc9th.domain.review.converter;
 
+import com.example.umc9th.domain.review.dto.ReviewRequestDTO;
 import com.example.umc9th.domain.review.dto.ReviewResponseDTO;
 import com.example.umc9th.domain.review.entity.Review;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.time.LocalDateTime;
 
 public class ReviewConverter {
 
@@ -29,6 +31,20 @@ public class ReviewConverter {
                 .totalElements(reviewList.getTotalElements())
                 .listSize(reviewPreviewDTOList.size())
                 .reviewList(reviewPreviewDTOList)
+                .build();
+    }
+
+    public static ReviewResponseDTO.AddReviewResultDTO toAddReviewResultDTO(Review review) {
+        return ReviewResponseDTO.AddReviewResultDTO.builder()
+                .reviewId(review.getId())
+                .createdAt(review.getCreatedAt())
+                .build();
+    }
+
+    public static Review toReview(ReviewRequestDTO.AddReviewDTO request) {
+        return Review.builder()
+                .content(request.getContent())
+                .star(request.getStar())
                 .build();
     }
 }
