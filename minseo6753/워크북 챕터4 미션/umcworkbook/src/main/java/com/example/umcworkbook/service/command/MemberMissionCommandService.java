@@ -1,8 +1,8 @@
 package com.example.umcworkbook.service.command;
 
-import com.example.umcworkbook.dto.res.MemberMissionResDto.searchDto;
+import com.example.umcworkbook.dto.res.MemberMissionResDto.PreviewDto;
 
 public interface MemberMissionCommandService {
 
-    searchDto createMemberMission(Long userId, Long missionId);
+    PreviewDto createMemberMission(Long userId, Long missionId);
 }

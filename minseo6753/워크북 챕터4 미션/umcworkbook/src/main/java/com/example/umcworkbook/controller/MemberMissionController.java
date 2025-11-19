@@ -2,7 +2,7 @@ package com.example.umcworkbook.controller;
 
 import com.example.umcworkbook.apiPayload.ApiResponse;
 import com.example.umcworkbook.apiPayload.code.success.GeneralSuccessCode;
-import com.example.umcworkbook.dto.res.MemberMissionResDto;
+import com.example.umcworkbook.dto.res.MemberMissionResDto.PreviewDto;
 import com.example.umcworkbook.service.command.MemberMissionCommandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +17,7 @@ public class MemberMissionController {
 
     //가게의 미션을 도전 중인 미션에 추가(미션 도전하기)
     @PostMapping("/users/{userId}/missions/{missionId}")
-    public ApiResponse<MemberMissionResDto.searchDto> createMemberMission(
+    public ApiResponse<PreviewDto> createMemberMission(
             @PathVariable Long userId,
             @PathVariable Long missionId
     ){

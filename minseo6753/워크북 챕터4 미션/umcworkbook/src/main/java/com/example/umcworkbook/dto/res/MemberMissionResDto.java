@@ -5,7 +5,10 @@ import lombok.Builder;
 public class MemberMissionResDto {
 
     @Builder
-    public record searchDto(
-            Long memberMissionId
+    public record PreviewDto(
+            Integer point,
+            String status,
+            String restaurantName,
+            Integer price
     ){}
 }

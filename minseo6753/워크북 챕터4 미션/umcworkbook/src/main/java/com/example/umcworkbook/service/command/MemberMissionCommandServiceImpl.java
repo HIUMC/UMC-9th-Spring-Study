@@ -9,6 +9,7 @@ import com.example.umcworkbook.dto.res.MemberMissionResDto;
 import com.example.umcworkbook.entity.Member;
 import com.example.umcworkbook.entity.MemberMission;
 import com.example.umcworkbook.entity.Mission;
+import com.example.umcworkbook.entity.enums.MissionStatus;
 import com.example.umcworkbook.repository.MemberMissionRepository;
 import com.example.umcworkbook.repository.MemberRepository;
 import com.example.umcworkbook.repository.MissionRepository;
@@ -26,7 +27,7 @@ public class MemberMissionCommandServiceImpl implements MemberMissionCommandServ
 
     @Override
     @Transactional
-    public MemberMissionResDto.searchDto createMemberMission(Long memberId, Long missionId) {
+    public MemberMissionResDto.PreviewDto createMemberMission(Long memberId, Long missionId) {
 
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(()->new MemberException(MemberErrorCode.NOT_FOUND));
@@ -36,10 +37,11 @@ public class MemberMissionCommandServiceImpl implements MemberMissionCommandServ
         MemberMission memberMission = MemberMission.builder()
                 .member(member)
                 .mission(mission)
+                .missionStatus(MissionStatus.ONGOING)
                 .build();
 
         memberMissionRepository.save(memberMission);
 
-        return MemberMissionConverter.toSearchDto(memberMission);
+        return MemberMissionConverter.toPreviewDto(memberMission);
     }
 }
