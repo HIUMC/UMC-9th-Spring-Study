@@ -2,7 +2,6 @@ package com.example.umcworkbook.controller;
 
 import com.example.umcworkbook.apiPayload.ApiResponse;
 import com.example.umcworkbook.dto.res.MissionResDto;
-import com.example.umcworkbook.dto.res.ReviewResDto.PreviewListDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.constraints.Positive;

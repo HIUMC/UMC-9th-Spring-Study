@@ -1,8 +1,10 @@
 package com.example.umcworkbook.service.command;
 
 import com.example.umcworkbook.apiPayload.code.error.MemberErrorCode;
+import com.example.umcworkbook.apiPayload.code.error.MemberMissionErrorCode;
 import com.example.umcworkbook.apiPayload.code.error.MissionErrorCode;
 import com.example.umcworkbook.apiPayload.exception.MemberException;
+import com.example.umcworkbook.apiPayload.exception.MemberMissionException;
 import com.example.umcworkbook.apiPayload.exception.MissionException;
 import com.example.umcworkbook.converter.MemberMissionConverter;
 import com.example.umcworkbook.dto.res.MemberMissionResDto;
@@ -19,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class MemberMissionCommandServiceImpl implements MemberMissionCommandService {
 
     private final MemberRepository memberRepository;
@@ -26,7 +29,6 @@ public class MemberMissionCommandServiceImpl implements MemberMissionCommandServ
     private final MemberMissionRepository memberMissionRepository;
 
     @Override
-    @Transactional
     public MemberMissionResDto.PreviewDto createMemberMission(Long memberId, Long missionId) {
 
         Member member = memberRepository.findById(memberId)
@@ -41,6 +43,18 @@ public class MemberMissionCommandServiceImpl implements MemberMissionCommandServ
                 .build();
 
         memberMissionRepository.save(memberMission);
+
+        return MemberMissionConverter.toPreviewDto(memberMission);
+    }
+
+    @Override
+    public MemberMissionResDto.PreviewDto completeMemberMission(
+            Long memberMissionId
+    ) {
+        MemberMission memberMission = memberMissionRepository.findById(memberMissionId)
+                .orElseThrow(() -> new MemberMissionException(MemberMissionErrorCode.NOT_FOUND));
+
+        memberMission.complete();
 
         return MemberMissionConverter.toPreviewDto(memberMission);
     }

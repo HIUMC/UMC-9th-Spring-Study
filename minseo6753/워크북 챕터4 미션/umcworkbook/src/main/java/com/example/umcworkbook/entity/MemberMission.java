@@ -34,4 +34,8 @@ public class MemberMission extends BaseTime {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private MissionStatus missionStatus;
+
+    public void complete() {
+        missionStatus=MissionStatus.COMPLETED;
+    }
 }
