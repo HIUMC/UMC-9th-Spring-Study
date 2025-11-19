@@ -18,7 +18,7 @@ public class ItemRepository {
             em.persist(item);
         }
         else{
-                em.merge(item);
+            em.merge(item);
         }
     }
 
