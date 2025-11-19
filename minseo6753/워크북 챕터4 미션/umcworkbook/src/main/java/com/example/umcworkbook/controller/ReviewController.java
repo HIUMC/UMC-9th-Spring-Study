@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class ReviewController implements ReviewControllerDocs{
+public class ReviewController implements ReviewControllerDocs {
 
     private final ReviewQueryService reviewQueryService;
     private final ReviewCommandService reviewCommandService;
@@ -41,10 +41,10 @@ public class ReviewController implements ReviewControllerDocs{
     public ApiResponse<ReviewResDto.PreviewListDto> getUserReviews(
             @PathVariable Long userId,
             @RequestParam(defaultValue = "1") @Positive Integer page
-    ){
+    ) {
         return ApiResponse.onSuccess(
                 GeneralSuccessCode.OK,
-                reviewQueryService.findMemberReviews(userId, page-1)
+                reviewQueryService.findMemberReviews(userId, page - 1)
         );
     }
 
@@ -53,10 +53,10 @@ public class ReviewController implements ReviewControllerDocs{
     public ApiResponse<ReviewResDto.PreviewListDto> getReviews(
             @RequestParam String restaurantName,
             @RequestParam(defaultValue = "1") Integer page
-    ){
+    ) {
         return ApiResponse.onSuccess(
                 GeneralSuccessCode.OK,
-                reviewQueryService.findReview(restaurantName,page)
+                reviewQueryService.findReview(restaurantName, page)
         );
     }
 
@@ -65,10 +65,10 @@ public class ReviewController implements ReviewControllerDocs{
             @PathVariable Long userId,
             @PathVariable Long restaurantId,
             @RequestBody ReviewReqDto.CreateDto dto
-    ){
+    ) {
         return ApiResponse.onSuccess(
                 GeneralSuccessCode.CREATED,
-                reviewCommandService.createReview(userId,restaurantId,dto)
+                reviewCommandService.createReview(userId, restaurantId, dto)
         );
     }
 
