@@ -1,13 +1,17 @@
 package com.example.umcworkbook.service.query;
 
+import com.example.umcworkbook.apiPayload.code.error.MemberErrorCode;
 import com.example.umcworkbook.apiPayload.code.error.RestaurantErrorCode;
+import com.example.umcworkbook.apiPayload.exception.MemberException;
 import com.example.umcworkbook.apiPayload.exception.RestaurantException;
 import com.example.umcworkbook.converter.ReviewConverter;
 import com.example.umcworkbook.dto.res.ReviewResDto;
 import com.example.umcworkbook.dto.res.ReviewResDto.MyReviewDto;
+import com.example.umcworkbook.entity.Member;
 import com.example.umcworkbook.entity.QReview;
 import com.example.umcworkbook.entity.Restaurant;
 import com.example.umcworkbook.entity.Review;
+import com.example.umcworkbook.repository.MemberRepository;
 import com.example.umcworkbook.repository.RestaurantRepository;
 import com.example.umcworkbook.repository.ReviewRepository;
 import com.querydsl.core.BooleanBuilder;
@@ -25,6 +29,7 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
 
     private final ReviewRepository reviewRepository;
     private final RestaurantRepository restaurantRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public List<MyReviewDto> searchReview(String query, String type){
@@ -57,4 +62,19 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
 
         return ReviewConverter.toPreviewListDto(result);
     }
+
+    @Override
+    public ReviewResDto.PreviewListDto findMemberReviews(
+            Long memberId,
+            Integer page
+    ){
+        Member member=memberRepository.findById(memberId)
+                .orElseThrow(()->new MemberException(MemberErrorCode.NOT_FOUND));
+
+        PageRequest pageRequest = PageRequest.of(page, 10);
+        Page<Review> result = reviewRepository.findAllByMember(member, pageRequest);
+
+        return ReviewConverter.toPreviewListDto(result);
+    }
+
 }

@@ -10,4 +10,9 @@ public interface ReviewQueryService {
     ReviewResDto.PreviewListDto findReview(
             String restaurantName, Integer page
     );
+
+    ReviewResDto.PreviewListDto findMemberReviews(
+            Long memberId,
+            Integer page
+    );
 }

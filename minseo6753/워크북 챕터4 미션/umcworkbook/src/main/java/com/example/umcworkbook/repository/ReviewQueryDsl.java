@@ -1,11 +1,11 @@
 package com.example.umcworkbook.repository;
 
-import com.example.umcworkbook.dto.res.ReviewResDto.MyReviewDto;
+import com.example.umcworkbook.dto.res.ReviewResDto;
 import com.querydsl.core.types.Predicate;
 import java.util.List;
 
 public interface ReviewQueryDsl {
-    List<MyReviewDto> searchReview(
+    List<ReviewResDto.MyReviewDto> searchReview(
             Predicate predicate
     );
 }

@@ -4,9 +4,9 @@ import com.example.umcworkbook.apiPayload.ApiResponse;
 import com.example.umcworkbook.apiPayload.code.success.GeneralSuccessCode;
 import com.example.umcworkbook.dto.req.ReviewReqDto;
 import com.example.umcworkbook.dto.res.ReviewResDto;
-import com.example.umcworkbook.dto.res.ReviewResDto.MyReviewDto;
 import com.example.umcworkbook.service.command.ReviewCommandService;
 import com.example.umcworkbook.service.query.ReviewQueryService;
+import jakarta.validation.constraints.Positive;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,15 +24,27 @@ public class ReviewController implements ReviewControllerDocs{
     private final ReviewCommandService reviewCommandService;
 
     @GetMapping("/reviews/search")
-    public ApiResponse<List<MyReviewDto>> searchReview(
+    public ApiResponse<List<ReviewResDto.MyReviewDto>> searchReview(
             @RequestParam String query,
             @RequestParam String type
     ) {
-        List<MyReviewDto> result = reviewQueryService.searchReview(query, type);
+        List<ReviewResDto.MyReviewDto> result = reviewQueryService.searchReview(query, type);
         GeneralSuccessCode code = GeneralSuccessCode.OK;
         return ApiResponse.onSuccess(
                 code,
                 result
+        );
+    }
+
+    @GetMapping("/users/{userId}/reviews")
+    @Override
+    public ApiResponse<ReviewResDto.PreviewListDto> getUserReviews(
+            @PathVariable Long userId,
+            @RequestParam(defaultValue = "1") @Positive Integer page
+    ){
+        return ApiResponse.onSuccess(
+                GeneralSuccessCode.OK,
+                reviewQueryService.findMemberReviews(userId, page-1)
         );
     }
 
@@ -49,7 +61,7 @@ public class ReviewController implements ReviewControllerDocs{
     }
 
     @PostMapping("/users/{userId}/restaurants/{restaurantId}/reviews")
-    public ApiResponse<MyReviewDto> createReview(
+    public ApiResponse<ReviewResDto.MyReviewDto> createReview(
             @PathVariable Long userId,
             @PathVariable Long restaurantId,
             @RequestBody ReviewReqDto.CreateDto dto
