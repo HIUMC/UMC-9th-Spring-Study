@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
+
+
     //deletedAt이 null(활성화 상태)인 멤버를 이름으로 찾기.
 
     //1.매서드 이름으로 쿼리 생성 -> SpringData JPA가 매서드명 기반으로 쿼리를 자동 생성

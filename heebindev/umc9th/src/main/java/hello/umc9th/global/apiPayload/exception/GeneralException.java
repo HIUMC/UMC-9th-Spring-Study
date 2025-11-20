@@ -10,4 +10,5 @@ import lombok.Getter;
 public class GeneralException extends RuntimeException {
 
     private final BaseErrorCode code;
+    //getter가 있음.
 }
