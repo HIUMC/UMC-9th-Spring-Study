@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: workbook
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/?user=root
+    username: root
+    password: jin315130*
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        # show-sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
