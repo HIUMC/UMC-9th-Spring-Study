@@ -1,13 +1,12 @@
 package hongikUMC.workbook.domain.member.entity;
 
-import hongikUMC.workbook.domain.member.entity.mapped.Member_Food;
+import hongikUMC.workbook.domain.member.entity.mapped.MemberFood;
 import hongikUMC.workbook.domain.member.enums.Gender;
-import hongikUMC.workbook.domain.mission.entity.mapped.Member_Mission;
+import hongikUMC.workbook.domain.mission.entity.mapped.MemberMission;
 import hongikUMC.workbook.global.enums.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,10 +43,10 @@ public class Member extends BaseEntity {
     //==양방향 고려==//
     /** Member_Food */
     @OneToMany(mappedBy = "member")
-    private List<Member_Food> memberFoodList = new ArrayList<>();
+    private List<MemberFood> memberFoodList = new ArrayList<>();
 
     /** Member_Mission */
     @OneToMany(mappedBy = "member")
-    private List<Member_Mission> memberMissionList = new ArrayList<>();
+    private List<MemberMission> memberMissionList = new ArrayList<>();
 
 }

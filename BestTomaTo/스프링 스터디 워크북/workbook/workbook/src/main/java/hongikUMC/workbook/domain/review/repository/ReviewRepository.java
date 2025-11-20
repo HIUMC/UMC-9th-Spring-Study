@@ -1,4 +1,7 @@
 package hongikUMC.workbook.domain.review.repository;
 
-public class ReviewRepository {
+import hongikUMC.workbook.domain.review.entity.Review;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ReviewRepository extends JpaRepository<Review, Long>, ReviewQueryDsl{
 }

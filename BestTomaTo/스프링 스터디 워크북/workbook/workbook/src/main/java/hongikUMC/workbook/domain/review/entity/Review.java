@@ -1,6 +1,8 @@
 package hongikUMC.workbook.domain.review.entity;
 
+import hongikUMC.workbook.domain.member.entity.Member;
 import hongikUMC.workbook.domain.review.enums.Rating;
+import hongikUMC.workbook.domain.store.entity.Store;
 import hongikUMC.workbook.global.enums.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,11 +20,13 @@ public class Review extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long review_id;
 
-    @Column(name = "store_id")
-    private Long store_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
+    private Store store;
 
-    @Column(name = "member_id")
-    private Long member_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @Column(name = "title", nullable = false)
     private String title;

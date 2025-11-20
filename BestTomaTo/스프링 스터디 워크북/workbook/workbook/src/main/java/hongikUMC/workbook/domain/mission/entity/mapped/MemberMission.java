@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Member_Mission {
+public class MemberMission {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
