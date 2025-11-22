@@ -20,10 +20,9 @@ public abstract class Item { // 추상 클래스
     @Column(name="item_id")
     private Long id;
 
+    //상품 공통 필드
     private String name;
-
     private int price;
-
     private int stockQuantity;
 
 

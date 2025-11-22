@@ -47,6 +47,7 @@ public class MemberController {
     public String list(Model model){
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
-        return "members/memberList"; //hmtl
+        return "members/memberList"; //hmtl로 이동
+        //Controll + T로 인라인화해도 된다.
     }
 }

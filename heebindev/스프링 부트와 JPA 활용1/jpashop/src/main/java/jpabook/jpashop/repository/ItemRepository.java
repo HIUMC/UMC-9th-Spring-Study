@@ -10,12 +10,13 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class ItemRepository {
+
     private final EntityManager em;
 
     public void save(Item item) {
-        if(item.getId() == null) { //item은 jpa에 저장하기 전까지 id값이 없다. -> 새로운 상품
+        if (item.getId() == null) { //item은 jpa에 저장하기 전까지 id값이 없다. -> 새로운 상품
             em.persist(item); // 영속성 컨텍스트에 신규 등록
-        }else{ //원래 있는 상품
+        } else { //원래 있는 상품
             em.merge(item); // 업데이트.
         }
     }
