@@ -4,7 +4,9 @@ import com.example.umc9th.domain.mission.dto.MemberMissionReqDto;
 import com.example.umc9th.domain.mission.dto.MemberMissionResDto;
 import com.example.umc9th.domain.mission.dto.MissionReqDto;
 import com.example.umc9th.domain.mission.dto.MissionResDto;
+import com.example.umc9th.domain.mission.entity.Mission;
 import com.example.umc9th.domain.mission.exception.code.MissionSuccessCode;
+import com.example.umc9th.domain.mission.repository.MissionRepository;
 import com.example.umc9th.domain.mission.service.MemberMissionService;
 import com.example.umc9th.domain.mission.service.MissionQueryService;
 import com.example.umc9th.domain.mission.service.MissionCommandService;
@@ -15,6 +17,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,6 +28,7 @@ public class MissionController {
 
     private final MissionCommandService missionCommandService;
     private final MissionQueryService missionQueryService;
+    private final MissionRepository missionRepository;
 
     @PostMapping
     public ApiResponse<MissionResDto> createMission(@RequestBody MissionReqDto request) {
@@ -71,4 +76,5 @@ public class MissionController {
 
         return ApiResponse.onSuccess(MissionSuccessCode.COMPLETED, result);
     }
+
 }
