@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MemberReqDto {
 
-    public record JoinDTO(
+    public record JoinDto(
             String name,
             Gender gender,
             LocalDate birth,

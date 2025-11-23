@@ -1,7 +1,7 @@
 package com.example.umc9th.domain.store.controller;
 
-import com.example.umc9th.domain.store.dto.StoreCreateRequestDto;
-import com.example.umc9th.domain.store.dto.StoreResponseDto;
+import com.example.umc9th.domain.store.dto.StoreReqDto;
+import com.example.umc9th.domain.store.dto.StoreResDto;
 import com.example.umc9th.domain.store.enums.Region;
 import com.example.umc9th.domain.store.service.StoreService;
 import com.example.umc9th.global.apiPayload.ApiResponse;
@@ -25,7 +25,7 @@ public class StoreController {
     private final StoreService storeService;
 
     @GetMapping
-    public ApiResponse<Page<StoreResponseDto>> getStores(
+    public ApiResponse<Page<StoreResDto>> getStores(
             @RequestParam(required = false) List<String> region, // 문자열로 받아서 변환
             @RequestParam(required = false) String keyword,
             @RequestParam(defaultValue = "latest") String sort,
@@ -39,7 +39,7 @@ public class StoreController {
                     .toList();
         }
 
-        Page<StoreResponseDto> stores = storeService.searchStores(regionEnums, keyword, sort, page, size);
+        Page<StoreResDto> stores = storeService.searchStores(regionEnums, keyword, sort, page, size);
 
         return ApiResponse.onSuccess(
                 GeneralSuccessCode.OK,
@@ -48,7 +48,7 @@ public class StoreController {
     }
 
     @PostMapping
-    public ApiResponse<StoreResponseDto> createStore(@RequestBody StoreCreateRequestDto request) {
+    public ApiResponse<StoreResDto> createStore(@RequestBody StoreReqDto request) {
         return ApiResponse.onSuccess(GeneralSuccessCode.CREATED, storeService.createStore(request));
     }
 }

@@ -2,8 +2,9 @@ package com.example.umc9th.domain.mission.service;
 
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.member.repository.MemberRepository;
-import com.example.umc9th.domain.mission.dto.MemberMissionCreateRequest;
-import com.example.umc9th.domain.mission.dto.MemberMissionResponseDto;
+import com.example.umc9th.domain.mission.converter.MissionConverter;
+import com.example.umc9th.domain.mission.dto.MemberMissionReqDto;
+import com.example.umc9th.domain.mission.dto.MemberMissionResDto;
 import com.example.umc9th.domain.mission.entity.Mission;
 import com.example.umc9th.domain.mission.entity.mapping.MemberMission;
 import com.example.umc9th.domain.mission.repository.MemberMissionRepository;
@@ -19,7 +20,7 @@ public class MemberMissionService {
     private final MissionRepository missionRepository;
     private final MemberRepository memberRepository;
 
-    public MemberMissionResponseDto challenge(MemberMissionCreateRequest req) {
+    public MemberMissionResDto challenge(MemberMissionReqDto req) {
 
         Mission mission = missionRepository.findById(req.getMissionId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 미션이 존재하지 않습니다."));
@@ -36,6 +37,6 @@ public class MemberMissionService {
 
         MemberMission saved = memberMissionRepository.save(memberMission);
 
-        return MemberMissionResponseDto.from(saved);
+        return MissionConverter.toMemberMissionResDto(saved);
     }
 }

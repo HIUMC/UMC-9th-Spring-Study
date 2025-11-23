@@ -19,8 +19,8 @@ public class MemberController {
 
     // 회원가입
     @PostMapping("/sign-up")
-    public ApiResponse<MemberResDto.JoinDTO> signUp(
-            @RequestBody @Valid MemberReqDto.JoinDTO dto
+    public ApiResponse<MemberResDto.JoinDto> signUp(
+            @RequestBody @Valid MemberReqDto.JoinDto dto
     ){
         return ApiResponse.onSuccess(MemberSuccessCode.FOUND, memberCommandService.signup(dto));
     }

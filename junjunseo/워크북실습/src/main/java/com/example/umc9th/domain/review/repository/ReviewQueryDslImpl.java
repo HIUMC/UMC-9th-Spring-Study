@@ -1,7 +1,7 @@
 package com.example.umc9th.domain.review.repository;
 
 import com.example.umc9th.domain.member.entity.QMember;
-import com.example.umc9th.domain.review.dto.ReviewResponseDto;
+import com.example.umc9th.domain.review.dto.ReviewResDto;
 import com.example.umc9th.domain.review.entity.QReview;
 import com.example.umc9th.domain.store.entity.QStore;
 import com.querydsl.core.BooleanBuilder;
@@ -37,7 +37,7 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
     }
      */
 
-    public List<ReviewResponseDto> findMyReviews(String type, String query, Float star) {
+    public List<ReviewResDto.ReviewDetailDto> findMyReviews(String type, String query, Float star) {
         QReview review = QReview.review;
         QStore store = QStore.store;
         QMember member = QMember.member;
@@ -57,7 +57,7 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
 
         return queryFactory
                 .select(Projections.constructor(
-                        ReviewResponseDto.class,
+                        ReviewResDto.ReviewDetailDto.class,
                         review.id,
                         review.content,
                         review.star,

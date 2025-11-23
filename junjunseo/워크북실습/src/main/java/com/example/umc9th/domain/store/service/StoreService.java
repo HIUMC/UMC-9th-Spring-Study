@@ -1,7 +1,7 @@
 package com.example.umc9th.domain.store.service;
 
-import com.example.umc9th.domain.store.dto.StoreCreateRequestDto;
-import com.example.umc9th.domain.store.dto.StoreResponseDto;
+import com.example.umc9th.domain.store.dto.StoreReqDto;
+import com.example.umc9th.domain.store.dto.StoreResDto;
 import com.example.umc9th.domain.store.entity.Store;
 import com.example.umc9th.domain.store.enums.Region;
 import com.example.umc9th.domain.store.repository.StoreRepository;
@@ -19,7 +19,7 @@ public class StoreService {
 
     private final StoreRepository storeRepository;
 
-    public Page<StoreResponseDto> searchStores(
+    public Page<StoreResDto> searchStores(
             List<Region> regions,
             String keyword,
             String sort,
@@ -35,10 +35,10 @@ public class StoreService {
                 pageRequest
         );
 
-        return result.map(StoreResponseDto::from);
+        return result.map(StoreResDto::from);
     }
 
-    public StoreResponseDto createStore(StoreCreateRequestDto req) {
+    public StoreResDto createStore(StoreReqDto req) {
 
         Store store = Store.builder()
                 .name(req.getName())
@@ -49,6 +49,6 @@ public class StoreService {
 
         Store saved = storeRepository.save(store);
 
-        return StoreResponseDto.from(saved);
+        return StoreResDto.from(saved);
     }
 }

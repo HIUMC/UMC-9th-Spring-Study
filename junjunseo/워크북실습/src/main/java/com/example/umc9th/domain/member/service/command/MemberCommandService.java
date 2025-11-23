@@ -5,7 +5,7 @@ import com.example.umc9th.domain.member.dto.MemberResDto;
 
 public interface MemberCommandService {
     // 회원가입
-    MemberResDto.JoinDTO signup(
-            MemberReqDto.JoinDTO dto
+    MemberResDto.JoinDto signup(
+            MemberReqDto.JoinDto dto
     );
 }

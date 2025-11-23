@@ -2,19 +2,15 @@ package com.example.umc9th.domain.review.service;
 
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.member.repository.MemberRepository;
-import com.example.umc9th.domain.review.dto.ReviewCreateRequestDto;
-import com.example.umc9th.domain.review.dto.ReviewResponseDto;
-import com.example.umc9th.domain.review.entity.QReview;
+import com.example.umc9th.domain.review.converter.ReviewConverter;
+import com.example.umc9th.domain.review.dto.ReviewReqDto;
+import com.example.umc9th.domain.review.dto.ReviewResDto;
 import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.domain.review.repository.ReviewRepository;
 import com.example.umc9th.domain.store.entity.Store;
 import com.example.umc9th.domain.store.repository.StoreRepository;
-import com.querydsl.core.BooleanBuilder;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -28,9 +24,9 @@ public class ReviewService {
         return reviewRepository.findById(id).get();
     }
 
-    public ReviewResponseDto createReview(ReviewCreateRequestDto req) {
+    public ReviewResDto.ReviewDetailDto createReview(ReviewReqDto.ReviewCreateDto req) {
 
-        Store store = storeRepository.findById(req.getStoreId())
+        Store store = storeRepository.findById(req.storeId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 가게입니다."));
 
         Member member = memberRepository.findById(1L)
@@ -39,13 +35,13 @@ public class ReviewService {
         Review review = Review.builder()
                 .store(store)
                 .member(member)
-                .star(req.getStar())
-                .content(req.getContent())
+                .star(req.star())
+                .content(req.content())
                 .build();
 
         Review saved = reviewRepository.save(review);
 
-        return ReviewResponseDto.from(saved);
+        return ReviewConverter.toReviewResDetailDto(saved);
     }
 
     /*

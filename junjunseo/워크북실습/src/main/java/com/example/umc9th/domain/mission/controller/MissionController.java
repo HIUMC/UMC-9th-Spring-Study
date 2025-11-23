@@ -1,9 +1,9 @@
 package com.example.umc9th.domain.mission.controller;
 
-import com.example.umc9th.domain.mission.dto.MemberMissionCreateRequest;
-import com.example.umc9th.domain.mission.dto.MemberMissionResponseDto;
-import com.example.umc9th.domain.mission.dto.MissionCreateRequestDto;
-import com.example.umc9th.domain.mission.dto.MissionResponseDto;
+import com.example.umc9th.domain.mission.dto.MemberMissionReqDto;
+import com.example.umc9th.domain.mission.dto.MemberMissionResDto;
+import com.example.umc9th.domain.mission.dto.MissionReqDto;
+import com.example.umc9th.domain.mission.dto.MissionResDto;
 import com.example.umc9th.domain.mission.service.MemberMissionService;
 import com.example.umc9th.domain.mission.service.MissionService;
 import com.example.umc9th.global.apiPayload.ApiResponse;
@@ -22,15 +22,15 @@ public class MissionController {
     private final MissionService missionService;
 
     @PostMapping
-    public ApiResponse<MissionResponseDto> createMission(@RequestBody MissionCreateRequestDto request) {
+    public ApiResponse<MissionResDto> createMission(@RequestBody MissionReqDto request) {
         return ApiResponse.onSuccess(GeneralSuccessCode.CREATED, missionService.createMission(request));
     }
 
     private final MemberMissionService memberMissionService;
 
     @PostMapping("/challenge")
-    public ApiResponse<MemberMissionResponseDto> challengeMission(
-            @RequestBody MemberMissionCreateRequest request
+    public ApiResponse<MemberMissionResDto> challengeMission(
+            @RequestBody MemberMissionReqDto request
     ) {
         return ApiResponse.onSuccess(
                 GeneralSuccessCode.CREATED,

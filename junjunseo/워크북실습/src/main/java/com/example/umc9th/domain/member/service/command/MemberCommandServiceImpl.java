@@ -27,8 +27,8 @@ public class MemberCommandServiceImpl implements MemberCommandService {
 
     // 회원가입
     @Override
-    public MemberResDto.JoinDTO signup(
-            MemberReqDto.JoinDTO dto
+    public MemberResDto.JoinDto signup(
+            MemberReqDto.JoinDto dto
     ) {
         // 사용자 생성
         Member member = MemberConverter.toMember(dto);

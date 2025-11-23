@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.time.LocalDate;
 
 @Getter
-public class MissionCreateRequestDto {
+public class MissionReqDto {
 
     private Long storeId;
     private LocalDate deadline;

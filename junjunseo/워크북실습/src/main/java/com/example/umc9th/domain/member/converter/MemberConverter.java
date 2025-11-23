@@ -6,19 +6,15 @@ import com.example.umc9th.domain.member.entity.Member;
 
 public class MemberConverter {
     // Entity -> DTO
-    public static MemberResDto.JoinDTO toJoinDTO(
-            Member member
-    ){
-        return MemberResDto.JoinDTO.builder()
+    public static MemberResDto.JoinDto toJoinDTO(Member member) {
+        return MemberResDto.JoinDto.builder()
                 .memberId(member.getId())
                 .createAt(member.getCreatedAt())
                 .build();
     }
 
     // DTO -> Entity
-    public static Member toMember(
-            MemberReqDto.JoinDTO dto
-    ){
+    public static Member toMember(MemberReqDto.JoinDto dto) {
         return Member.builder()
                 .name(dto.name())
                 .birth(dto.birth())
