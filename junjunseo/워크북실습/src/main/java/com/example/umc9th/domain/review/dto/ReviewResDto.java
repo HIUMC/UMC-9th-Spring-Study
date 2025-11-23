@@ -35,4 +35,12 @@ public class ReviewResDto {
             String body,
             LocalDate createdAt
     ){}
+
+    @Builder
+    public record MyReviewSummaryDto(
+            Long id,
+            String content,
+            Float star,
+            String storeName
+    ){}
 }

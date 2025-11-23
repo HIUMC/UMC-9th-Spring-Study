@@ -6,9 +6,13 @@ import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.domain.review.exception.code.ReviewSuccessCode;
 import com.example.umc9th.domain.review.service.ReviewQueryService;
 import com.example.umc9th.domain.review.service.ReviewService;
+import com.example.umc9th.global.annotation.PageParam;
 import com.example.umc9th.global.apiPayload.ApiResponse;
 import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -59,6 +63,18 @@ public class ReviewController implements ReviewControllerDocs {
 
         ReviewSuccessCode code = ReviewSuccessCode.FOUND;
         return ApiResponse.onSuccess(code, reviewQueryService.findReview(storeName, page));
+    }
+
+    @Operation(
+            summary = "내가 작성한 리뷰 목록 조회",
+            description = "페이징(10개씩) + 최신순 정렬"
+    )
+    @GetMapping("/my-reviews")
+    public Page<ReviewResDto.MyReviewSummaryDto> getMyReviews(
+            @Parameter(description = "페이지 번호 (1부터 시작)", example = "1")
+            @PageParam Integer page
+    ) {
+        return reviewQueryService.findMyReviews(page);
     }
 
 }

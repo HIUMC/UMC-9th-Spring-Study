@@ -11,4 +11,5 @@ public class MemberResDto {
             Long memberId,
             LocalDateTime createAt
     ){}
+
 }

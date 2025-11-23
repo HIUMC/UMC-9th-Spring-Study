@@ -1,6 +1,5 @@
 package com.example.umc9th.domain.mission.dto;
 
-import com.example.umc9th.domain.mission.entity.Mission;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -14,4 +13,33 @@ public class MissionResDto {
     private String conditional;
     private Integer point;
     private Long storeId;
+
+    @Builder
+    public record StoreMissionDto(
+            Long missionId,
+            String conditional,
+            Integer point,
+            LocalDate deadline
+    ) {}
+
+    @Builder
+    public record MyOngoingMissionDto(
+            Long missionId,
+            String conditional,
+            Integer point,
+            LocalDate deadline,
+            Long storeId,
+            String storeName
+    ) {}
+
+    @Builder
+    public record CompletedMissionDto(
+            Long missionId,
+            String conditional,
+            Integer point,
+            LocalDate deadline,
+            Long storeId,
+            String storeName,
+            Boolean isComplete
+    ) {}
 }

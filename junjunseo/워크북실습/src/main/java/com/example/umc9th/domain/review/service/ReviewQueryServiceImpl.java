@@ -11,6 +11,7 @@ import com.example.umc9th.domain.store.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,5 +41,24 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
 
             //- 결과를 응답 DTO로 변환한다 (컨버터 이용)
             return ReviewConverter.toReviewPreviewListDTO(result);
+    }
+
+    @Override
+    public Page<ReviewResDto.MyReviewSummaryDto> findMyReviews(Integer page) {
+
+        int pageIndex = page - 1;
+
+        PageRequest pageable = PageRequest.of(
+                pageIndex,
+                10,
+                Sort.by(Sort.Direction.DESC, "createdAt")
+        );
+
+        Long memberId = 1L;
+
+        Page<Review> reviewPage =
+                reviewRepository.findByMemberIdOrderByCreatedAtDesc(memberId, pageable);
+
+        return ReviewConverter.toMyReviewSummaryPage(reviewPage);
     }
 }

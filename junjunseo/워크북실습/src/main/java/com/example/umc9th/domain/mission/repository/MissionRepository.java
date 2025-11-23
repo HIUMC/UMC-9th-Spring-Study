@@ -36,4 +36,6 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
             @Param("today") LocalDate today,
             Pageable pageable
     );
+
+    Page<Mission> findAllByStoreId(Long storeId, Pageable pageable);
 }

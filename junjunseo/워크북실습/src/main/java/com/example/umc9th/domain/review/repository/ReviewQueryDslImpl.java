@@ -62,7 +62,9 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
                         review.content,
                         review.star,
                         store.name,
-                        member.name
+                        member.name,
+                        member.id,
+                        store.id
                 ))
                 .from(review)
                 .leftJoin(review.store, store)

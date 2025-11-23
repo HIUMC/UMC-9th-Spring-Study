@@ -2,6 +2,7 @@ package com.example.umc9th.domain.review.service;
 
 import com.example.umc9th.domain.review.dto.ReviewResDto;
 import com.example.umc9th.domain.review.entity.Review;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -50,4 +51,6 @@ public interface ReviewQueryService {
     List<ReviewResDto.ReviewDetailDto> findMyReviews(String type, String query, Float star);
 
     ReviewResDto.ReviewPreViewListDto findReview(String storeName, Integer page);
+
+    Page<ReviewResDto.MyReviewSummaryDto> findMyReviews(Integer page);
 }

@@ -3,8 +3,10 @@ package com.example.umc9th.domain.review.converter;
 import com.example.umc9th.domain.review.dto.ReviewResDto;
 import com.example.umc9th.domain.review.entity.Review;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class ReviewConverter {
 
@@ -46,4 +48,22 @@ public class ReviewConverter {
                 .build();
     }
 
+    public static Page<ReviewResDto.MyReviewSummaryDto> toMyReviewSummaryPage(Page<Review> reviewPage) {
+        List<ReviewResDto.MyReviewSummaryDto> content = reviewPage.getContent()
+                .stream()
+                .map(review -> ReviewResDto.MyReviewSummaryDto.builder()
+                        .id(review.getId())
+                        .content(review.getContent())
+                        .star(review.getStar())
+                        .storeName(review.getStore().getName())
+                        .build()
+                )
+                .toList(); // Stream 사용
+
+        return new PageImpl<>(
+                content,
+                reviewPage.getPageable(),
+                reviewPage.getTotalElements()
+        );
+    }
 }

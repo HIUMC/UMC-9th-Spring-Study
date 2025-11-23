@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Optional;
+
 public interface MemberMissionRepository extends JpaRepository<MemberMission,Long> {
 
     //특정 회원의 진행중인 미션 목록
@@ -13,4 +15,9 @@ public interface MemberMissionRepository extends JpaRepository<MemberMission,Lon
 
     //특정 회원의 완료한 미션 목록
     Page<MemberMission> findByMemberIdAndIsCompleteTrueOrderByCreatedAtDesc(Long memberId, Boolean isComplete, Pageable pageable);
+
+    Page<MemberMission> findAllByMemberIdAndIsCompleteFalse(Long memberId, Pageable pageable);
+
+    Optional<MemberMission> findByMemberIdAndMissionId(Long memberId, Long missionId);
+
 }
