@@ -8,6 +8,10 @@ import UMC.week4.dto.MissionRequestDto;
 import UMC.week4.dto.MissionResponseDto;
 import UMC.week4.dto.UserMissionResponseDto;
 import UMC.week4.dto.UserMissionResponseDto;
+import org.springframework.data.domain.Page;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MissionConverter {
 
@@ -44,6 +48,29 @@ public class MissionConverter {
                 .memberId(userMission.getMember().getId())
                 .missionId(userMission.getMission().getId())
                 .status(userMission.getIsComplete())
+                .build();
+    }
+
+    public static MissionResponseDto.MissionPreviewDto toMissionPreviewDto(Mission mission) {
+        return MissionResponseDto.MissionPreviewDto.builder()
+                .missionId(mission.getId())
+                .storeName(mission.getStore().getTitle()) // Store 엔티티 접근
+                .reward(mission.getPoint())
+                .build();
+    }
+
+    public static MissionResponseDto.MissionPreviewListDto toMissionPreviewListDto(Page<Mission> missionList) {
+        List<MissionResponseDto.MissionPreviewDto> missionPreviewDtos = missionList.stream()
+                .map(MissionConverter::toMissionPreviewDto)
+                .collect(Collectors.toList());
+
+        return MissionResponseDto.MissionPreviewListDto.builder()
+                .isLast(missionList.isLast())
+                .isFirst(missionList.isFirst())
+                .totalPage(missionList.getTotalPages())
+                .totalElements(missionList.getTotalElements())
+                .listSize(missionPreviewDtos.size())
+                .missionList(missionPreviewDtos)
                 .build();
     }
 }

@@ -1,6 +1,7 @@
 package UMC.week4.repository;
 
 import UMC.week4.domain.Mission;
+import UMC.week4.domain.Store;
 import UMC.week4.domain.enums.Region;
 import UMC.week4.dto.AvailableMissionDto;
 import org.springframework.data.domain.Page;
@@ -24,4 +25,6 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
             "LEFT JOIN UserMission um ON um.mission = m AND um.member.id = :memberId " +
             "WHERE s.region = :region")
     Page<AvailableMissionDto> findAvailableMissions(@Param("memberId") Long memberId, @Param("region") Region region, Pageable pageable);
+
+    Page<Mission> findAllByStore(Store store, Pageable pageable);
 }
