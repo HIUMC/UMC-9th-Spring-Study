@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Builder
 @Entity
@@ -28,11 +30,15 @@ public class Review {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @Column(name = "stars", length = 1, nullable = false)
+    @Column(name = "stars")
     @Builder.Default
     private Float stars = 0.0f;
 
-    @Column(name = "content", nullable = false)
+    @Column(name = "content")
     private String content;
+
+    @Column(name = "createAt")
+    private LocalDateTime createAt;
+
 
 }

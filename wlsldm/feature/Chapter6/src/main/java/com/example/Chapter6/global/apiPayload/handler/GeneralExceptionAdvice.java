@@ -4,6 +4,7 @@ import com.example.Chapter6.global.apiPayload.ApiResponse;
 import com.example.Chapter6.global.apiPayload.code.BaseErrorCode;
 import com.example.Chapter6.global.apiPayload.code.GeneralErrorCode;
 import com.example.Chapter6.global.apiPayload.execption.GeneralException;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -27,20 +28,6 @@ public class GeneralExceptionAdvice {
                 );
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiResponse<String>> handleException(
-            Exception ex
-    ) {
-
-        BaseErrorCode code = GeneralErrorCode.INTERNAL_SERVER_ERROR;
-        return ResponseEntity.status(code.getHttpStatus())
-                .body(ApiResponse.onFailure(
-                                code,
-                                ex.getMessage()
-                        )
-                );
-    }
-
     // 컨트롤러 메서드에서 @Valid 어노테이션을 사용하여 DTO의 유효성 검사를 수행
     @ExceptionHandler(MethodArgumentNotValidException.class)
     protected ResponseEntity<ApiResponse<Map<String, String>>> handleMethodArgumentNotValidException(
@@ -58,5 +45,20 @@ public class GeneralExceptionAdvice {
         // 에러 코드, 메시지와 함께 errors를 반환
         return ResponseEntity.status(code.getHttpStatus()).body(errorResponse);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiResponse<String>> handleException(
+            Exception ex
+    ) {
+
+        BaseErrorCode code = GeneralErrorCode.INTERNAL_SERVER_ERROR;
+        return ResponseEntity.status(code.getHttpStatus())
+                .body(ApiResponse.onFailure(
+                                code,
+                                ex.getMessage()
+                        )
+                );
+    }
+
 
 }

@@ -1,7 +1,11 @@
 package com.example.Chapter6.domain.mission.repository;
 
 import com.example.Chapter6.domain.mission.entity.Mission;
+import com.example.Chapter6.domain.mission.enums.Complete;
+import com.example.Chapter6.domain.store.entity.Store;
 import com.example.Chapter6.domain.user.dto.request.MemberReqDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,9 +23,9 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
             "JOIN m.store s " +
             "WHERE um.member.id = :userId AND um.complete = :isComplete " +
             "ORDER BY m.id DESC")
-    List<Object[]> findMission(
+    Page<Mission> findMission(
             @Param("userId") Long userId,
-            @Param("isComplete") Boolean isComplete, //true시 진행 완료, false시 진행 중
+            @Param("isComplete") Complete isComplete, //true시 진행 완료, false시 진행 중
             Pageable page//페이징
     );
 
@@ -48,4 +52,5 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
     )
     int countMissions(@Param("memberId") Long memberId);
 
+    Page<Mission> findAllByStore(Store store, Pageable pageable);
 }
