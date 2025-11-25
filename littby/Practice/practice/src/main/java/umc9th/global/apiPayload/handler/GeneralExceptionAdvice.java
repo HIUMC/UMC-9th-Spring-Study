@@ -24,6 +24,8 @@ public class GeneralExceptionAdvice {
                 );
     }
 
+
+
     // 그 외의 정의되지 않은 모든 예외 처리
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<String>> handleException(
@@ -37,5 +39,16 @@ public class GeneralExceptionAdvice {
                                 ex.getMessage()
                         )
                 );
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ApiResponse<Object> validation(ConstraintViolationException e) {
+
+
+        return ApiResponse.onFailure(
+                "COMMON400",
+                "페이지 번호가 잘못되었습니다. (1 이상 입력해주세요)",
+                null
+        );
     }
 }

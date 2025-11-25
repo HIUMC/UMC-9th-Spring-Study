@@ -1,15 +1,28 @@
 package umc9th.domain.review.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import umc9th.domain.review.dto.ReviewRequestDTO;
+import umc9th.domain.review.dto.ReviewResponseDTO;
 import umc9th.domain.review.entity.Review;
+import umc9th.global.annotation.CheckPage;
 import umc9th.global.apiPayload.ApiResponse;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/restaurants") // 공통 주소
 public class ReviewController {
+
+
+    @GetMapping("/users/reviews")
+    @Operation(summary = "내가 작성한 리뷰 목록 조회 API", description = "내가 작성한 리뷰들의 목록을 조회. 페이징을 포함.")
+    public ApiResponse<ReviewResponseDTO.ReviewPreViewListDTO> getMyReviews(
+            @CheckPage @RequestParam(name = "page") Integer page
+    ) {
+
+        return ApiResponse.onSuccess(reviewService.getMyReviewList(page - 1));
+    }
 
     private final ReviewService reviewService; // Service를 주입받아요
     private Object ReviewConverter;
@@ -20,10 +33,9 @@ public class ReviewController {
             @RequestBody ReviewRequestDTO.AddReviewDTO request,
             @PathVariable Long restaurantId) {
 
-        // 실제 로직은 Service에 맡기고, DTO를 넘겨줘요.
         Review review = reviewService.createReview(request, restaurantId);
 
-        // 성공 응답을 반환해요.
+
         return ApiResponse.onSuccess(ReviewConverter.toAddReviewResultDTO(review));
     }
 }
