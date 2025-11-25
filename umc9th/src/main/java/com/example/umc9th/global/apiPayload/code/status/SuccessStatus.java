@@ -14,7 +14,10 @@ public enum SuccessStatus implements BaseCode {
     _OK(HttpStatus.OK, "COMMON200", "성공입니다."),
 
     // 리소스 생성 관련 응답
-    _CREATED(HttpStatus.CREATED, "COMMON201", "요청 성공 및 리소스가 생성되었습니다.");
+    _CREATED(HttpStatus.CREATED, "COMMON201", "요청 성공 및 리소스가 생성되었습니다."),
+
+    // 가게 리뷰 목록 조회 성공 응답
+    _STORE_REVIEW_LIST_FOUND(HttpStatus.OK, "STORE2001", "가게 리뷰 목록 조회를 성공했습니다.");
 
     private final HttpStatus httpStatus;
     private final String code;
