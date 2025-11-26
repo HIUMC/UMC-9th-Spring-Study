@@ -2,6 +2,8 @@ package umc9th.domain.review.service;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc9th.domain.review.dto.ReviewRequestDTO;
@@ -40,5 +42,15 @@ public class ReviewService {
 
 
         return reviewRepository.save(newReview);
+    }
+
+    public Page<Review> getReviewListByRestaurant(Long restaurantId, int page) {
+
+        Restaurant restaurant = restaurantRepository.findById(restaurantId)
+                .orElseThrow(() -> new GeneralException(GeneralErrorCode.RESTAURANT_NOT_FOUND));
+
+        PageRequest pageRequest = PageRequest.of(page, 10);
+
+        return reviewRepository.findAllByRestaurant(restaurant, pageRequest);
     }
 }
