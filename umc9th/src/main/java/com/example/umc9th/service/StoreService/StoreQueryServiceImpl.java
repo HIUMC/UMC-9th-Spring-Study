@@ -1,5 +1,7 @@
 package com.example.umc9th.service.StoreService;
 
+import com.example.umc9th.domain.review.converter.ReviewConverter; // ReviewConverter import
+import com.example.umc9th.domain.review.dto.ReviewResponseDTO; // DTO import
 import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.domain.review.repository.ReviewRepository;
 import com.example.umc9th.domain.store.entity.Store;
@@ -21,13 +23,15 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     private final ReviewRepository reviewRepository;
 
     @Override
-    public Page<Review> getReviewList(Long storeId, Integer page) {
+    // 반환 타입을 ReviewListDTO로 변경
+    public ReviewResponseDTO.ReviewListDTO getReviewList(Long storeId, Integer page) {
         // 1. 가게 존재 여부 검증
         Store store = storeRepository.findById(storeId)
                 .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
 
-        // 2. 가게에 맞는 리뷰 목록 조회 (페이징)
-        Page<Review> storePage = reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
-        return storePage;
+        // 에러가 발생했던 메서드 대신, 새로 만든 최적화된 메서드를 호출합니다.
+        // page는 1부터 시작하므로, PageRequest에서는 page-1을 해줍니다.
+        Page<Review> reviewPage = reviewRepository.findAllByStoreWithMember(store, PageRequest.of(page - 1, 10));
+        return ReviewConverter.toReviewListDTO(reviewPage);
     }
 }

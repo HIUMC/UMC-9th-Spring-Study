@@ -18,9 +18,9 @@ public class StoreConverter {
     public static StoreResponseDTO.ReviewPreviewDTO toReviewPreviewDTO(Review review) {
         return StoreResponseDTO.ReviewPreviewDTO.builder()
                 .ownerNickname(review.getMember().getName()) // Member 엔티티를 통해 닉네임 가져오기
-                .score(review.getScore())
+                .score(review.getStar())
                 .createdAt(review.getCreatedAt().toLocalDate())
-                .body(review.getBody())
+                .body(review.getContent())
                 .build();
     }
 

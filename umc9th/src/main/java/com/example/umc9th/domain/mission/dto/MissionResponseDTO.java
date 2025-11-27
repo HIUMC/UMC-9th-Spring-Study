@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class MissionResponseDTO {
 
@@ -15,6 +16,33 @@ public class MissionResponseDTO {
     @AllArgsConstructor
     public static class ChallengeMissionDTO {
         private Long userMissionId;
-        private LocalDateTime createdAt;
+        private Long missionId;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionPreviewDTO {
+        private Long missionId;
+        private int point; // reward -> point 로 수정
+        private LocalDateTime deadline; // LocalDateTime -> LocalDate 로 수정
+        private String conditional; // missionSpec -> conditional 로 수정
+        private String title; // title 필드 추가
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionListDTO {
+        private List<MissionPreviewDTO> missionList;
+        private Integer listSize;
+        private Integer totalPage;
+        private Long totalElements;
+        private Boolean isFirst;
+        private Boolean isLast;
+    }
+
+
 }

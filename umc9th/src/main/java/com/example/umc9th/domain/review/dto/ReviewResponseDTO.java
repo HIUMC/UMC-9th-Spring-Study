@@ -16,9 +16,23 @@ public class ReviewResponseDTO {
     @AllArgsConstructor
     public static class ReviewPreviewDTO {
         private String ownerNickname;
-        private Float star;
-        private String content;
-        private LocalDateTime createdAt;
+        private String storeName;
+        private Float star; // score -> star 로 수정
+        private String content; // body -> content 로 수정
+        private LocalDateTime createdAt; // LocalDate -> LocalDateTime 으로 수정
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ReviewListDTO {
+        private List<ReviewPreviewDTO> reviewList;
+        private Integer listSize;
+        private Integer totalPage;
+        private Long totalElements;
+        private Boolean isFirst;
+        private Boolean isLast;
     }
 
     @Builder
@@ -42,4 +56,6 @@ public class ReviewResponseDTO {
         private Long reviewId;
         private LocalDateTime createdAt;
     }
+
+
 }

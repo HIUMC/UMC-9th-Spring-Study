@@ -1,40 +1,53 @@
 package com.example.umc9th.domain.review.controller;
 
-import com.example.umc9th.domain.review.converter.ReviewConverter;
-import com.example.umc9th.domain.review.dto.ReviewRequestDTO;
+import com.example.umc9th.domain.common.annotation.CheckPage;
 import com.example.umc9th.domain.review.dto.ReviewResponseDTO;
-import com.example.umc9th.domain.review.entity.Review;
-import com.example.umc9th.domain.review.service.ReviewCommandService;
 import com.example.umc9th.domain.review.service.ReviewQueryService;
 import com.example.umc9th.global.apiPayload.ApiResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/stores/{storeId}/reviews")
+@Validated
+@RequestMapping("/reviews")
 public class ReviewRestController {
 
     private final ReviewQueryService reviewQueryService;
-    private final ReviewCommandService reviewCommandService;
 
-    @PostMapping("/")
-    public ApiResponse<ReviewResponseDTO.AddReviewResultDTO> addReview(@PathVariable Long storeId, @RequestBody ReviewRequestDTO.AddReviewDTO request) {
-        Long memberId = 1L; // 임시로 1L로 설정, 로그인 구현 후 수정 필요
-        Review review = reviewCommandService.addReview(memberId, storeId, request);
-        return ApiResponse.onSuccess(ReviewConverter.toAddReviewResultDTO(review));
+    @GetMapping("/members/{memberId}")
+    @Operation(summary = "내가 작성한 리뷰 목록 조회 API", description = "특정 사용자가 작성한 리뷰 목록을 페이징 처리하여 조회합니다.")
+    @Parameters({
+            @Parameter(name = "memberId", description = "사용자의 아이디", required = true),
+            @Parameter(name = "page", description = "페이지 번호, 1 이상의 숫자를 입력해주세요.", required = true)
+    })
+    // 반환 타입을 ReviewListDTO로 정확하게 수정합니다.
+    public ApiResponse<ReviewResponseDTO.ReviewListDTO> getReviewList(
+            @PathVariable(name = "memberId") Long memberId,
+            @CheckPage @RequestParam(name = "page") Integer page) {
+
+        ReviewResponseDTO.ReviewListDTO reviewListDTO = reviewQueryService.getReviewList(memberId, page);
+        return ApiResponse.onSuccess(reviewListDTO);
     }
 
-    @GetMapping("/my")
-    public ApiResponse<ReviewResponseDTO.ReviewPreviewListDTO> getMyReviews(
-            @RequestParam(required = false) Long storeId,
-            @RequestParam(required = false) Integer rating,
-            @RequestParam(defaultValue = "1") Integer page) {
+    // 참고: 만약 getMyReviewList를 위한 컨트롤러 메서드가 있다면,
+    // 그 메서드의 반환 타입도 아래와 같이 수정해야 합니다.
+    /*
+    @GetMapping("/members/{memberId}/stores/{storeId}")
+    @Operation(summary = "특정 사용자가 특정 가게에 쓴 리뷰 필터링 API", description = "평점 등으로 리뷰를 필터링합니다.")
+    // 반환 타입을 ReviewListDTO로 정확하게 수정합니다.
+    public ApiResponse<ReviewResponseDTO.ReviewListDTO> getMyReviewList(
+            @PathVariable Long memberId,
+            @PathVariable Long storeId,
+            @RequestParam Float rating,
+            @CheckPage @RequestParam Integer page) {
 
-        // 임시로 memberId를 1L로 가정합니다. (로그인 기능 구현 후 수정 필요)
-        Long memberId = 1L;
-
-        ReviewResponseDTO.ReviewPreviewListDTO responseDTO = reviewQueryService.getMyReviewList(memberId, storeId, rating, page);
-        return ApiResponse.onSuccess(responseDTO);
+        ReviewResponseDTO.ReviewListDTO reviewListDTO = reviewQueryService.getMyReviewList(memberId, storeId, rating, page);
+        return ApiResponse.onSuccess(reviewListDTO);
     }
+    */
 }

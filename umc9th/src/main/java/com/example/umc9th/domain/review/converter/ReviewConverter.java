@@ -20,6 +20,20 @@ public class ReviewConverter {
                 .build();
     }
 
+    public static ReviewResponseDTO.ReviewListDTO toReviewListDTO(Page<Review> reviewList) {
+        List<ReviewResponseDTO.ReviewPreviewDTO> reviewPreviewDTOList = reviewList.getContent().stream()
+                .map(ReviewConverter::toReviewPreviewDTO).collect(Collectors.toList());
+
+        return ReviewResponseDTO.ReviewListDTO.builder()
+                .reviewList(reviewPreviewDTOList)
+                .isFirst(reviewList.isFirst())
+                .isLast(reviewList.isLast())
+                .totalElements(reviewList.getTotalElements())
+                .totalPage(reviewList.getTotalPages())
+                .listSize(reviewPreviewDTOList.size())
+                .build();
+    }
+
     public static ReviewResponseDTO.ReviewPreviewListDTO toReviewPreviewListDTO(Page<Review> reviewList) {
         List<ReviewResponseDTO.ReviewPreviewDTO> reviewPreviewDTOList = reviewList.stream()
                 .map(ReviewConverter::toReviewPreviewDTO).collect(Collectors.toList());
