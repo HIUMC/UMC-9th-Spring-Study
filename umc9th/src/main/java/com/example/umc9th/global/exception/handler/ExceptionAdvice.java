@@ -94,4 +94,20 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
         // HTTP 상태 코드를 BaseErrorCode에서 가져와 응답합니다.
         return new ResponseEntity<>(body, HttpStatus.valueOf(code.getReasonHttpStatus().getHttpStatus().value()));
     }
+
+
+    /**
+     * {@code @RequestParam} 등 개별 파라미터에 대한 유효성 검사 실패 시 발생하는
+     * {@code ConstraintViolationException}을 처리합니다.
+     *
+     * @param e       발생한 ConstraintViolationException 객체
+     * @param request 현재 웹 요청
+     * @return ApiResponse 형식의 에러 응답
+     */
+    @ExceptionHandler(value = jakarta.validation.ConstraintViolationException.class)
+    public ResponseEntity<Object> handleConstraintViolation(jakarta.validation.ConstraintViolationException e, HttpServletRequest request) {
+        // @CheckPage의 경우, 에러 원인이 명확하므로 PAGE_NUMBER_INVALID 에러 코드를 사용합니다.
+        // 보다 범용적인 핸들러를 만드려면 예외 메시지를 파싱하여 적절한 에러 코드를 매핑하는 로직이 필요합니다.
+        return handleExceptionInternal(e, ErrorStatus.PAGE_NUMBER_INVALID, new HttpHeaders(), request);
+    }
 }

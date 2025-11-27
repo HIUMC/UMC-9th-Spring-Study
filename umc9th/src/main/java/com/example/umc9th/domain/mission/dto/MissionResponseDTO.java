@@ -45,4 +45,38 @@ public class MissionResponseDTO {
     }
 
 
+// 미션 관련 DTO
+    /**
+     * 진행중인 미션 개별 정보를 담는 DTO
+     */
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ChallengingMissionDTO {
+        Long missionId;
+        Integer reward;
+        LocalDateTime deadline;
+        String missionSpec;
+        String storeName;
+    }
+
+
+
+    /**
+     * 진행중인 미션 목록 전체를 담는 DTO
+     */
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ChallengingMissionListDTO {
+        List<ChallengingMissionDTO> missionList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
+    }
+
 }

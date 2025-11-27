@@ -23,5 +23,6 @@ spring:
   sql:
     init:
       mode: always # data.sql 스크립트를 항상 실행하도록 설정합니다.
+      data-locations: classpath:data.sql
 server:
   port: 8081

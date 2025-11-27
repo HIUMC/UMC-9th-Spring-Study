@@ -1,3 +1,20 @@
+-- 올바른 순서로 데이터 삭제 (자식 -> 부모)
+DELETE FROM user_mission;
+DELETE FROM review;
+DELETE FROM member_food;
+DELETE FROM mission;
+DELETE FROM store;
+DELETE FROM member;
+DELETE FROM foods;
+
+
+INSERT INTO store (store_name, detail_address, manager_number)
+VALUES ( '맘스터치', '서울시 강남구 역삼동', 1);
+
+INSERT INTO store (store_name, detail_address, manager_number)
+VALUES ( '피자헛', '서울시 서초구 방배동', 2);
+
+-- 음식 카테고리 데이터 삽입
 INSERT INTO foods (food_name) VALUES ('KOREAN');
 INSERT INTO foods (food_name) VALUES ('JAPANESE');
 INSERT INTO foods (food_name) VALUES ('CHINESE');
@@ -11,16 +28,37 @@ INSERT INTO foods (food_name) VALUES ('FASTFOOD');
 INSERT INTO foods (food_name) VALUES ('DESSERT');
 INSERT INTO foods (food_name) VALUES ('ASIANCUISINE');
 
--- member 테이블에 ID가 1인 테스트용 회원 데이터 추가
--- 실제 프로젝트에서는 name, email 외 다른 필수 값들도 채워야 합니다.
-INSERT INTO member (id, name, email, created_at, updated_at) VALUES (1, '테스트유저', 'test@example.com', NOW(), NOW()) ON DUPLICATE KEY UPDATE name = name;
+-- 사용자 데이터 삽입
+INSERT INTO member (name, email, gender, date_of_birth, address, detail_address, social_uid, login_type, point, phone, created_at, updated_at) VALUES ('홍길동', 'gildong@example.com', 'MALE', '1990-01-01', '서울시 강남구', '101호', 'kakao_1234', 'KAKAO', 1000, '010-1234-5678', NOW(), NOW());
+INSERT INTO member (name, email, gender, date_of_birth, address, detail_address, social_uid, login_type, point, phone, created_at, updated_at) VALUES ('김철수', 'chulsu@example.com', 'MALE', '1995-05-05', '서울시 서초구', '202호', 'naver_5678', 'NAVER', 500, '010-5678-1234', NOW(), NOW());
 
--- store 테이블에 ID가 1인 테스트용 가게 데이터 추가
-INSERT INTO store (store_id, store_name, detail_address) VALUES (1, '맛있는 파스타집', '서울시 강남구 테헤란로 123') ON DUPLICATE KEY UPDATE store_name = store_name;
+-- 미션 데이터 삽입
+INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2024-12-31 23:59:59', '리뷰 1개 작성', '첫 리뷰 작성 미션', 100, 1, NOW(), NOW());
+INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2024-12-31 23:59:59', '리뷰 2개 작성', '리뷰 더블업 미션', 200, 1, NOW(), NOW());
+INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2024-12-31 23:59:59', '리뷰 3개 작성', '리뷰 트리플 미션', 300, 1, NOW(), NOW());
+INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2024-12-31 23:59:59', '리뷰 4개 작성', '리뷰 포텐 미션', 400, 1, NOW(), NOW());
+INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2024-12-31 23:59:59', '리뷰 5개 작성', '리뷰 마스터 미션', 500, 1, NOW(), NOW());
+INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2024-12-31 23:59:59', '별점 5점 리뷰', '최고의 리뷰어 미션', 150, 1, NOW(), NOW());
+INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2024-12-31 23:59:59', '포장 주문하기', '포장 주문 미션', 50, 1, NOW(), NOW());
+INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2024-12-31 23:59:59', '친구에게 추천하기', '추천왕 미션', 250, 1, NOW(), NOW());
+INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2024-12-31 23:59:59', '신메뉴 주문하기', '얼리어답터 미션', 350, 1, NOW(), NOW());
+INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2024-12-31 23:59:59', '세트 메뉴 주문', '세트 마니아 미션', 120, 1, NOW(), NOW());
+INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2024-12-31 23:59:59', '재방문하기', '단골 인증 미션', 220, 1, NOW(), NOW());
+INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2024-12-31 23:59:59', '사장님 칭찬하기', '스윗 리뷰어 미션', 180, 1, NOW(), NOW());
+INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2024-12-31 23:59:59', '피자 주문하기', '첫 피자 미션', 100, 2, NOW(), NOW());
 
--- (선택) 가게를 하나 더 추가해봅시다.
-INSERT INTO store (store_id, store_name, detail_address) VALUES (2, '든든한 국밥집', '서울시 종로구 세종대로 456') ON DUPLICATE KEY UPDATE store_name = store_name;
-
--- mission 테이블에 ID가 1인 가게의 테스트용 미션 데이터 추가
--- 이 미션은 자동으로 ID 1을 갖게 됩니다.
-INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2025-12-31', '리뷰 작성하기', '파스타 리뷰 남기기', 50, 1, NOW(), NOW());
+-- 사용자-미션 매핑 데이터 삽입
+INSERT INTO user_mission (status, member_id, mission_id, created_at, updated_at) VALUES ('CHALLENGING', 1, 1, NOW(), NOW());
+INSERT INTO user_mission (status, member_id, mission_id, created_at, updated_at) VALUES ('CHALLENGING', 1, 2, NOW(), NOW());
+INSERT INTO user_mission (status, member_id, mission_id, created_at, updated_at) VALUES ('CHALLENGING', 1, 3, NOW(), NOW());
+INSERT INTO user_mission (status, member_id, mission_id, created_at, updated_at) VALUES ('CHALLENGING', 1, 4, NOW(), NOW());
+INSERT INTO user_mission (status, member_id, mission_id, created_at, updated_at) VALUES ('CHALLENGING', 1, 5, NOW(), NOW());
+INSERT INTO user_mission (status, member_id, mission_id, created_at, updated_at) VALUES ('CHALLENGING', 1, 6, NOW(), NOW());
+INSERT INTO user_mission (status, member_id, mission_id, created_at, updated_at) VALUES ('CHALLENGING', 1, 7, NOW(), NOW());
+INSERT INTO user_mission (status, member_id, mission_id, created_at, updated_at) VALUES ('CHALLENGING', 1, 8, NOW(), NOW());
+INSERT INTO user_mission (status, member_id, mission_id, created_at, updated_at) VALUES ('CHALLENGING', 1, 9, NOW(), NOW());
+INSERT INTO user_mission (status, member_id, mission_id, created_at, updated_at) VALUES ('CHALLENGING', 1, 10, NOW(), NOW());
+INSERT INTO user_mission (status, member_id, mission_id, created_at, updated_at) VALUES ('CHALLENGING', 1, 11, NOW(), NOW());
+INSERT INTO user_mission (status, member_id, mission_id, created_at, updated_at) VALUES ('CHALLENGING', 1, 12, NOW(), NOW());
+INSERT INTO user_mission (status, member_id, mission_id, created_at, updated_at) VALUES ('COMPLETED', 1, 13, NOW(), NOW());
+INSERT INTO user_mission (status, member_id, mission_id, created_at, updated_at) VALUES ('CHALLENGING', 2, 13, NOW(), NOW());
