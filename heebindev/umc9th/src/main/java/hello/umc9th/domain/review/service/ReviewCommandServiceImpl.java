@@ -26,7 +26,7 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
 
     //리뷰 생성하기. jpa사용 , 에러도 새로 이넘에 만들었음..
     @Override
-    public ReviewResDTO.ReviewInfo createReview(ReviewReqDTO.CreateReviewDTO dto) {
+    public ReviewResDTO.ReviewInfo createReview(Long storeId, ReviewReqDTO.CreateReviewDTO dto) {
 
         // 로그인 기능이 없으므로 임시로 1번 유저 고정
         final Long TEMP_MEMBER_ID = 1L;
@@ -35,7 +35,7 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
                 .orElseThrow(() -> new MemberException(MemberErrorCode.NOT_FOUND));
 
 
-        Store store = storeRepository.findById(dto.getStoreId())
+        Store store = storeRepository.findById(storeId)
                 .orElseThrow(() -> new ReviewException(ReviewErrorCode.STORE_NOT_FOUND));
 
 //        Member member = memberRepository.findById(dto.getMemberId())

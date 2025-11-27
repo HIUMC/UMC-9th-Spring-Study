@@ -31,4 +31,32 @@ public class ReviewConverter {
                 .member(member)
                 .build();
     }
+
+    //Review(엔터티) -> ReviewPreviewDTO
+    public static ReviewResDTO.ReviewPreviewDTO toReviewPreviewDTO(Review review) {
+        return ReviewResDTO.ReviewPreviewDTO.builder()
+                .ownerNickname(review.getMember().getName())
+                .reviewContent(review.getReviewContent())
+                .reviewScore(review.getReviewScore().name())
+                .createdAt(review.getCreatedAt().toLocalDate())
+                .build();
+    }
+
+    // Page<Review> → ReviewPreviewListDTO
+    public static ReviewResDTO.ReviewPreviewListDTO toReviewPreviewListDTO(
+            org.springframework.data.domain.Page<Review> result
+    ) {
+        return ReviewResDTO.ReviewPreviewListDTO.builder()
+                .reviewList(
+                        result.getContent().stream()
+                                .map(ReviewConverter::toReviewPreviewDTO)
+                                .toList()
+                )
+                .listSize(result.getSize())
+                .totalPage(result.getTotalPages())
+                .totalElements(result.getTotalElements())
+                .isFirst(result.isFirst())
+                .isLast(result.isLast())
+                .build();
+    }
 }

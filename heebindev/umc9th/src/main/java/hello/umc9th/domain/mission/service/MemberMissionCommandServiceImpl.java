@@ -25,8 +25,8 @@ public class MemberMissionCommandServiceImpl implements MemberMissionCommandServ
     private final MissionRepository missionRepository;
 
     @Override
-    public MemberMissionResDTO.MemberMissionInfo createMemberMission(MemberMissionReqDTO.CreateMemberMissionDTO dto) {
-        //에러도 새로 만들었따₩
+    public MemberMissionResDTO.MemberMissionInfo createMemberMission(Long missionId) {
+        //에러도 새로 만들었음.
 
         // 로그인 없는 관계로 임시 멤버
         final Long TEMP_MEMBER_ID = 1L;
@@ -34,7 +34,7 @@ public class MemberMissionCommandServiceImpl implements MemberMissionCommandServ
         Member member = memberRepository.findById(TEMP_MEMBER_ID)
                 .orElseThrow(() -> new MemberException(MemberErrorCode.NOT_FOUND));
 
-        Mission mission = missionRepository.findById(dto.getMissionId())
+        Mission mission = missionRepository.findById(missionId)
                 .orElseThrow(() -> new MissionException(MissionErrorCode.NOT_FOUND));
 
         MemberMission memberMission = MemberMissionConverter.toMemberMission(member, mission);

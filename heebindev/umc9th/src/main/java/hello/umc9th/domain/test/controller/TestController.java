@@ -7,12 +7,14 @@ import hello.umc9th.domain.test.service.query.TestQueryService;
 import hello.umc9th.global.apiPayload.ApiResponse;
 import hello.umc9th.global.apiPayload.code.GeneralErrorCode;
 import hello.umc9th.global.apiPayload.code.GeneralSuccessCode;
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Hidden
 @RestController
 @RequiredArgsConstructor //생성자 생성
 @RequestMapping("/temp")

@@ -6,6 +6,7 @@ import hello.umc9th.domain.mission.service.MemberMissionCommandService;
 import hello.umc9th.global.apiPayload.ApiResponse;
 import hello.umc9th.global.apiPayload.code.GeneralSuccessCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,13 +17,13 @@ public class MemberMissionCommandController {
 
     private final MemberMissionCommandService memberMissionCommandService;
 
-    @PostMapping("/missions/challenge")
+    @PostMapping("/missions/{missionId}/challenge")
     public ApiResponse<MemberMissionResDTO.MemberMissionInfo> challengeMission(
-            @RequestBody MemberMissionReqDTO.CreateMemberMissionDTO dto
+            @PathVariable Long missionId
     ) {
         return ApiResponse.onSuccess(
                 GeneralSuccessCode.OK,
-                memberMissionCommandService.createMemberMission(dto)
+                memberMissionCommandService.createMemberMission(missionId)
         );
     }
 }
