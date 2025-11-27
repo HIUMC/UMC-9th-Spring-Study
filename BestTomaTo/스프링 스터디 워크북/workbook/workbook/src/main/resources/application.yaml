@@ -10,11 +10,16 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+    defer-datasource-initialization: true
     properties:
       hibernate:
         format_sql: true
         # show-sql: true
+  sql:
+    init:
+      mode: always
+
 
 logging:
   level:

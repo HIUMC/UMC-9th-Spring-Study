@@ -15,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewQueryDslImpl implements ReviewQueryDsl{
 
-    private final ReviewRepository reviewRepository;
     private final EntityManager em;
 
     @Override
