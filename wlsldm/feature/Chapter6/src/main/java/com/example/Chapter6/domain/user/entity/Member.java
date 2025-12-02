@@ -3,22 +3,22 @@ package com.example.Chapter6.domain.user.entity;
 import com.example.Chapter6.domain.mission.entity.mapping.MissionMember;
 import com.example.Chapter6.domain.user.entity.mapping.MemberFood;
 import com.example.Chapter6.domain.user.entity.mapping.MemberTerm;
+import com.example.Chapter6.domain.user.enums.Gender;
 import com.example.Chapter6.domain.user.enums.SocialType;
 import com.example.Chapter6.domain.user.enums.Status;
 import com.example.Chapter6.global.entity.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Getter
 @Builder
 @Entity
 //파라미터가 없는 디폴트 생성자 생성
@@ -42,21 +42,28 @@ public class Member extends BaseEntity {
     @Column(name = "name", length = 3, nullable = false)
     private String name;
 
+    @Column( name = "birth", length = 30, nullable = false)
+    private LocalDate birth;
+
     @Column( name = "email", length = 30, nullable = false)
     private String email;
+
+    @Column( name = "gender", length = 30, nullable = false)
+    private Gender gender;
 
     @Column (name = "phone_num", length = 11, nullable = false)
     private String phoneNum;
 
-    @Column(name = "social_type", nullable = false)
+    @Column(name = "social_type")
     @Enumerated(EnumType.STRING)
-    private SocialType socialType;
+    @Builder.Default
+    private SocialType socialType = SocialType.GOOGLE;
 
-    @Column(name = "point", nullable = false)
+    @Column(name = "point")
     @Builder.Default
     private Integer point = 0;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     @Enumerated(EnumType.STRING)
     @Builder.Default
     private Status status = Status.ACTIVE;
