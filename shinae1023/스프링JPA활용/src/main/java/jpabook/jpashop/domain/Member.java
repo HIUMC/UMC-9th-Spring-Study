@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 public class Member {
 
     @Id @GeneratedValue
@@ -21,6 +20,6 @@ public class Member {
     @Embedded
     private Address address;
 
-    @OneToMany(mappedBy = "member") //양방향 연관관계인 경우 둘 중 하나를 연관관계 주인으로 설정해야 됨
+    @OneToMany(mappedBy = "member")//order테이블에 있는 member에 의해서 맵핑당함
     private List<Order> orders = new ArrayList<>();
-}
+ }

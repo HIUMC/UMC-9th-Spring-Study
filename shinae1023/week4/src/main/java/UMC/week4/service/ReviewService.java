@@ -3,6 +3,9 @@ package UMC.week4.service;
 import UMC.week4.domain.Member;
 import UMC.week4.domain.Review;
 import UMC.week4.domain.Store;
+import UMC.week4.dto.ReviewRequestDto;
+import UMC.week4.dto.ReviewResponseDto;
+import UMC.week4.global.apiPayload.ApiResponse;
 import UMC.week4.repository.MemberRepository;
 import UMC.week4.repository.ReviewRepository;
 import UMC.week4.repository.StoreRepository;
@@ -16,7 +19,6 @@ import org.springframework.stereotype.Service;
 public class ReviewService {
     private final MemberRepository memberRepository;
     private final StoreRepository storeRepository;
-
     private final ReviewRepository reviewRepository;
 
     public Page<Review> getMyReviews(Long memberId, String storeName, Integer starRating, Pageable pageable) {
@@ -29,18 +31,33 @@ public class ReviewService {
 
     }
 
-    public Long createReview(){
-        Member member = memberRepository.findById(101L).orElseThrow();
-        Store store = storeRepository.findById(202L).orElseThrow();
+    public ApiResponse<Review> createReview(ReviewRequestDto reviewRequestDto) {
+        Member member = memberRepository.findById(reviewRequestDto.getMember().getId()).orElse(null);
+        Store store = storeRepository.findById(reviewRequestDto.getStore().getId()).orElse(null);
 
         Review newReview = Review.builder()
                 .member(member)
                 .store(store)
-                .content("정말 맛있어서 또 오고 싶네요")
-                .star(5)
+                .content(reviewRequestDto.getContent())
+                .star(reviewRequestDto.getStar())
                 .build();
         reviewRepository.save(newReview);
 
-        return newReview.getId();
+        return ApiResponse.onSuccess("리뷰 등록 성공", newReview);
     }
+
+//    public Long createReview(){
+//        Member member = memberRepository.findById(101L).orElseThrow();
+//        Store store = storeRepository.findById(202L).orElseThrow();
+//
+//        Review newReview = Review.builder()
+//                .member(member)
+//                .store(store)
+//                .content("정말 맛있어서 또 오고 싶네요")
+//                .star(5)
+//                .build();
+//        reviewRepository.save(newReview);
+//
+//        return newReview.getId();
+//    }
 }
