@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class StoreResponseDto {
+public class StoreResDto {
 
     private Long id;
     private String name;
@@ -15,8 +15,8 @@ public class StoreResponseDto {
     private String detailAddress;
     private Region region;
 
-    public static StoreResponseDto from(Store store) {
-        return StoreResponseDto.builder()
+    public static StoreResDto from(Store store) {
+        return StoreResDto.builder()
                 .id(store.getId())
                 .name(store.getName())
                 .managerNumber(store.getManagerNumber())

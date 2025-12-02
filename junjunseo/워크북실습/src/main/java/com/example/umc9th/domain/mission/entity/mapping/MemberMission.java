@@ -29,4 +29,8 @@ public class MemberMission extends BaseEntity {
     @JoinColumn(name = "mission_id")
     private Mission mission;
 
+    public void setComplete(boolean complete) {
+        this.isComplete = complete;
+    }
+
 }

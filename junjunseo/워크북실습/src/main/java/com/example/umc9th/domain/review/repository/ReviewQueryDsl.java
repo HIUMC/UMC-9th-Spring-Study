@@ -1,8 +1,6 @@
 package com.example.umc9th.domain.review.repository;
 
-import com.example.umc9th.domain.review.dto.ReviewResponseDto;
-import com.example.umc9th.domain.review.entity.Review;
-import com.querydsl.core.types.Predicate;
+import com.example.umc9th.domain.review.dto.ReviewResDto;
 
 import java.util.List;
 
@@ -13,5 +11,5 @@ public interface ReviewQueryDsl {
     List<Review> searchReview(Predicate predicate);
      */
 
-    List<ReviewResponseDto> findMyReviews(String type, String query, Float star);
+    List<ReviewResDto.ReviewDetailDto> findMyReviews(String type, String query, Float star);
 }

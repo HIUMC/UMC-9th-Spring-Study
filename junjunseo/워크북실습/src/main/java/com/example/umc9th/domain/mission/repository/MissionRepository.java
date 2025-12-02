@@ -1,15 +1,15 @@
 package com.example.umc9th.domain.mission.repository;
 
-import com.example.umc9th.domain.member.enums.Address;
 import com.example.umc9th.domain.mission.entity.Mission;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public interface MissionRepository extends JpaRepository<Mission, Long> {
 
@@ -36,4 +36,12 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
             @Param("today") LocalDate today,
             Pageable pageable
     );
+
+    Page<Mission> findAllByStoreId(Long storeId, Pageable pageable);
+
+    // Page 기반 페이징
+    Page<Mission> findAllByStore_Id(Long storeId, Pageable pageable);
+
+    // Slice 기반 페이징
+    Slice<Mission> findSliceByStore_Id(Long storeId, Pageable pageable);
 }

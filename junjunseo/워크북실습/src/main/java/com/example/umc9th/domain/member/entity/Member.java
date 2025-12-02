@@ -46,10 +46,10 @@ public class Member extends BaseEntity {
     @Column(name = "detail_address", nullable = false)
     private String detailAddress;
 
-    @Column(name = "social_uid", nullable = false)
+    @Column(name = "social_uid")
     private String socialUid;
 
-    @Column(name = "social_type", nullable = false)
+    @Column(name = "social_type")
     @Enumerated(EnumType.STRING)
     private SocialType socialType;
 
@@ -57,7 +57,7 @@ public class Member extends BaseEntity {
     @Builder.Default
     private Integer point = 0;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
     @Column(name = "phone_number")

@@ -1,21 +1,12 @@
 package com.example.umc9th.domain.review.service;
 
-import com.example.umc9th.domain.review.dto.ReviewResponseDto;
-import com.example.umc9th.domain.review.entity.QReview;
+import com.example.umc9th.domain.review.dto.ReviewResDto;
 import com.example.umc9th.domain.review.entity.Review;
-import com.example.umc9th.domain.review.repository.ReviewRepository;
-import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Predicate;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class ReviewQueryService {
-
-    private final ReviewRepository reviewRepository;
+public interface ReviewQueryService {
 /*
     public List<Review> searchReview(String query, String type) {
 
@@ -52,12 +43,14 @@ public class ReviewQueryService {
         return reviewList;
     }
 
-    public List<ReviewResponseDto> getMyReviews(Long memberId, String storeName, Integer starGroup) {
+    public List<ReviewResDto> getMyReviews(Long memberId, String storeName, Integer starGroup) {
         return reviewRepository.findMyReviews(memberId, storeName, starGroup);
     }
  */
 
-    public List<ReviewResponseDto> findMyReviews(String type, String query, Float star) {
-        return reviewRepository.findMyReviews(type, query, star);
-    }
+    List<ReviewResDto.ReviewDetailDto> findMyReviews(String type, String query, Float star);
+
+    ReviewResDto.ReviewPreViewListDto findReview(String storeName, Integer page);
+
+    Page<ReviewResDto.MyReviewSummaryDto> findMyReviews(Integer page);
 }
