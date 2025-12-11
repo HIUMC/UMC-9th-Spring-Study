@@ -1,6 +1,5 @@
 package hongikUMC.workbook.domain.mission.entity;
 
-import hongikUMC.workbook.domain.mission.enums.Status;
 import hongikUMC.workbook.domain.store.entity.Store;
 import hongikUMC.workbook.global.enums.BaseEntity;
 import jakarta.persistence.*;
