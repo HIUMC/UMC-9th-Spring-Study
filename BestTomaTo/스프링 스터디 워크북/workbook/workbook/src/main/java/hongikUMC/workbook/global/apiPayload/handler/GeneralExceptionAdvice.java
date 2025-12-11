@@ -13,6 +13,8 @@ public class GeneralExceptionAdvice {
 
     // 애플리케이션에서 발생하는 커스텀 예외를 처리
     @ExceptionHandler(GeneralException.class)
+    // 이 친구 덕분에 내가 설계한 예외를 잡을 수 있다.
+    // 이 예외를 상속 받은 도메인에서 에러가 터지면, 부모 클래스인 GeneralException을 Code와 함께 호출한다.
     public ResponseEntity<ApiResponse<Void>> handleException(
             GeneralException ex
     ) {
