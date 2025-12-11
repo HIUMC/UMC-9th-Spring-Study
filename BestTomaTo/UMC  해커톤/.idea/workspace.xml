@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="db08f74d-1b1b-4fd0-85c3-02c510231e17" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/UMC  해커톤.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/neordinary/domain/receipt/controller/ReceiptController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/neordinary/domain/receipt/entity/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/neordinary/domain/receipt/entity/Receipt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/.idea/modules/workbook.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/controller/MemberController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/converter/MemberConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/dto/req/MemberReqDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/dto/res/MemberResDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/exception/FoodException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/exception/MemberException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/exception/code/FoodErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/exception/code/FoodSuccessCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/exception/code/MemberErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/exception/code/MemberSuccessCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/repository/FoodRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/repository/MemberFoodRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/repository/MemberRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/service/command/MemberCommandService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/service/command/MemberCommandServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/service/query/MemberQueryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/service/query/MemberQueryServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/review/dto/DTOResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/test/controller/TestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/test/converter/TestConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/test/dto/res/TestResDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/test/exception/TestException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/test/exception/code/TestErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/test/service/command/TestCommandService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/test/service/command/TestCommandServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/test/service/query/TestQueryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/test/service/query/TestQueryServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/global/annotation/ExistFoods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/global/apiPayload/exception/GeneralException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/global/apiPayload/handler/GeneralExceptionAdvice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/global/config/SwaggerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/global/validator/FoodExistValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../스프링 스터디 워크북/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/entity/mapped/MemberFood.java" beforeDir="false" afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/member/entity/mapped/MemberFood.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/review/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/review/controller/ReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/review/entity/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/review/entity/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/review/repository/ReviewQueryDsl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/review/repository/ReviewQueryDsl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/review/repository/ReviewQueryDslImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/review/repository/ReviewQueryDslImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/review/service/ReviewQueryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/review/service/ReviewQueryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/store/entity/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/domain/store/entity/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/global/apiPayload/code/GeneralErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/java/hongikUMC/workbook/global/apiPayload/code/GeneralErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../스프링 스터디 워크북/workbook/workbook/src/main/resources/application.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/backend">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="NEORDINARY" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/backend" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="35p5PUuFPziPvYdr8Ya7PenUEHq" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="NeordinaryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="NEORDINARY.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.neordinary.NeordinaryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="db08f74d-1b1b-4fd0-85c3-02c510231e17" name="변경" comment="" />
+      <created>1763794149230</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1763794149230</updated>
+      <workItem from="1763794151161" duration="5777000" />
+      <workItem from="1763802305585" duration="43000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
