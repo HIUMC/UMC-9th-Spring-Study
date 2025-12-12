@@ -8,6 +8,7 @@ import lombok.*;
 import java.util.List;
 
 @Entity
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -29,6 +30,6 @@ public class Store extends BaseEntity {
     private String name;
 
     @Column(name = "address", nullable = false)
-    private String Field;
+    private String field;
 
 }

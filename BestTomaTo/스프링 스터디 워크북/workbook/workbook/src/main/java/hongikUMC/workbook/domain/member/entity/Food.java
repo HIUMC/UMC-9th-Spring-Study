@@ -1,5 +1,6 @@
 package hongikUMC.workbook.domain.member.entity;
 
+import hongikUMC.workbook.global.enums.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

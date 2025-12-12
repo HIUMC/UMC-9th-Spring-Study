@@ -2,12 +2,14 @@ package hongikUMC.workbook.domain.member.entity.mapped;
 
 import hongikUMC.workbook.domain.member.entity.Food;
 import hongikUMC.workbook.domain.member.entity.Member;
+import hongikUMC.workbook.global.enums.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class MemberFood {
