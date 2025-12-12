@@ -19,7 +19,7 @@ public class MemberController {
 
     private final MemberCommandService memberCommandService;
 
-    @PostMapping("/signUp")
+    @PostMapping("/signup")
     public ApiResponse<MemberResDTO.JoinDTO> memberSignUp(
             @RequestBody @Valid MemberReqDTO.JoinDTO joinDTO
     ){
