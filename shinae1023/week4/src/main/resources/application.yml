@@ -17,3 +17,8 @@ spring:
         hbm2ddl:
           auto: update
         default_batch_fetch_size: 1000
+jwt:
+  secret:
+    key: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
+  expiration:
+    access: 3600000 # 1시간

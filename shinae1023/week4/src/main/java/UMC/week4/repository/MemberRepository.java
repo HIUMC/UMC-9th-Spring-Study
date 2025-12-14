@@ -13,4 +13,6 @@ import java.util.Optional;
 public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query("SELECT new UMC.week4.dto.MypageDto(m.nickName, m.email, m.phoneNum, m.point) FROM Member m WHERE m.id = :memberId")
     Optional<MypageDto> findMyPageInfo(@Param("memberId") Long memberId);
+
+    Optional<Member> findByEmail(String email);
 }
