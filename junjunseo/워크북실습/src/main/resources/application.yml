@@ -22,8 +22,14 @@ spring:
     defer-datasource-initialization: true
   sql:
     init:
-      mode: always
+      mode: never
 
 # discord 에러 메시지 전송
 discord:
   webhook-url: ${DISCORD_WEBHOOK_URL} # discord webhook url
+
+jwt:
+  token:
+    secretKey: ZGh3YWlkc2F2ZXdhZXZ3b2EgMTM5ZXUgMDMxdWMyIHEyMiBAIDAgKTJFVio=
+    expiration:
+      access: 14400000

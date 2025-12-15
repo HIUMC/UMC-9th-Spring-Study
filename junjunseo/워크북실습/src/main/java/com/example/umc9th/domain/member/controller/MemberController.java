@@ -4,6 +4,7 @@ import com.example.umc9th.domain.member.dto.MemberReqDto;
 import com.example.umc9th.domain.member.dto.MemberResDto;
 import com.example.umc9th.domain.member.exception.code.MemberSuccessCode;
 import com.example.umc9th.domain.member.service.command.MemberCommandService;
+import com.example.umc9th.domain.member.service.query.MemberQueryService;
 import com.example.umc9th.global.apiPayload.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemberController {
 
     private final MemberCommandService memberCommandService;
+    private final MemberQueryService memberQueryService;
 
     // 회원가입
     @PostMapping("/sign-up")
@@ -25,5 +27,11 @@ public class MemberController {
         return ApiResponse.onSuccess(MemberSuccessCode.FOUND, memberCommandService.signup(dto));
     }
 
-
+    // 로그인
+    @PostMapping("/login")
+    public ApiResponse<MemberResDto.LoginDto> login(
+            @RequestBody @Valid MemberReqDto.LoginDto dto
+    ){
+        return ApiResponse.onSuccess(MemberSuccessCode.FOUND, memberQueryService.login(dto));
+    }
 }
