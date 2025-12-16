@@ -1,6 +1,6 @@
 package com.example.umcworkbook.service;
 
-import com.example.umcworkbook.CustomUserDetails;
+import com.example.umcworkbook.security.CustomUserDetails;
 import com.example.umcworkbook.apiPayload.code.error.MemberErrorCode;
 import com.example.umcworkbook.apiPayload.exception.MemberException;
 import com.example.umcworkbook.entity.Member;

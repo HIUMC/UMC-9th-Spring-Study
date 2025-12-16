@@ -1,4 +1,4 @@
-package com.example.umcworkbook;
+package com.example.umcworkbook.security;
 
 import com.example.umcworkbook.entity.Member;
 import lombok.RequiredArgsConstructor;

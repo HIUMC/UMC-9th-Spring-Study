@@ -31,4 +31,11 @@ public class MemberConverter {
                 .address(dto.address())
                 .build();
     }
+
+    public static MemberResDto.LoginDto toLoginDto(Member member, String accessToken) {
+        return MemberResDto.LoginDto.builder()
+                .memberId(member.getId())
+                .accessToken(accessToken)
+                .build();
+    }
 }

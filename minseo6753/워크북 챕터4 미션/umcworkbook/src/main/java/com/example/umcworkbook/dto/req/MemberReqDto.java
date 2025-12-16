@@ -27,4 +27,11 @@ public class MemberReqDto {
             @ExistCategories
             List<Long> categories
     ){}
+
+    public record LoginDto(
+            @NotBlank @Email
+            String email,
+            @NotBlank
+            String password
+    ){}
 }
