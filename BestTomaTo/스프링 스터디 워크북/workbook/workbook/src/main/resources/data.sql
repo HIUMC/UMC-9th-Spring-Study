@@ -27,11 +27,11 @@ VALUES
 -- ------------------------
 -- 3) Member (BaseEntity O)
 -- ------------------------
-INSERT INTO member (member_id, name, gender, social_id, social_pw, nickname, created_at, updated_at)
+INSERT INTO member (member_id, name, gender, social_id, social_pw, nickname, email, password, role, created_at, updated_at)
 VALUES
-    (1, '김토마토', 'NONE', 'tomato_social', 'pw_tomato', '김토마토', NOW(), NOW()),
-    (2, '이파스타', 'NONE', 'pasta_social',  'pw_pasta',  '이파스타', NOW(), NOW()),
-    (3, '박피자',   'NONE', 'pizza_social',  'pw_pizza',  '박피자',   NOW(), NOW())
+    (1, '김토마토', 'NONE', 'tomato_social', 'pw_tomato', '김토마토', 'tomato@gmail.com', '1234', 'ROLE_ADMIN',NOW(), NOW()),
+    (2, '이파스타', 'NONE', 'pasta_social',  'pw_pasta',  '이파스타', 'pasta@gmail.com', '5678', 'ROLE_USER',NOW(), NOW()),
+    (3, '박피자',   'NONE', 'pizza_social',  'pw_pizza',  '박피자',   'pizza@gmail.com', 'abcd', 'ROLE_USER',NOW(), NOW())
     ON DUPLICATE KEY UPDATE
                          name      = VALUES(name),
                          gender    = VALUES(gender),

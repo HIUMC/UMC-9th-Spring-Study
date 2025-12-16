@@ -3,6 +3,7 @@ package hongikUMC.workbook.domain.member.entity;
 import hongikUMC.workbook.domain.member.entity.mapped.MemberFood;
 import hongikUMC.workbook.domain.member.enums.Gender;
 import hongikUMC.workbook.domain.mission.entity.mapped.MemberMission;
+import hongikUMC.workbook.global.auth.enums.Role;
 import hongikUMC.workbook.global.enums.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -39,6 +40,16 @@ public class Member extends BaseEntity {
 
     @Column(name = "nickname", nullable = false)
     private String nickname;
+
+    //==인증/인가--//
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     //==양방향 고려==//
     /** Member_Food */

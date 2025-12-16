@@ -15,4 +15,11 @@ public class MemberResDTO {
             Long memberId,
             LocalDateTime createdAt
     ){}
+
+    // 로그인 -> 생성 토큰 반환
+    @Builder
+    public record LoginDTO(
+            Long memberId,
+            String accesToken
+    ){}
 }
