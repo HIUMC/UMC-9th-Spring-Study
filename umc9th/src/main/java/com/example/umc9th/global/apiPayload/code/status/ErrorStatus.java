@@ -30,6 +30,7 @@ public enum ErrorStatus implements BaseErrorCode {
     // 멤버 관련 에러
     //================================================================================
     MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4001", "사용자가 없습니다."),
+    MEMBER_PASSWORD_NOT_MATCH(HttpStatus.BAD_REQUEST, "MEMBER4002", "비밀번호가 일치하지 않습니다."), // 이 라인을 추가해주세요.
     NICKNAME_NOT_EXIST(HttpStatus.BAD_REQUEST, "MEMBER4002", "닉네임은 필수 입니다."),
 
     //================================================================================

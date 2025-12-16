@@ -3,6 +3,7 @@ package com.example.umc9th.domain.member.entity;
 import com.example.umc9th.domain.member.enums.Gender;
 import com.example.umc9th.domain.member.enums.LoginType;
 import com.example.umc9th.domain.member.entity.mapping.MemberFood;
+import com.example.umc9th.domain.member.enums.Role;
 import com.example.umc9th.domain.mission.entity.mapping.UserMission;
 import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.global.entity.BaseEntity;
@@ -24,12 +25,21 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
     @Column(nullable = false, length = 20, name="name")
     private String name;
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(10)", name="gender")
     private Gender gender;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Column
     private Date dateOfBirth;
@@ -49,9 +59,6 @@ public class Member extends BaseEntity {
 
     @Column
     private Long point;
-
-    @Column
-    private String email;
 
     @Column
     private String phone;

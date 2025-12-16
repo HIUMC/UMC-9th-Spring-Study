@@ -1,13 +1,16 @@
--- 올바른 순서로 데이터 삭제 (자식 -> 부모)
-DELETE FROM user_mission;
-DELETE FROM review;
-DELETE FROM member_food;
-DELETE FROM mission;
-DELETE FROM store;
-DELETE FROM member;
-DELETE FROM foods;
+SET FOREIGN_KEY_CHECKS = 0;
 
+TRUNCATE TABLE user_mission;
+TRUNCATE TABLE review;
+TRUNCATE TABLE member_food;
+TRUNCATE TABLE mission;
+TRUNCATE TABLE store;
+TRUNCATE TABLE member;
+TRUNCATE TABLE foods;
 
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- 가게 데이터 삽입
 INSERT INTO store (store_name, detail_address, manager_number)
 VALUES ( '맘스터치', '서울시 강남구 역삼동', 1);
 
@@ -28,9 +31,14 @@ INSERT INTO foods (food_name) VALUES ('FASTFOOD');
 INSERT INTO foods (food_name) VALUES ('DESSERT');
 INSERT INTO foods (food_name) VALUES ('ASIANCUISINE');
 
--- 사용자 데이터 삽입
-INSERT INTO member (name, email, gender, date_of_birth, address, detail_address, social_uid, login_type, point, phone, created_at, updated_at) VALUES ('홍길동', 'gildong@example.com', 'MALE', '1990-01-01', '서울시 강남구', '101호', 'kakao_1234', 'KAKAO', 1000, '010-1234-5678', NOW(), NOW());
-INSERT INTO member (name, email, gender, date_of_birth, address, detail_address, social_uid, login_type, point, phone, created_at, updated_at) VALUES ('김철수', 'chulsu@example.com', 'MALE', '1995-05-05', '서울시 서초구', '202호', 'naver_5678', 'NAVER', 500, '010-5678-1234', NOW(), NOW());
+-- 사용자 데이터 삽입 (password, role 추가)
+-- 주의: 여기 들어간 비밀번호는 암호화되지 않은 평문이므로, 실제 로그인 시에는 BCrypt로 암호화된 해시값을 넣어야 로그인이 가능합니다.
+-- 테스트를 위해 임시로 평문을 넣습니다. 이 계정들로 로그인하려면 DB에서 비밀번호를 암호화된 값으로 업데이트해야 합니다.
+INSERT INTO member (name, email, password, role, gender, date_of_birth, address, detail_address, social_uid, login_type, point, phone, created_at, updated_at) 
+VALUES ('홍길동', 'gildong@example.com', 'temp_password', 'ROLE_USER', 'MALE', '1990-01-01', '서울시 강남구', '101호', 'kakao_1234', 'KAKAO', 1000, '010-1234-5678', NOW(), NOW());
+
+INSERT INTO member (name, email, password, role, gender, date_of_birth, address, detail_address, social_uid, login_type, point, phone, created_at, updated_at) 
+VALUES ('김철수', 'chulsu@example.com', 'temp_password', 'ROLE_USER', 'MALE', '1995-05-05', '서울시 서초구', '202호', 'naver_5678', 'NAVER', 500, '010-5678-1234', NOW(), NOW());
 
 -- 미션 데이터 삽입
 INSERT INTO mission (deadline, conditional, title, point, store_id, created_at, updated_at) VALUES ('2024-12-31 23:59:59', '리뷰 1개 작성', '첫 리뷰 작성 미션', 100, 1, NOW(), NOW());

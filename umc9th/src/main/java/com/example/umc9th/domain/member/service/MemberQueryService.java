@@ -2,11 +2,8 @@ package com.example.umc9th.domain.member.service;
 
 import com.example.umc9th.domain.member.dto.MemberRequestDTO;
 import com.example.umc9th.domain.member.dto.MemberResponseDTO;
-import com.example.umc9th.domain.member.entity.Member;
 
-public interface MemberService {
-    // 파라미터를 MemberRequestDTO -> MemberRequestDTO.JoinDTO로 수정
-    Member signUp(MemberRequestDTO.JoinDTO request);
-
+public interface MemberQueryService {
+    // 로그인 로직
     MemberResponseDTO.LoginDTO login(MemberRequestDTO.LoginDTO request);
 }

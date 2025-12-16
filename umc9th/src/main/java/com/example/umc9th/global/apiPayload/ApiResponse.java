@@ -1,10 +1,10 @@
 package com.example.umc9th.global.apiPayload;
 
+import com.example.umc9th.global.apiPayload.code.BaseCode;
+import com.example.umc9th.global.apiPayload.code.status.SuccessStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.example.umc9th.global.apiPayload.code.BaseCode;
-import com.example.umc9th.global.apiPayload.code.status.SuccessStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -20,32 +20,23 @@ public class ApiResponse<T> {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T result;
 
-    // 성공한 경우 응답 생성
-    public static <T> ApiResponse<T> onSuccess(T result) {
-        return new ApiResponse<>(true, SuccessStatus._OK.getCode(), SuccessStatus._OK.getMessage(), result);
-    }
-
-    // BaseCode를 사용하여 응답 생성 (성공/실패 모두 처리 가능하도록 수정)
-    /**
-     * BaseCode를 사용하여 API 응답을 생성합니다.
-     * 이 메소드는 성공 및 실패 응답 모두를 처리할 수 있도록 isSuccess 필드를 BaseCode에서 가져옵니다.
-     *
-     * @param code BaseCode를 구현하는 코드 (예: SuccessStatus._OK, ErrorStatus.MEMBER_NOT_FOUND)
-     * @param result 응답 데이터
-     * @param <T> 응답 데이터의 타입
-     * @return ApiResponse 객체
-     */
+    // 범용적인 of 메서드 (가장 중요)
     public static <T> ApiResponse<T> of(BaseCode code, T result) {
         return new ApiResponse<>(
-                code.getReasonHttpStatus().isSuccess(), // isSuccess() 메소드로 수정
+                code.getReasonHttpStatus().isSuccess(),
                 code.getReasonHttpStatus().getCode(),
                 code.getReasonHttpStatus().getMessage(),
                 result
         );
     }
 
-    // 실패한 경우 응답 생성
-    public static <T> ApiResponse<T> onFailure(String code, String message, T data) {
-        return new ApiResponse<>(false, code, message, data);
+    // 성공 응답 (결과 데이터만 있을 때)
+    public static <T> ApiResponse<T> onSuccess(T result) {
+        return of(SuccessStatus._OK, result);
+    }
+
+    // 실패 응답 (결과 데이터가 없을 때)
+    public static <T> ApiResponse<T> onFailure(BaseCode errorCode, T result) {
+        return of(errorCode, result);
     }
 }

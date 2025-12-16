@@ -24,5 +24,12 @@ spring:
     init:
       mode: always # data.sql 스크립트를 항상 실행하도록 설정합니다.
       data-locations: classpath:data.sql
+
+jwt:
+  token:
+    secretKey: ZGh3YWlkc2F2ZXdhZXZ3b2EgMTM5ZXUgMDMxdWMyIHEyMiBAIDAgKTJFVio=
+    expiration:
+      access: 14400000
+
 server:
   port: 8081

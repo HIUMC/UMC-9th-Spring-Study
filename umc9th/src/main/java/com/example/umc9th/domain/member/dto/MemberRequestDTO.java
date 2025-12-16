@@ -1,6 +1,8 @@
 package com.example.umc9th.domain.member.dto;
 
 import com.example.umc9th.domain.common.annotation.ExistFoods;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 
 import java.util.List;
@@ -12,46 +14,37 @@ import java.util.List;
 @Getter
 public class MemberRequestDTO {
 
-    /**
-     * 사용자 이름
-     */
-    private String name;
+    public record JoinDTO(
+            @NotBlank(message = "이름은 필수 입력 값입니다.")
+            String name,
 
-    /**
-     * 사용자 성별
-     * "MALE", "FEMALE" 과 같은 문자열로 받습니다.
-     */
-    private String gender;
+            @NotBlank(message = "이메일은 필수 입력 값입니다.")
+            @Email(message = "이메일 형식에 맞지 않습니다.")
+            String email,
 
-    /**
-     * 생년 (Year)
-     */
-    private Integer birthYear;
+            @NotBlank(message = "비밀번호는 필수 입력 값입니다.")
+            String password,
 
-    /**
-     * 생월 (Month)
-     */
-    private Integer birthMonth;
+            String gender,
+            Integer birthYear,
+            Integer birthMonth,
+            Integer birthDay,
+            String address,
+            String detailAddress,
 
-    /**
-     * 생일 (Day)
-     */
-    private Integer birthDay;
+            /**
+             * 선호하는 음식 카테고리 ID 목록
+             * 사용자가 선택한 음식들의 ID를 리스트 형태로 받습니다.
+             */
+            @ExistFoods
+            List<Long> preferFood
+    ) {}
 
-    /**
-     * 주소
-     */
-    private String address;
-
-    /**
-     * 상세 주소
-     */
-    private String detailAddress;
-
-    /**
-     * 선호하는 음식 카테고리 ID 목록
-     * 사용자가 선택한 음식들의 ID를 리스트 형태로 받습니다.
-     */
-    @ExistFoods
-    private List<Long> preferFood;
+    // 로그인
+    public record LoginDTO(
+            @NotBlank
+            String email,
+            @NotBlank
+            String password
+    ){}
 }
