@@ -2,6 +2,7 @@ package com.example.umcworkbook.entity;
 
 import com.example.umcworkbook.entity.base.BaseTime;
 import com.example.umcworkbook.entity.enums.Gender;
+import com.example.umcworkbook.entity.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,8 +40,14 @@ public class Member extends BaseTime {
     @Column(name = "nickname",length = 20)
     private String nickname;
 
-    @Column(name = "email",length = 20)
+    @Column(name = "email",nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Column(name = "phone_num",length = 15)
     private String phoneNum;

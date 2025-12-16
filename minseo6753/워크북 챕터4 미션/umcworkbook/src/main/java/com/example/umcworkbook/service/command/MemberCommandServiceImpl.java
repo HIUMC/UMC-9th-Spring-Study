@@ -6,12 +6,14 @@ import com.example.umcworkbook.dto.res.MemberResDto;
 import com.example.umcworkbook.entity.Category;
 import com.example.umcworkbook.entity.Member;
 import com.example.umcworkbook.entity.Preference;
+import com.example.umcworkbook.entity.enums.Role;
 import com.example.umcworkbook.repository.CategoryRepository;
 import com.example.umcworkbook.repository.MemberRepository;
 import com.example.umcworkbook.repository.PreferenceRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,13 +24,16 @@ public class MemberCommandServiceImpl implements MemberCommandService {
     private final MemberRepository memberRepository;
     private final CategoryRepository categoryRepository;
     private final PreferenceRepository preferenceRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional
     public MemberResDto.JoinDto signup(
             MemberReqDto.JoinDto dto
     ) {
-        Member member = MemberConverter.toMember(dto);
+        String salt = passwordEncoder.encode(dto.password());
+
+        Member member = MemberConverter.toMember(dto, salt, Role.ROLE_USER);
         memberRepository.save(member);
 
         if (dto.categories().size() > 1) {

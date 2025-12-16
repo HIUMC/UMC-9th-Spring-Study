@@ -3,6 +3,7 @@ package com.example.umcworkbook.converter;
 import com.example.umcworkbook.dto.req.MemberReqDto;
 import com.example.umcworkbook.dto.res.MemberResDto;
 import com.example.umcworkbook.entity.Member;
+import com.example.umcworkbook.entity.enums.Role;
 
 public class MemberConverter {
 
@@ -16,10 +17,15 @@ public class MemberConverter {
     }
 
     public static Member toMember(
-            MemberReqDto.JoinDto dto
+            MemberReqDto.JoinDto dto,
+            String password,
+            Role role
     ) {
         return Member.builder()
                 .name(dto.name())
+                .email(dto.email())
+                .password(password)
+                .role(role)
                 .gender(dto.gender())
                 .birth(dto.birth())
                 .address(dto.address())
