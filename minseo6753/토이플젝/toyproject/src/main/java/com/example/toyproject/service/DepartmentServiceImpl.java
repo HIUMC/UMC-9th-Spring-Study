@@ -9,11 +9,13 @@ import com.example.toyproject.dto.req.DepartmentReqDTO;
 import com.example.toyproject.dto.res.DepartmentResDTO;
 import com.example.toyproject.repository.DepartmentRepository;
 import com.example.toyproject.repository.HospitalRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class DepartmentServiceImpl implements DepartmentService {
 
     private final HospitalRepository hospitalRepository;

@@ -5,11 +5,13 @@ import com.example.toyproject.domain.Hospital;
 import com.example.toyproject.dto.req.HospitalReqDTO;
 import com.example.toyproject.dto.res.HospitalResDTO;
 import com.example.toyproject.repository.HospitalRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class HospitalServiceImpl implements HospitalService {
 
     private final HospitalRepository hospitalRepository;
