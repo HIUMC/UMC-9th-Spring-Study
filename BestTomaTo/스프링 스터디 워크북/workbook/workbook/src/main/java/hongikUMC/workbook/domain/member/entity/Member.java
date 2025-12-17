@@ -1,0 +1,63 @@
+package hongikUMC.workbook.domain.member.entity;
+
+import hongikUMC.workbook.domain.member.entity.mapped.MemberFood;
+import hongikUMC.workbook.domain.member.enums.Gender;
+import hongikUMC.workbook.domain.mission.entity.mapped.MemberMission;
+import hongikUMC.workbook.global.auth.enums.Role;
+import hongikUMC.workbook.global.enums.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
+@AllArgsConstructor(access = lombok.AccessLevel.PRIVATE)
+@Table(name = "member")
+public class Member extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long member_id;
+
+    @Column(name = "name", length = 20, nullable = false)
+    private String name;
+
+    @Column(name = "gender", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Builder.Default
+    private Gender gender = Gender.NONE;
+
+    @Column(name = "social_id", nullable = false)
+    private String social_id;
+
+    @Column(name = "social_pw", nullable = false)
+    private String social_pw;
+
+    @Column(name = "nickname", nullable = false)
+    private String nickname;
+
+    //==인증/인가--//
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    //==양방향 고려==//
+    /** Member_Food */
+    @OneToMany(mappedBy = "member")
+    private List<MemberFood> memberFoodList = new ArrayList<>();
+
+    /** Member_Mission */
+    @OneToMany(mappedBy = "member")
+    private List<MemberMission> memberMissionList = new ArrayList<>();
+
+}

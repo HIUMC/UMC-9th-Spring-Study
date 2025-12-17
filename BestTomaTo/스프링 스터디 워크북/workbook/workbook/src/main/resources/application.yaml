@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: workbook
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/umc
+    username: root
+    password: jin315130*
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+        # show-sql: true
+  sql:
+    init:
+      mode: always
+
+jwt:
+  token:
+    secretKey: ZGh3YWlkc2F2ZXdhZXZ3b2EgMTM5ZXUgMDMxdWMyIHEyMiBAIDAgKTJFVio=
+    expiration:
+      access: 14400000
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
