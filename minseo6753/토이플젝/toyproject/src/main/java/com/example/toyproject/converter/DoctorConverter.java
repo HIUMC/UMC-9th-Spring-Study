@@ -12,7 +12,7 @@ public class DoctorConverter {
                 .build();
     }
 
-    public static DoctorResDTO.RegisterDTO toRegisterDTO(Doctor doctor){
+    public static DoctorResDTO.RegisterDTO toResponseDTO(Doctor doctor){
         return DoctorResDTO.RegisterDTO.builder()
                 .id(doctor.getId())
                 .build();

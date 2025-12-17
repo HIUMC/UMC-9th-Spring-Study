@@ -5,4 +5,8 @@ public class DoctorReqDTO {
     public record RegisterDTO(
             String name
     ){}
+
+    public record UpdateDepartmentDTO(
+            Long departmentId
+    ){}
 }

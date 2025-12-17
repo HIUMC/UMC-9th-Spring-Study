@@ -6,9 +6,7 @@ import com.example.toyproject.dto.req.DoctorReqDTO;
 import com.example.toyproject.dto.res.DoctorResDTO;
 import com.example.toyproject.service.DoctorService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,7 +17,15 @@ public class DoctorController {
     @PostMapping("/doctors")
     public ApiResponse<DoctorResDTO.RegisterDTO> register(
             @RequestBody DoctorReqDTO.RegisterDTO dto
-    ){
+    ) {
         return ApiResponse.onSuccess(GeneralSuccessCode.OK, doctorService.register(dto));
+    }
+
+    @PatchMapping("/doctors/{doctorId}/departments")
+    public ApiResponse<DoctorResDTO.RegisterDTO> updateDepartment(
+            @PathVariable Long doctorId,
+            @RequestBody DoctorReqDTO.UpdateDepartmentDTO dto
+    ) {
+        return ApiResponse.onSuccess(GeneralSuccessCode.OK, doctorService.updateDepartment(doctorId, dto));
     }
 }

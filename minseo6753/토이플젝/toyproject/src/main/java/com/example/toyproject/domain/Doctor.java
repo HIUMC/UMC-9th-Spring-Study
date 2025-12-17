@@ -37,4 +37,9 @@ public class Doctor extends BaseEntity {
 
     @Column(name = "career_years")
     private Integer careerYears;
+
+    public Doctor updateDepartment(Department department) {
+        this.department = department;
+        return this;
+    }
 }
