@@ -25,10 +25,11 @@ public class SecurityConfig {
     private final CustomUserDetailsService customUserDetailsService;
 
     private final String[] allowUris = {
+            "/member/signup",
             "/member/login",
-            "/swagger-ui/**",
-            "/swagger-resources/**",
-            "/v3/api-docs/**",
+//            "/swagger-ui/**",
+//            "/swagger-resources/**",
+//            "/v3/api-docs/**",
     };
 
     @Bean
@@ -36,21 +37,26 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers(allowUris).permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/swagger-ui/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 // 폼로그인 비활성화 -> 세션 방식 사용x
-                .formLogin(AbstractHttpConfigurer::disable)
-                // JwtAuthFilter를 UsernamePasswordAuthenticationFilter 앞에 추가
-                // 모든 HTTP Request를 가로채 JWT를 검증한다.
-                .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class)
+                .formLogin(form -> form
+                        .defaultSuccessUrl("/", true)
+                        .permitAll()
+                )
+                /**
+                 * // JwtAuthFilter를 UsernamePasswordAuthenticationFilter 앞에 추가
+                 * // 모든 HTTP Request를 가로채 JWT를 검증한다.
+                 * .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class)
+                 * */
                 .csrf(AbstractHttpConfigurer::disable) // csrf 종료
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
-                )
-                .exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint()));
+                );
+                //.exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint()));
 
         return http.build();
     }
