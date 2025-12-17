@@ -3,8 +3,16 @@ package com.example.umcworkbook.entity;
 import com.example.umcworkbook.entity.base.BaseTime;
 import com.example.umcworkbook.entity.enums.MissionStatus;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 @Table(name = "member_mission")
 public class MemberMission extends BaseTime {
 
@@ -26,4 +34,8 @@ public class MemberMission extends BaseTime {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private MissionStatus missionStatus;
+
+    public void complete() {
+        missionStatus=MissionStatus.COMPLETED;
+    }
 }
