@@ -2,6 +2,7 @@ package hello.umc9th.domain.member.entity;
 
 
 import hello.umc9th.domain.member.enums.Gender;
+import hello.umc9th.domain.member.enums.Role;
 import hello.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,6 +21,18 @@ public class Member extends BaseEntity {//생성수정삭제는 상속받기.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //로그인용 이메일
+    @Column(nullable = false, unique = true)//중복 안됨.
+    private String email;
+
+    //로그인용 비밀번호
+    @Column(nullable = false)
+    private String password;
+
+    //사용자 역할 부여
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     //멤버 이름
     @Column(name="name", nullable = false)
     private String name;
@@ -31,17 +44,22 @@ public class Member extends BaseEntity {//생성수정삭제는 상속받기.
     private Gender gender= Gender.NONE;
 
     //주소
-    @Column(name="address", nullable = false)
+    @Column(name="address")
     private String address;
 
     //포인트
-    @Column(name="point",nullable = false)
+    @Column(name="point")
     @Builder.Default //디폴트값 0
     private int point = 0;
 
     //전화번호
     @Column(name="phoneNumber",length = 11)//길이 제한
     private String phoneNumber;
+
+    // 약관 동의 여부
+    @Column(name = "agree", nullable = false)
+    @Builder.Default
+    private Boolean agree = true;
 
     //생성, 수정, 삭제 일자는 상속받음.
 
