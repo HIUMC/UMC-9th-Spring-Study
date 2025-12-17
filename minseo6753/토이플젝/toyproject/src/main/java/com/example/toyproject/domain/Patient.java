@@ -27,6 +27,9 @@ public class Patient extends BaseEntity {
     @Column(name = "patient_id")
     private Long id;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @Column(name = "age", nullable = false)
     private Integer age;
 
