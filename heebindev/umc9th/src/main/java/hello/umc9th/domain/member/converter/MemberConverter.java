@@ -31,4 +31,13 @@ public class MemberConverter {
                 .address(dto.address())
                 .build();//완료
     }
+
+    // 로그인 응답 DTO
+    public static MemberResDTO.LoginDTO toLoginDTO(Member member, String accessToken) {
+        return MemberResDTO.LoginDTO.builder()
+                .memberId(member.getId())
+                .email(member.getEmail())
+                .accessToken(accessToken)
+                .build();
+    }
 }

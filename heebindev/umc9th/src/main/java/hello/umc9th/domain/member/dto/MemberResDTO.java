@@ -17,4 +17,12 @@ public class MemberResDTO {
             String address,
             LocalDateTime createdAt
     ){}
+
+    // 로그인
+    @Builder
+    public record LoginDTO(
+            Long memberId,
+            String email,
+            String accessToken
+    ){}
 }

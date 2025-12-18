@@ -1,31 +1,37 @@
-package hello.umc9th.domain.member.controller;
+package hello.umc9th.global.auth;
 
 import hello.umc9th.domain.member.dto.MemberReqDTO;
 import hello.umc9th.domain.member.dto.MemberResDTO;
 import hello.umc9th.domain.member.exception.code.MemberSuccessCode;
 import hello.umc9th.domain.member.service.command.MemberCommandService;
+import hello.umc9th.domain.member.service.query.MemberQueryService;
 import hello.umc9th.global.apiPayload.ApiResponse;
-import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController//컨트롤러가 JSON 형태로 응답한다
-@RequiredArgsConstructor //final 붙은 필드들에 대해 생성자를 자동 생성해줌.
-public class MemberController {
+@RestController
+@RequiredArgsConstructor
+public class AuthController {
 
     private final MemberCommandService memberCommandService;
-    //DTO를 정의한 service
+    private final MemberQueryService memberQueryService;
 
-    @Operation(
-            summary = "회원가입"
-    )
-    //회원가입
-    @PostMapping("/users/") //POST 요청을 받을 URL
-    //파라미터로 JSON 바디의 요청을 JoinDTO로 변환하여 받음
-    public ApiResponse<MemberResDTO.JoinDTO> signUp(@RequestBody @Valid MemberReqDTO.JoinDTO dto){
+    // 회원가입회원가입
+    @PostMapping("/sign-up")
+    public ApiResponse<MemberResDTO.JoinDTO> signUp(
+            @RequestBody @Valid MemberReqDTO.JoinDTO dto
+    ){
         return ApiResponse.onSuccess(MemberSuccessCode.FOUND, memberCommandService.signup(dto));
-    }//성공코드를 반환
+    }
+
+    // 로그인
+    @PostMapping("/login")
+    public ApiResponse<MemberResDTO.LoginDTO> login(
+            @RequestBody @Valid MemberReqDTO.LoginDTO dto
+    ){
+        return ApiResponse.onSuccess(MemberSuccessCode.FOUND, memberQueryService.login(dto));
+    }
 }

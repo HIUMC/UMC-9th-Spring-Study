@@ -24,4 +24,12 @@ public class MemberReqDTO {
             @ExistFoods
             List<Long> preferCategory //멤버 엔터티에는 없지만 MemberFood 클래스에 넣을것 -> 서비스코드에서 해결
     ){}
+
+    // 로그인
+    public record LoginDTO(
+            @NotBlank
+            String email,
+            @NotBlank
+            String password
+    ){}
 }
