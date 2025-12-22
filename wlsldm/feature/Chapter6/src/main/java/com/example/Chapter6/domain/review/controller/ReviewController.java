@@ -63,7 +63,7 @@ public class ReviewController {
     @GetMapping("/reviews")
     public ApiResponse<ReviewResponseDTO.ReviewPreViewListDTO> getReviews(
             @RequestParam String storeName,
-            @RequestParam Integer page
+            @RequestParam() Integer page
     ) {
 
         ReviewSuccessCode code = ReviewSuccessCode.FOUND;

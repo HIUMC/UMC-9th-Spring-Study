@@ -2,9 +2,11 @@ package com.example.Chapter6.domain.user.controller;
 
 import com.example.Chapter6.domain.user.dto.request.MemberReqDTO;
 import com.example.Chapter6.domain.user.dto.response.MemberResDTO;
+import com.example.Chapter6.domain.user.entity.Member;
 import com.example.Chapter6.domain.user.exception.code.MemberSuccessCode;
 import com.example.Chapter6.domain.user.service.command.MemberCommandService;
 import com.example.Chapter6.domain.user.service.command.MemberMissionCommandService;
+import com.example.Chapter6.domain.user.service.query.MemberQueryService;
 import com.example.Chapter6.global.apiPayload.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemberController {
 
     private final MemberCommandService memberCommandService;
+    private final MemberQueryService memberQueryService;
     private final MemberMissionCommandService memberMissionCommandService;
 
     @PostMapping("/sign-up")
@@ -28,7 +31,7 @@ public class MemberController {
                 memberCommandService.signup(dto));
     }
 
-    @PostMapping("members/mission")
+    @PostMapping("/members/mission")
     public ApiResponse<MemberResDTO.AddMissionDTO> addMission(
             @RequestBody MemberReqDTO.AddMissionDTO dto
     ){
@@ -37,4 +40,16 @@ public class MemberController {
                 memberMissionCommandService.addMission(dto)
         );
     }
+
+    @PostMapping("/login")
+    public ApiResponse<MemberResDTO.LoginDTO> login(
+            @RequestBody @Valid MemberReqDTO.LoginDTO dto
+    ){
+        return ApiResponse.onSuccess(
+                MemberSuccessCode.FOUND,
+                memberQueryService.login(dto)
+        );
+    }
+
+
 }

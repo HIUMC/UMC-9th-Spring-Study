@@ -19,4 +19,15 @@ public class MemberResDTO {
             Long missionId,
             String complete
     ){}
+
+    @Builder
+    public record LoginDTO(
+            Long memberId,
+            String accessToken
+    ){}
+
+    @Builder
+    public record LogoutDTO(
+            Long memberId
+    ){}
 }
