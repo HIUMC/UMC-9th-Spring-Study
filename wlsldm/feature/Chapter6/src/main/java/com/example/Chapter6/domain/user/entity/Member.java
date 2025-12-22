@@ -6,6 +6,7 @@ import com.example.Chapter6.domain.user.entity.mapping.MemberTerm;
 import com.example.Chapter6.domain.user.enums.Gender;
 import com.example.Chapter6.domain.user.enums.SocialType;
 import com.example.Chapter6.domain.user.enums.Status;
+import com.example.Chapter6.global.auth.enums.Role;
 import com.example.Chapter6.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -39,7 +40,7 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", length = 3, nullable = false)
+    @Column(name = "name", length = 10, nullable = false)
     private String name;
 
     @Column( name = "birth", length = 30, nullable = false)
@@ -48,10 +49,16 @@ public class Member extends BaseEntity {
     @Column( name = "email", length = 30, nullable = false)
     private String email;
 
+    @Column ( name = "password", nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @Column( name = "gender", length = 30, nullable = false)
     private Gender gender;
 
-    @Column (name = "phone_num", length = 11, nullable = false)
+    @Column (name = "phone_num", length = 20, nullable = false)
     private String phoneNum;
 
     @Column(name = "social_type")

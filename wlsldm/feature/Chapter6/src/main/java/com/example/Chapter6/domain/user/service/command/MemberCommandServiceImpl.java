@@ -10,7 +10,9 @@ import com.example.Chapter6.domain.user.exception.FoodException;
 import com.example.Chapter6.domain.user.exception.code.FoodErrorCode;
 import com.example.Chapter6.domain.user.repository.MemberFoodRepository;
 import com.example.Chapter6.domain.user.repository.MemberRepository;
+import com.example.Chapter6.global.auth.enums.Role;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,11 +26,16 @@ public class MemberCommandServiceImpl implements MemberCommandService {
     private final FoodRepository foodRepository;
     private final MemberFoodRepository memberFoodRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Override
     public MemberResDTO.JoinDTO signup(
             MemberReqDTO.JoinDTO dto
     ){
-        Member member = MemberConverter.toMember(dto);
+        String salt = passwordEncoder.encode(dto.password());
+
+
+        Member member = MemberConverter.toMember(dto, salt, Role.ROLE_USER);
         memberRepository.save(member);
 
         if (dto.preferCategory().size()>1){
